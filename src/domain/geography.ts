@@ -1,4 +1,4 @@
-const MAX_DISTANCE_ON_EARTH = 20_000_000;
+const MAX_DISTANCE_ON_EARTH = 25173.142572;
 
 export type Direction =
   | "S"
@@ -41,6 +41,11 @@ export function generateSquareCharacters(
   return characters;
 }
 
+const roundTo = function (num: number, places: number) {
+  const factor = 10 ** places;
+  return Math.round(num * factor) / factor;
+};
+
 export function formatDistance(
   distanceInMeters: number,
   distanceUnit: "km" | "miles"
@@ -48,6 +53,6 @@ export function formatDistance(
   const distanceInKm = distanceInMeters / 1000;
 
   return distanceUnit === "km"
-    ? `${Math.round(distanceInKm)}km`
-    : `${Math.round(distanceInKm * 0.621371)}mi`;
+    ? `${roundTo(distanceInKm, 2)}km`
+    : `${roundTo(distanceInKm * 0.621371, 2)}mi`;
 }
