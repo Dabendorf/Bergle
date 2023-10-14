@@ -20,48 +20,7 @@ export function Settings({
 
   return (
     <Panel title={t("settings.title")} isOpen={isOpen} close={close}>
-      <div className="my-4">
-        <header className="my-2"></header>
-        <div className="flex p-1">
-          <select
-            id="setting-distanceUnit"
-            className="h-8 dark:bg-slate-800"
-            value={settingsData.distanceUnit}
-            onChange={(e) =>
-              updateSettings({ distanceUnit: e.target.value as "km" | "miles" })
-            }
-          >
-            <option value="km">KM</option>
-            <option value="miles">Miles</option>
-          </select>
-          <label
-            className="flex-1 ml-2 flex items-center"
-            htmlFor="setting-distanceUnit"
-          >
-            {t("settings.distanceUnit")}
-          </label>
-        </div>
-        <div className="flex p-1">
-          <select
-            id="setting-theme"
-            className="h-8 dark:bg-slate-800"
-            value={settingsData.theme}
-            onChange={(e) =>
-              updateSettings({ theme: e.target.value as "light" | "dark" })
-            }
-          >
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-          <label
-            className="flex-1 ml-2 flex items-center"
-            htmlFor="setting-theme"
-          >
-            {t("settings.theme")}
-          </label>
-        </div>
-      </div>
-      <div className="my-4">
+      <div className="my-4 pl-4 pr4">
         <header className="my-2">
           <h3 className="text-lg font-bold">
             {t("settings.difficultyModifiers")}

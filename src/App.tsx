@@ -54,7 +54,7 @@ function App() {
         settingsData={settingsData}
         updateSettings={updateSettings}
       />
-      <div className="flex justify-center flex-auto dark:bg-slate-900 dark:text-slate-50">
+      <div className="flex justify-center flex-auto dark:bg-slate-900 dark:text-slate-50"> {/* Background Colour of main game */}
         <div className="w-full max-w-lg flex flex-col">
           <header className="border-b-2 border-gray-200 flex">
             <button

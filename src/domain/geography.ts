@@ -52,7 +52,5 @@ export function formatDistance(
 ) {
   const distanceInKm = distanceInMeters / 1000;
 
-  return distanceUnit === "km"
-    ? `${roundTo(distanceInKm, 2)}km`
-    : `${roundTo(distanceInKm * 0.621371, 2)}mi`;
+  return `${roundTo(distanceInKm, 2)}km`;
 }
