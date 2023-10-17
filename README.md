@@ -1,9 +1,11 @@
-# Wor**l**dle
+# Bergle
 
-Play this geographical wordle here: https://worldle.teuteuf.fr !
+Play this geographical wordle here: https://bergle.privatevoid.eu!
+
+# Based on
+* Original idea:  [Wordle](https://www.nytimes.com/games/wordle/index.html)
+* Geographical idea: [Worldle](https://worldle.teuteuf.fr/)
+* Similar game: [Kommundle](https://kommundle.no/)
 
 ## Resources used:
-
-- Countries with long/lat => https://developers.google.com/public-data/docs/canonical/countries_csv
-- Country images => https://github.com/djaiss/mapsicon
-- French country names => https://fr.wikipedia.org/wiki/ISO_3166
+- Areas based on https://commons.wikimedia.org/wiki/File:Boligomr%C3%A5der_Bergen.png
