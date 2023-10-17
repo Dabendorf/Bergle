@@ -88,6 +88,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 			<p className="mb-2 text-gray-500 dark:text-gray-400">Siden bergensere ikke er enige i ting, så finnes det ikke en offisiell definisjon over hvordan byen burde inndeles på nivået under bydelene.</p>
 			<p className="mb-2 text-gray-500 dark:text-gray-400">Dataen her stammer derfra fra et fantastisk kart på Wikipedia, der en annen person tegnet inn det han kalte for boligstrøk. Disse strøkene er også vilkårlige, men er hermed definert som den eneste rene sannheten.</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400">Kartet finnes <a href="https://commons.wikimedia.org/wiki/File:Boligomr%C3%A5der_Bergen.png" className="text-blue-600 dark:text-blue-500 hover:underline">her</a>.</p>
 			</div>
 		</div>
 
