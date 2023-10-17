@@ -11,7 +11,7 @@ import { Guess } from "../domain/guess";
 import React from "react";
 import { SettingsData } from "../hooks/useSettings";
 
-const START_DATE = DateTime.fromISO("2022-01-21");
+const START_DATE = DateTime.fromISO("2023-10-17"); //always one day off
 
 interface ShareProps {
   guesses: Guess[];
@@ -44,7 +44,7 @@ export function Share({
       : rotationMode
       ? " 🌀"
       : "";
-    const title = `#Worldle #${dayCount} ${guessCount}/6${difficultyModifierEmoji}`;
+    const title = `#Bergle #BetaDag${dayCount} ${guessCount}/6${difficultyModifierEmoji}`;
 
     const guessString = guesses
       .map((guess) => {
@@ -53,7 +53,7 @@ export function Share({
       })
       .join("\n");
 
-    return [title, guessString, "https://worldle.teuteuf.fr"].join("\n");
+    return [title, guessString, "https://bergle.privatevoid.eu"].join("\n");
   }, [dayString, guesses, hideImageMode, rotationMode, theme]);
 
   return (

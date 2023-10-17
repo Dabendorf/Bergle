@@ -29,7 +29,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		</h2>
 		<div id="accordion-collapse-body-0" className={a===0 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-1">
 			<div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900" style={{backgroundColor: backgroundColour}}>
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Bergle er et spill basert på <a href="/docs/getting-started/introduction/" className="text-blue-600 dark:text-blue-500 hover:underline">Worldle</a>. Målet er å gjette det korrekte området i Bergen ved bruk av dine fantastiske geografikunnskap om Nordens mest relevante by.</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400">Bergle er et spill basert på <a href="/docs/getting-started/introduction/" className="text-blue-600 dark:text-blue-500 hover:underline">Bergle</a>. Målet er å gjette det korrekte området i Bergen ved bruk av dine fantastiske geografikunnskap om Nordens mest relevante by.</p>
 			</div>
 		</div>
 
