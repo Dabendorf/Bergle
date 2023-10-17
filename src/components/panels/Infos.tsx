@@ -35,7 +35,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 
 		<h2 id="accordion-collapse-heading-1">
 			<button onClick={() => seta(a === 1 ? -1 : 1)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
-			<span>Hvordan spiller man spillet? TODO</span>
+			<span>Hvordan spiller man spillet?</span>
 			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
 				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
 			</svg>
@@ -43,13 +43,81 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		</h2>
 		<div id="accordion-collapse-body-1" className={a===1 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-2">
 			<div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">TODO</p>
+			<div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
+          <div>
+         Gjett riktig området på seks forsøk. Hver gjetning må være et område i Bergen kommune.</div>
+          <div>
+            Etter hver gjetning får du vite hvor langt unna du er og hvilken retning det korrekte stedet ligger relativ til den du har gjetta. I tillegg får du en prosentandel som sier hvor nærme du er relativ til størrelsen av Nordens viktigste metropol Bergen. Et lavt tall nær 0% tilsier at du er på feil side av Bergen. Et tall nær 100% betyr at det ikke er langt igjen til riktig området. Områdets plassering er det beregnede midtpunktet for dette området. Områder som har en felles grense kan derfor muligens vise store avstand.
+          </div>
+        </div>
+        <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
+          <div className="font-bold">Eksempel</div>
+          <div>
+            <Guesses
+				rowCount={1}
+				guesses={[
+					{
+						name: "Trengereid",
+						direction: "SW",
+						distance: 16800,
+					},
+				]} settingsData={settingsData} />
+            <div className="my-2">
+              Din første gjetning <span className="uppercase font-bold">Trengereid</span> er 
+              16.80km unna riktig sted, det riktige området ligger sørvestover. Forresten er Trengereid ikke nødvendigvis geografisk bra plassert for å være første gjett.
+            </div>
+          </div>
+          <div>
+            <Guesses
+				rowCount={1}
+				guesses={[
+					{
+						name: "Fantoft",
+						direction: "N",
+						distance: 5960,
+					},
+				]} settingsData={settingsData} />
+            <div className="my-2">
+              Din andre gjetning <span className="uppercase font-bold">Fantoft</span> er nærmere og 
+              5.96km unna riktig sted. Det riktige området ligger vestover.
+            </div>
+          </div>
+          <div>
+            <Guesses
+				rowCount={1}
+				guesses={[
+					{
+						name: "Vågsbunnen",
+						direction: "NW",
+						distance: 430,
+					},
+				]} settingsData={settingsData} />
+            <div className="my-2">
+              Din tredje gjetning, <span className="uppercase font-bold">Vågsbunnen</span> er kun 0.43km fra det korrekte svaret. Kanskje er det et annet sted med fremtidig Bybane du leter etter.
+            </div>
+          </div>
+		  <div>
+            <Guesses
+				rowCount={1}
+				guesses={[
+					{
+						name: "Bryggen",
+						direction: "N",
+						distance: 0,
+					},
+				]} settingsData={settingsData} />
+            <div className="my-2">
+              Din fjerde gjetning, <span className="uppercase font-bold">Bryggen</span>,
+              er riktig. Gratulerer! 🎉
+            </div>
+          </div>
+        </div>
 			</div>
 		</div>
 
 		<h2 id="accordion-collapse-heading-2">
 			<button onClick={() => seta(a === 2 ? -1 : 2)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Hvordan måles distansen? TODO</span>
+			<span>Hvordan måles distansen?</span>
 			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
 				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
 			</svg>
@@ -57,7 +125,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		</h2>
 		<div id="accordion-collapse-body-2" className={a===2 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Text</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400">Distansen er den euklidske distanse mellom de to midtpunktene av to områder. Den beregnes ikke fra grensen av områdene. Man får dermed kun 0km som distanse dersom man finner det korrekte svaret.</p>
 			</div>
 		</div>
 
@@ -108,7 +176,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 
 		<h2 id="accordion-collapse-heading-6">
 			<button onClick={() => seta(a === 6 ? -1 : 6)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Hvor finner jeg flere lignende, ekstremt fine spill? TODO</span>
+			<span>Hvor finner jeg flere lignende, ekstremt fine spill?</span>
 			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
 				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
 			</svg>
@@ -116,13 +184,16 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		</h2>
 		<div id="accordion-collapse-body-6" className={a===6 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Text</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://www.nytimes.com/games/wordle/index.html" className="text-blue-600 dark:text-blue-500 hover:underline">Wordle:</a> Original spillekonseptet</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://worldle.teuteuf.fr/" className="text-blue-600 dark:text-blue-500 hover:underline">Worldle:</a> Gjettespill med land over hele kloden</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://oec.world/en/tradle/" className="text-blue-600 dark:text-blue-500 hover:underline">Tradle:</a> Basert på Worldle, men med informasjon over eksport</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://kommundle.no/" className="text-blue-600 dark:text-blue-500 hover:underline">Kommundle:</a> Gjettespill med norske kommuner</p>
 			</div>
 		</div>
 
 		<h2 id="accordion-collapse-heading-7">
 			<button onClick={() => seta(a === 7 ? -1 : 7)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Hvilke folk skal jeg takke for spillet / skjefte til? TODO</span>
+			<span>Hvilke folk skal jeg takke for spillet / skjefte til?</span>
 			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
 				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
 			</svg>
@@ -130,7 +201,11 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		</h2>
 		<div id="accordion-collapse-body-7" className={a===7 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Text</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400">Det er på tid å takke til:</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://www.powerlanguage.co.uk/" className="text-blue-600 dark:text-blue-500 hover:underline">Josh Wardle</a>, den originale oppfinneren av Wordle</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://github.com/teuteuf" className="text-blue-600 dark:text-blue-500 hover:underline">@teuteuf</a>, han som lagte Worldle og &quot;donerte&quot; store dele av kildekoden til denne siden</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://oyvindsolheim.com/code" className="text-blue-600 dark:text-blue-500 hover:underline">Øyvind Solheim</a> og Sandra Bruce som har lagt Kommundle</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://github.com/Dabendorf/" className="text-blue-600 dark:text-blue-500 hover:underline">Lukas</a>, meg som stjal programkoden fra Worldle, konseptet fra Wordle, oversettelsen fra Kommundle og brukte uforsvarlig mange timer for å tegne bergenske boligstrøk i et merkelig program for geografer</p>
 			</div>
 		</div>
 
