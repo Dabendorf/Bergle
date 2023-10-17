@@ -21,8 +21,8 @@ export function Panel({ title, isOpen, close, children }: PanelProps) {
           <h2 className="text-2xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
             {title}
           </h2>
-          <button type="button" onClick={close}>
-            ✖️
+          <button type="button" onClick={close} className="text-2xl">
+            ❌
           </button>
         </header>
         {children}
