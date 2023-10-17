@@ -48,7 +48,7 @@ const roundTo = function (num: number, places: number) {
 
 export function formatDistance(
   distanceInMeters: number,
-  distanceUnit: "km" | "miles"
+  distanceUnit: "km"
 ) {
   const distanceInKm = distanceInMeters / 1000;
 
