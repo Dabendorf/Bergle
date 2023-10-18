@@ -34,13 +34,19 @@ function App() {
         autoClose={2000}
         bodyClassName="font-bold text-center"
       />
-      {
+      {i18n.resolvedLanguage === "en" ? (
         <Infos
           isOpen={infoOpen}
           close={() => setInfoOpen(false)}
           settingsData={settingsData}
         />
-      }
+      ) : (
+        <Infos
+          isOpen={infoOpen}
+          close={() => setInfoOpen(false)}
+          settingsData={settingsData}
+        />
+      )}
       <Settings
         isOpen={settingsOpen}
         close={() => setSettingsOpen(false)}
