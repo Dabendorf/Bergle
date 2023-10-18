@@ -34,8 +34,7 @@ i18n
     resources,
     interpolation: {
       escapeValue: false,
-    },
-    initImmediate: false
+    }
   });
 
 export default i18n;

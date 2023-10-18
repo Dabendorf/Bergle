@@ -55,7 +55,7 @@ export function Game({ settingsData }: GameProps) {
       const guessedCountry = countries.find(
         (country) =>
           sanitizeCountryName(
-            getCountryName(i18n.resolvedLanguage, country)
+            getCountryName(i18n.language, country)
           ) === sanitizeCountryName(currentGuess)
       );
 
@@ -77,7 +77,7 @@ export function Game({ settingsData }: GameProps) {
         toast.success(t("welldone"), { delay: 2000 });
       }
     },
-    [addGuess, country, currentGuess, i18n.resolvedLanguage, t]
+    [addGuess, country, currentGuess, i18n.language, t]
   );
 
   useEffect(() => {
@@ -85,12 +85,12 @@ export function Game({ settingsData }: GameProps) {
       guesses.length === MAX_TRY_COUNT &&
       guesses[guesses.length - 1].distance > 0
     ) {
-      toast.info(getCountryName(i18n.resolvedLanguage, country).toUpperCase(), {
+      toast.info(getCountryName(i18n.language, country).toUpperCase(), {
         autoClose: false,
         delay: 2000,
       });
     }
-  }, [country, guesses, i18n.resolvedLanguage]);
+  }, [country, guesses, i18n.language]);
 
   return (
     <div className="flex-grow flex flex-col mx-2">
@@ -146,9 +146,9 @@ export function Game({ settingsData }: GameProps) {
             <a
               className="underline w-full text-center block mt-4"
               href={`https://www.google.com/maps?q=${getCountryName(
-                i18n.resolvedLanguage,
+                i18n.language,
                 country
-              )}&hl=${i18n.resolvedLanguage}`}
+              )}&hl=${i18n.language}`}
               target="_blank"
               rel="noopener noreferrer"
             >
