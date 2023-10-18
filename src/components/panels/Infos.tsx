@@ -77,7 +77,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 				]} settingsData={settingsData} />
             <div className="my-2">
               Din andre gjetning <span className="uppercase font-bold">Fantoft</span> er nærmere og 
-              5.96km unna riktig sted. Det riktige området ligger vestover.
+              5.96km unna riktig sted. Det riktige området ligger nordover.
             </div>
           </div>
           <div>
