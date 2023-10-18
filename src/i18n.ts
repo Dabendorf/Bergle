@@ -7,7 +7,7 @@ const resources = {
       placeholder: "Område i Bergen",
       guess: "Gjett",
       share: "Del",
-      showOnGoogleMaps: "👀 på Google Maps",
+      showOnOSM: "👀 på OpenStreetMap",
       welldone: "Godt gjort",
       unknownCountry: "Ukjent sted!",
       copy: "Resultatene ble kopiert til utklippstavlen",

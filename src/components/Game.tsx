@@ -145,14 +145,11 @@ export function Game({ settingsData }: GameProps) {
             />
             <a
               className="underline w-full text-center block mt-4"
-              href={`https://www.google.com/maps?q=${getCountryName(
-                i18n.language,
-                country
-              )}&hl=${i18n.language}`}
+              href={`https://www.openstreetmap.org/?mlat=${country.latitude}&mlon=${country.longitude}#map=15/${country.latitude}/${country.longitude}&layers=O`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t("showOnGoogleMaps")}
+              {t("showOnOSM")}
             </a>
           </>
         ) : (
