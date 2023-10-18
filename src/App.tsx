@@ -6,7 +6,7 @@ import { Infos } from "./components/panels/Infos";
 import { useTranslation } from "react-i18next";
 import { Settings } from "./components/panels/Settings";
 import { useSettings } from "./hooks/useSettings";
-import { Worldle } from "./components/Worldle";
+import { Bergle } from "./components/Bergle";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -71,7 +71,7 @@ function App() {
           </header>
           <Game settingsData={settingsData} />
           <footer className="flex justify-center text-sm mt-8 mb-1">
-            ❤️ <Worldle />? -
+            ❤️ <Bergle />? -
             <a
               className="underline pl-1"
               href="https://www.ko-fi.com/teuteuf"

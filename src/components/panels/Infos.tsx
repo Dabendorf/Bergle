@@ -1,8 +1,6 @@
 import { Guesses } from "../Guesses";
 import { Panel } from "./Panel";
 import React, { useState } from "react";
-import { Worldle } from "../Worldle";
-import { formatDistance } from "../../domain/geography";
 import { SettingsData } from "../../hooks/useSettings";
 
 

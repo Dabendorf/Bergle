@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Worldle() {
+export function Bergle() {
   return (
     <span className="font-bold">
       <span className="text-amber-700">B</span><span className="text-yellow-600">E</span><span className="text-rose-700">R</span>

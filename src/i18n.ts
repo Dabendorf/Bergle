@@ -33,6 +33,7 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    lng: "en",
   });
 
 export default i18n;
