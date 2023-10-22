@@ -233,18 +233,34 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		<div id="accordion-collapse-body-9" className={a===9 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 				<p className="mb-2 text-gray-500 dark:text-gray-400">Jeg også. Allerede fargekombinasjonen av denne siden, bruh. Foreslå meg bedre alternativer, takk.</p>
+				<p className="mb-2 text-gray-500 dark:text-gray-400">Du må gjerne lage en PullRequest med endringsforslag på <a href="https://github.com/Dabendorf/Bergle" className="text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>.</p>
 			</div>
 		</div>
 
 		<h2 id="accordion-collapse-heading-10">
 			<button onClick={() => seta(a === 10 ? -1 : 10)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Est-ce qu&apos;il y a aussi une traduction française?</span>
+			<span>Kan jeg bidra med flere funksjoner og endringsforslag?</span>
 			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
 				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
 			</svg>
 			</button>
 		</h2>
 		<div id="accordion-collapse-body-10" className={a===10 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
+			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+				<p className="mb-2 text-gray-500 dark:text-gray-400">Du er hjertelig velkommen å komme med gode innspill, forbedre ting og lage nye funksjoner.</p>
+				<p className="mb-2 text-gray-500 dark:text-gray-400">Koden er tilgjengelig på <a href="https://github.com/Dabendorf/Bergle" className="text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>.</p>
+			</div>
+		</div>
+
+		<h2 id="accordion-collapse-heading-11">
+			<button onClick={() => seta(a === 11 ? -1 : 11)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
+			<span>Est-ce qu&apos;il y a aussi une traduction française?</span>
+			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
+			</svg>
+			</button>
+		</h2>
+		<div id="accordion-collapse-body-11" className={a===11 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 				<p className="mb-2 text-gray-500 dark:text-gray-400">Non.</p>
 			</div>
