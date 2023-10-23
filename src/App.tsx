@@ -90,7 +90,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t("buyMeACoffee")}
+              {t("contributeOnGitHub")}
             </a>
           </footer>
         </div>
