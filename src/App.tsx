@@ -86,7 +86,7 @@ function App() {
             ❤️ <Bergle />? -
             <a
               className="underline pl-1"
-              href="https://www.ko-fi.com/teuteuf"
+              href="https://github.com/Dabendorf/Bergle"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -21,7 +21,7 @@ const resources = {
         noImageMode: "Uten kart",
         rotationMode: "Roter kart",
       },
-      buyMeACoffee: "Kjøp oss en kaffe☕!",
+      contributeOnGitHub: "Bidra på GitHub!",
     },
   }
 };
