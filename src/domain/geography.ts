@@ -29,7 +29,7 @@ export function generateSquareCharacters(
   theme: "light" | "dark",
   direction: Direction,
 ): string[] {
-  const characters = new Array<string>(6);
+  const characters = new Array<string>(5);
   const greenSquareCount = Math.floor(proximity / 20);
   const yellowSquareCount = proximity - greenSquareCount * 20 >= 10 ? 1 : 0;
 
@@ -39,7 +39,7 @@ export function generateSquareCharacters(
     theme === "light" ? "⬜" : "⬛",
     greenSquareCount + yellowSquareCount
   );
-  characters.push(DIRECTION_ARROWS[direction]);
+  characters.push(proximity != 100 ? DIRECTION_ARROWS[direction] : "🎉");
 
   return characters;
 }
