@@ -49,7 +49,8 @@ export function Share({
     const guessString = guesses
       .map((guess) => {
         const percent = computeProximityPercent(guess.distance);
-        return generateSquareCharacters(percent, theme).join("");
+        const direction = guess.direction;
+        return generateSquareCharacters(percent, theme, direction).join("");
       })
       .join("\n");
 

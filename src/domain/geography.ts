@@ -1,3 +1,4 @@
+import  {DIRECTION_ARROWS} from "../components/GuessRow";
 const MAX_DISTANCE_ON_EARTH = 25173.142572;
 
 export type Direction =
@@ -25,9 +26,10 @@ export function computeProximityPercent(distance: number): number {
 
 export function generateSquareCharacters(
   proximity: number,
-  theme: "light" | "dark"
+  theme: "light" | "dark",
+  direction: Direction,
 ): string[] {
-  const characters = new Array<string>(5);
+  const characters = new Array<string>(6);
   const greenSquareCount = Math.floor(proximity / 20);
   const yellowSquareCount = proximity - greenSquareCount * 20 >= 10 ? 1 : 0;
 
@@ -37,6 +39,7 @@ export function generateSquareCharacters(
     theme === "light" ? "⬜" : "⬛",
     greenSquareCount + yellowSquareCount
   );
+  characters.push(DIRECTION_ARROWS[direction]);
 
   return characters;
 }
