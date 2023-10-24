@@ -8,8 +8,9 @@ import { Guess } from "../domain/guess";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { SettingsData } from "../hooks/useSettings";
+import { dir } from "console";
 
-const DIRECTION_ARROWS: Record<Direction, string> = {
+export const DIRECTION_ARROWS: Record<Direction, string> = {
   N: "⬆️",
   NNE: "↗️",
   NE: "↗️",
@@ -39,7 +40,8 @@ interface GuessRowProps {
 export function GuessRow({ guess, settingsData }: GuessRowProps) {
   const { distanceUnit, theme } = settingsData;
   const proximity = guess != null ? computeProximityPercent(guess.distance) : 0;
-  const squares = generateSquareCharacters(proximity, theme);
+  const direction = guess?.direction ?? "N";
+  const squares = generateSquareCharacters(proximity, theme, direction);
 
   const [animationState, setAnimationState] =
     useState<AnimationState>("NOT_STARTED");
