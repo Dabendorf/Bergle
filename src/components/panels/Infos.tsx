@@ -27,7 +27,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		</h2>
 		<div id="accordion-collapse-body-0" className={a===0 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-1">
 			<div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900" style={{backgroundColor: backgroundColour}}>
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Bergle er et spill basert på <a href="/docs/getting-started/introduction/" className="text-blue-600 dark:text-blue-500 hover:underline">Bergle</a>. Målet er å gjette det korrekte området i Bergen ved bruk av dine fantastiske geografikunnskap om Nordens mest relevante by.</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400">Bergle er et spill basert på <a href="https://worldle.teuteuf.fr/" className="text-blue-600 dark:text-blue-500 hover:underline">Worldle</a>. Målet er å gjette det korrekte området i Bergen ved bruk av dine fantastiske geografikunnskap om Nordens mest relevante by.</p>
 			</div>
 		</div>
 
@@ -45,7 +45,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
           <div>
          Gjett riktig området på seks forsøk. Hver gjetning må være et område i Bergen kommune.</div>
           <div>
-            Etter hver gjetning får du vite hvor langt unna du er og hvilken retning det korrekte stedet ligger relativ til den du har gjetta. I tillegg får du en prosentandel som sier hvor nærme du er relativ til størrelsen av Nordens viktigste metropol Bergen. Et lavt tall nær 0% tilsier at du er på feil side av Bergen. Et tall nær 100% betyr at det ikke er langt igjen til riktig området. Områdets plassering er det beregnede midtpunktet for dette området. Områder som har en felles grense kan derfor muligens vise store avstand.
+            Etter hver gjetning får du vite hvor langt unna du er og hvilken retning det korrekte stedet ligger relativ til den du har gjettet. I tillegg får du en prosentandel som sier hvor nærme du er relativ til størrelsen av Nordens viktigste metropol Bergen. Et lavt tall nær 0% tilsier at du er på feil side av Bergen. Et tall nær 100% betyr at det ikke er langt igjen til riktig området. Områdets plassering er det beregnede midtpunktet for dette området. Områder som har en felles grense kan derfor muligens vise store avstand.
           </div>
         </div>
         <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
@@ -123,7 +123,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		</h2>
 		<div id="accordion-collapse-body-2" className={a===2 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Distansen er den euklidske distanse mellom de to midtpunktene av to områder. Den beregnes ikke fra grensen av områdene. Man får dermed kun 0km som distanse dersom man finner det korrekte svaret.</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400">Distansen er den euklidske distansen mellom to områdets midtpunkter. Den beregnes ikke fra grensen til områdene. Man får derfor kun 0km som distanse dersom man finner det korrekte svaret.</p>
 			</div>
 		</div>
 
@@ -153,7 +153,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		<div id="accordion-collapse-body-4" className={a===4 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 			<p className="mb-2 text-gray-500 dark:text-gray-400">Siden bergensere ikke er enige i ting, så finnes det ikke en offisiell definisjon over hvordan byen burde inndeles på nivået under bydelene.</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Dataen her stammer derfra fra et fantastisk kart på Wikipedia, der en annen person tegnet inn det han kalte for boligstrøk. Disse strøkene er også vilkårlige, men er hermed definert som den eneste rene sannheten.</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400">Dataen her stammer derfor fra et fantastisk kart på Wikipedia, der en annen person tegnet inn det han kalte for boligstrøk. Disse strøkene er også vilkårlige, men er hermed definert som den eneste rene sannheten.</p>
 			<p className="mb-2 text-gray-500 dark:text-gray-400">Kartet finnes <a href="https://commons.wikimedia.org/wiki/File:Boligomr%C3%A5der_Bergen.png" className="text-blue-600 dark:text-blue-500 hover:underline">her</a>.</p>
 			</div>
 		</div>
@@ -232,7 +232,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 		</h2>
 		<div id="accordion-collapse-body-9" className={a===9 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
 			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-				<p className="mb-2 text-gray-500 dark:text-gray-400">Jeg også. Allerede fargekombinasjonen av denne siden, bruh. Foreslå meg bedre alternativer, takk.</p>
+				<p className="mb-2 text-gray-500 dark:text-gray-400">Jeg også. Allerede fargekombinasjonen til denne siden, bruh. Foreslå meg bedre alternativer, takk.</p>
 				<p className="mb-2 text-gray-500 dark:text-gray-400">Du må gjerne lage en PullRequest med endringsforslag på <a href="https://github.com/Dabendorf/Bergle" className="text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>.</p>
 			</div>
 		</div>
