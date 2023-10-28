@@ -1,5 +1,5 @@
 import  {DIRECTION_ARROWS} from "../components/GuessRow";
-const MAX_DISTANCE_ON_EARTH = 25173.142572;
+const MAX_DISTANCE_ON_EARTH = 32414.604895;
 
 export type Direction =
   | "S"
