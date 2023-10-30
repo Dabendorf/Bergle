@@ -145,7 +145,7 @@ export function Game({ settingsData }: GameProps) {
             />
             <a
               className="underline w-full text-center block mt-4"
-              href={`https://www.openstreetmap.org/?mlat=${country.latitude}&mlon=${country.longitude}#map=15/${country.latitude}/${country.longitude}&layers=O`}
+              href={`https://www.openstreetmap.org/?mlat=${country.latitude}&mlon=${country.longitude}#map=15/${country.latitude}/${country.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
             >
