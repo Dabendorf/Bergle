@@ -39,7 +39,7 @@ export function generateSquareCharacters(
     theme === "light" ? "⬜" : "⬛",
     greenSquareCount + yellowSquareCount
   );
-  characters.push(proximity != 100 ? DIRECTION_ARROWS[direction] : "🎉");
+  characters.push(proximity !== 100 ? DIRECTION_ARROWS[direction] : "🎉");
 
   return characters;
 }

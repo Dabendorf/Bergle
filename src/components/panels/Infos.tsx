@@ -204,6 +204,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
 			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://github.com/teuteuf" className="text-blue-600 dark:text-blue-500 hover:underline">@teuteuf</a>, han som lagte Worldle og &quot;donerte&quot; store dele av kildekoden til denne siden</p>
 			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://oyvindsolheim.com/code" className="text-blue-600 dark:text-blue-500 hover:underline">Øyvind Solheim</a> og Sandra Bruce som har lagt Kommundle</p>
 			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://github.com/Dabendorf/" className="text-blue-600 dark:text-blue-500 hover:underline">Lukas</a>, meg som stjal programkoden fra Worldle, konseptet fra Wordle, oversettelsen fra Kommundle og brukte uforsvarlig mange timer for å tegne bergenske boligstrøk i et merkelig program for geografer</p>
+			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://github.com/Dabendorf/" className="text-blue-600 dark:text-blue-500 hover:underline">Alexander</a>, for å prøve å gjøre nettsiden noe penere.</p>
 			</div>
 		</div>
 
