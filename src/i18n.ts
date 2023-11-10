@@ -2,7 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 const resources = {
-  en: {
+  no: {
     translation: {
       placeholder: "Område i Bergen",
       guess: "Gjett",
@@ -29,8 +29,8 @@ const resources = {
 i18n
   .use(initReactI18next)
   .init({
-    fallbackLng: 'en',
-    lng: 'en',
+    fallbackLng: 'no',
+    lng: 'no',
     resources,
     interpolation: {
       escapeValue: false,
