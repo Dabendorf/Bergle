@@ -12,7 +12,7 @@ interface InfosProps {
 
 export function Infos({ isOpen, close, settingsData }: InfosProps) {
 	const [a, seta]=useState(0);
-	const backgroundColour = "#33405C";
+	const backgroundColour = "#21295C";
   return (
     <Panel title="Ofte stilte spørsmål" isOpen={isOpen} close={close}>
 
