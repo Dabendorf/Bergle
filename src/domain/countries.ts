@@ -124,7 +124,7 @@ export const countries: Country[] = [
 { code: "107", latitude: 60.22312985490191, longitude: 5.289401666797668, name: 'Krokeide', district: 'Fana' },
 { code: "108", latitude: 60.25654727937068, longitude: 5.249927798102046, name: 'Hjellestad', district: 'Ytrebygda' },
 { code: "109", latitude: 60.25293306584283, longitude: 5.266952394444028, name: 'Milde', district: 'Ytrebygda' },
-{ code: "110", latitude: 60.35971264660863, longitude: 5.195197641250439, name: 'Aløven', district: 'Ytrebygda' },
+{ code: "110", latitude: 60.35971264660863, longitude: 5.195197641250439, name: 'Alvøen', district: 'Ytrebygda' },
 { code: "111", latitude: 60.35424353096282, longitude: 5.223907726729444, name: 'Hetlevik', district: 'Ytrebygda' },
 
 ];
