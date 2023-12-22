@@ -274,6 +274,16 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
                   </>
                 }
               />
+              <FAQitemAnswerline
+                text={
+                  <>
+                    <CustomLink href="https://oslole.privatevoid.eu/">
+                      Oslole:
+                    </CustomLink>{" "}
+                    Gjett en kommune som er bedre enn Oslo
+                  </>
+                }
+              />
             </>
           }
         />
@@ -346,22 +356,32 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
           index={8}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Er det planlagt en versjon for Oslo?"}
+          question={"Finnes det en versjon for Oslo?"}
           answer={
             <>
               <FAQitemAnswerline
                 text={
-                  "Nei. Men vi kan forestille oss å lage en versjon for relevantere steder som Utne, Båtsfjord, Hardangervidda eller Dabendorf. Galtvort, Mordor eller Blåfjell kommer <i>sikkert</i> snart ut også."
+                  <>
+                    Ja, den finnes{" "}
+                    <CustomLink href="https://oslole.privatevoid.eu/">
+                      her
+                    </CustomLink>
+                    . Vi kan også forestille oss å lage versjoner for like
+                    relevante steder som Utne, Båtsfjord eller Hardangervidda.
+                    Galtvort, Mordor eller Blåfjell kommer sikkert snart ut
+                    også.
+                  </>
                 }
               />
               <FAQitemAnswerline
                 text={
-                  "Et spill der man kan gjette alle to millioner foreslåtte Bybanetraséer har for tiden også høyere prioritet."
+                  "Et spill der man kan gjette alle to millioner foreslåtte Bybanetraséer har for tiden også høy prioritet."
                 }
               />
             </>
           }
         />
+
         <FAQitem
           index={9}
           openedIndex={openedIndex}
@@ -420,6 +440,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
           setOpenedIndex={handleItemClick}
           question={"Est-ce qu'il y a aussi une traduction française?"}
           answer={<FAQitemAnswerline text={"Non."} />}
+          last={true}
         />
       </div>
     </Panel>

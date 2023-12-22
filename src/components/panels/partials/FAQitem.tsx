@@ -6,6 +6,7 @@ interface FAQitemProps {
   question: string;
   answer: ReactNode;
   setOpenedIndex: (index: number) => void;
+  last?: boolean;
 }
 
 export function FAQitem({
@@ -14,6 +15,7 @@ export function FAQitem({
   question,
   answer,
   setOpenedIndex,
+  last,
 }: FAQitemProps) {
   const backgroundColour = "#21295C";
 
@@ -25,6 +27,8 @@ export function FAQitem({
           type="button"
           className={`flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border ${
             index === 0 ? "border-b-0 rounded-t-xl" : ""
+          } ${
+            last ? "rounded-b-xl" : ""
           } border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800`}
           data-accordion-target={`#accordion-collapse-body-${index}`}
           aria-expanded="true"
