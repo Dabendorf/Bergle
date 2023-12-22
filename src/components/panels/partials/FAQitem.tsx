@@ -19,14 +19,16 @@ export function FAQitem({
 
   return (
     <>
-      <h2 id="accordion-collapse-heading">
+      <h2 id={`accordion-collapse-heading-${index}`}>
         <button
           onClick={() => setOpenedIndex(index === openedIndex ? -1 : index)}
           type="button"
-          className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-          data-accordion-target="#accordion-collapse-body-1"
+          className={`flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border ${
+            index === 0 ? "border-b-0 rounded-t-xl" : ""
+          } border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800`}
+          data-accordion-target={`#accordion-collapse-body-${index}`}
           aria-expanded="true"
-          aria-controls="accordion-collapse-body-1"
+          aria-controls={`accordion-collapse-body-${index}`}
         >
           <span>{question}</span>
           <svg
@@ -49,12 +51,12 @@ export function FAQitem({
       </h2>
       {openedIndex === index && (
         <div
-          id="accordion-collapse-body"
+          id={`accordion-collapse-body-${index}`}
           style={{ backgroundColor: backgroundColour }}
-          aria-labelledby="accordion-collapse-heading"
+          aria-labelledby={`accordion-collapse-body-${index}`}
         >
           <div
-            className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900"
+            className="p-5 border border-t-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900"
             style={{ backgroundColor: backgroundColour }}
           >
             {answer}
