@@ -438,6 +438,24 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
           index={11}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
+          question={"Hvordan kan jeg ta kontakt?"}
+          answer={
+            <FAQitemAnswerline
+              text={
+                <>
+                  Send en epost til{" "}
+                  <CustomLink href="mailto:bergle@privatevoid.eu">
+                    bergle[at]privatevoid.eu
+                  </CustomLink>
+                </>
+              }
+            />
+          }
+        />
+        <FAQitem
+          index={12}
+          openedIndex={openedIndex}
+          setOpenedIndex={handleItemClick}
           question={"Est-ce qu'il y a aussi une traduction française?"}
           answer={<FAQitemAnswerline text={"Non."} />}
           last={true}
