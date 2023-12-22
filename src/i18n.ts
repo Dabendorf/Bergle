@@ -23,18 +23,16 @@ const resources = {
       },
       contributeOnGitHub: "Bidra på GitHub!",
     },
-  }
+  },
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    fallbackLng: 'no',
-    lng: 'no',
-    resources,
-    interpolation: {
-      escapeValue: false,
-    }
-  });
+i18n.use(initReactI18next).init({
+  fallbackLng: "no",
+  lng: "no",
+  resources,
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;

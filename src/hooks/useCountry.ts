@@ -4,11 +4,9 @@ import { countriesWithImage, Country } from "../domain/countries";
 
 export function useCountry(dayString: string): [Country, number, number] {
   const country = useMemo(() => {
-    return (
-      countriesWithImage[
-        Math.floor(seedrandom.alea(dayString)() * countriesWithImage.length)
-      ]
-    );
+    return countriesWithImage[
+      Math.floor(seedrandom.alea(dayString)() * countriesWithImage.length)
+    ];
   }, [dayString]);
 
   const randomAngle = useMemo(

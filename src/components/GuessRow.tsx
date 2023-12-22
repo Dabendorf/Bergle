@@ -8,7 +8,6 @@ import { Guess } from "../domain/guess";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { SettingsData } from "../hooks/useSettings";
-import { dir } from "console";
 
 export const DIRECTION_ARROWS: Record<Direction, string> = {
   N: "⬆️",
