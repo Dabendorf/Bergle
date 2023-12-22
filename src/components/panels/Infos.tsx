@@ -2,6 +2,7 @@ import { Guesses } from "../Guesses";
 import { Panel } from "./Panel";
 import React, { useState } from "react";
 import { SettingsData } from "../../hooks/useSettings";
+import { CustomLink, FAQitem, FAQitemAnswerline } from "./partials/FAQitem";
 
 
 interface InfosProps {
@@ -11,37 +12,20 @@ interface InfosProps {
 }
 
 export function Infos({ isOpen, close, settingsData }: InfosProps) {
-	const [a, seta]=useState(0);
-	const backgroundColour = "#21295C";
+	const [openedIndex, setOpenedIndex]=useState(0);
+
+	const handleItemClick = (index: number) => {
+		setOpenedIndex(openedIndex === index ? -1 : index);
+	  };
+
   return (
     <Panel title="Ofte stilte spørsmål" isOpen={isOpen} close={close}>
-
 	<div id="accordion-collapse" data-accordion="collapse">
-		<h2 id="accordion-collapse-heading-0">
-			<button onClick={() => seta(a === 0 ? -1 : 0)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-			<span>Ka e&apos; Bergle?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-0" className={a===0 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-1">
-			<div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900" style={{backgroundColor: backgroundColour}}>
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Bergle er et spill basert på <a href="https://worldle.teuteuf.fr/" className="text-blue-600 dark:text-blue-500 hover:underline">Worldle</a>. Målet er å gjette det korrekte området i Bergen ved bruk av dine fantastiske geografikunnskap om Nordens mest relevante by.</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-1">
-			<button onClick={() => seta(a === 1 ? -1 : 1)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
-			<span>Hvordan spiller man spillet?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-1" className={a===1 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-2">
-			<div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-			<div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
+		<FAQitem index={0} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Ka e' Bergle?"}
+		answer={<FAQitemAnswerline text={<>Bergle er et spill basert på <CustomLink href='https://worldle.teuteuf.fr/'>Worldle</CustomLink>. Målet er å gjette det korrekte området i Bergen ved bruk av dine fantastiske geografikunnskap om Nordens mest relevante by.</>} />} />
+		
+		<FAQitem index={1} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Hvordan spiller man spillet?"}
+		answer={<><div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
           <div>
          Gjett riktig området på seks forsøk. Hver gjetning må være et område i Bergen kommune.</div>
           <div>
@@ -109,163 +93,49 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
               er riktig. Gratulerer! 🎉
             </div>
           </div>
-        </div>
-			</div>
-		</div>
+        </div></>} />
+		<FAQitem index={2} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Hvordan måles distansen?"}
+		answer={<FAQitemAnswerline text={"Distansen er den euklidske distansen mellom to områdets midtpunkter. Den beregnes ikke fra grensen til områdene. Man får derfor kun 0km som distanse dersom man finner det korrekte svaret."} />} />
+	
+	<FAQitem index={3} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Hva er et område?"} answer={<>
+			<FAQitemAnswerline text={"Et område er et sammenhengende areal i kommunen som har et navn som er kjent for den vanlige bergenseren."}/>
+			<FAQitemAnswerline text={"Eksempler er Damsgård, Flesland, Fantoft eller Bryggen (der Bybanen går)."}/>
+			</> }/>
 
-		<h2 id="accordion-collapse-heading-2">
-			<button onClick={() => seta(a === 2 ? -1 : 2)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Hvordan måles distansen?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-2" className={a===2 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Distansen er den euklidske distansen mellom to områdets midtpunkter. Den beregnes ikke fra grensen til områdene. Man får derfor kun 0km som distanse dersom man finner det korrekte svaret.</p>
-			</div>
-		</div>
+	<FAQitem index={4} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Hvor kommer din data fra?"} answer={<>
+			<FAQitemAnswerline text={"Siden bergensere ikke er enige i ting, så finnes det ikke en offisiell definisjon over hvordan byen burde inndeles på nivået under bydelene."}/>
+			<FAQitemAnswerline text={"Dataen her stammer derfor fra et fantastisk kart på Wikipedia, der en annen person tegnet inn det han kalte for boligstrøk. Disse strøkene er også vilkårlige, men er hermed definert som den eneste rene sannheten."}/>
+			<FAQitemAnswerline text={<>Kartet finnes <CustomLink href='https://commons.wikimedia.org/wiki/File:Boligomr%C3%A5der_Bergen.png'>her</CustomLink>.</>}/>
+			</>} />
+	<FAQitem index={5} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Jeg er uenig i dette, hva skal jeg gjøre?"} answer={<FAQitemAnswerline text={"Gråte, klage, diskutere, belite deg. Bruke tid på bybanediskusjoner."}/>} />
+	<FAQitem index={6} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Hvor finner jeg flere lignende, ekstremt fine spill?"} answer={<>
+			<FAQitemAnswerline text={<><CustomLink href='https://www.nytimes.com/games/wordle/index.html'>Wordle:</CustomLink> Original spillekonseptet</>}/>
+			<FAQitemAnswerline text={<><CustomLink href='https://worldle.teuteuf.fr/'>Worldle:</CustomLink> Gjettespill med land over hele kloden</>}/>
+			<FAQitemAnswerline text={<><CustomLink href='https://oec.world/en/tradle/'>Tradle:</CustomLink> Basert på Worldle, men med informasjon over eksport</>}/>
+			<FAQitemAnswerline text={<><CustomLink href='https://kommundle.no/'>Kommundle:</CustomLink> Gjettespill med norske kommuner</>}/>
+			</>} />
+	<FAQitem index={7} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Hvilke folk skal jeg takke for spillet / skjefte til?"} answer={<>
+			<FAQitemAnswerline text={"Det er på tid å takke til:"}/>
+			<FAQitemAnswerline text={<><CustomLink href='https://www.powerlanguage.co.uk/'>Josh Wardle</CustomLink>, den originale oppfinneren av Wordle</>}/>
+			<FAQitemAnswerline text={<><CustomLink href='https://github.com/teuteuf'>@teuteuf</CustomLink>, han som lagte Worldle og &quot;donerte&quot; store dele av kildekoden til denne siden</>}/>
+			<FAQitemAnswerline text={<><CustomLink href='https://oyvindsolheim.com/code'>Øyvind Solheim</CustomLink> og Sandra Bruce som har lagt Kommundle</>}/>
+			<FAQitemAnswerline text={<><CustomLink href='https://github.com/Dabendorf/'>Lukas</CustomLink>, meg som stjal programkoden fra Worldle, konseptet fra Wordle, oversettelsen fra Kommundle og brukte uforsvarlig mange timer for å tegne bergenske boligstrøk i et merkelig program for geografer</>}/>
+			<FAQitemAnswerline text={<><CustomLink href='https://github.com/AalyTokombaev'>Alexander</CustomLink>, for å prøve å gjøre nettsiden noe penere.</>}/>
+			</>} />
+	<FAQitem index={8} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Er det planlagt en versjon for Oslo?"} answer={<>	
+			<FAQitemAnswerline text={"Nei. Men vi kan forestille oss å lage en versjon for relevantere steder som Utne, Båtsfjord, Hardangervidda eller Dabendorf. Galtvort, Mordor eller Blåfjell kommer <i>sikkert</i> snart ut også."}/>
+				<FAQitemAnswerline text={"Et spill der man kan gjette alle to millioner foreslåtte Bybanetraséer har for tiden også høyere prioritet."}/>
+			</>} />
+	<FAQitem index={9} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Jeg hater designet av nettsiden, hva skal jeg gjøre?"} answer={<>
+			<FAQitemAnswerline text={"Jeg også. Allerede fargekombinasjonen til denne siden, bruh. Foreslå meg bedre alternativer, takk."}/>
+				<FAQitemAnswerline text={<>Du må gjerne lage en PullRequest med endringsforslag på <CustomLink href='https://github.com/Dabendorf/Bergle'>GitHub</CustomLink>.</>}/>
+			</>} />
+	<FAQitem index={10} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Kan jeg bidra med flere funksjoner og endringsforslag?"} answer={<>	
+			<FAQitemAnswerline text={"Du er hjertelig velkommen å komme med gode innspill, forbedre ting og lage nye funksjoner."}/>
+				<FAQitemAnswerline text={<>Koden er tilgjengelig på <CustomLink href='https://github.com/Dabendorf/Bergle'>GitHub</CustomLink>.</>}/>
+			</>} />
+	<FAQitem index={11} openedIndex={openedIndex} setOpenedIndex={handleItemClick} question={"Est-ce qu'il y a aussi une traduction française?"} answer={<FAQitemAnswerline text={"Non."}/>} />
 
-		<h2 id="accordion-collapse-heading-3">
-			<button onClick={() => seta(a === 3 ? -1 : 3)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Hva er et område?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-3" className={a===3 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Et område er et sammenhengende areal i kommunen som har et navn som er kjent for den vanlige bergenseren.</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Eksempler er Damsgård, Flesland, Fantoft eller Bryggen (der Bybanen går).</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-4">
-			<button onClick={() => seta(a === 4 ? -1 : 4)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Hvor kommer din data fra?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-4" className={a===4 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Siden bergensere ikke er enige i ting, så finnes det ikke en offisiell definisjon over hvordan byen burde inndeles på nivået under bydelene.</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Dataen her stammer derfor fra et fantastisk kart på Wikipedia, der en annen person tegnet inn det han kalte for boligstrøk. Disse strøkene er også vilkårlige, men er hermed definert som den eneste rene sannheten.</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Kartet finnes <a href="https://commons.wikimedia.org/wiki/File:Boligomr%C3%A5der_Bergen.png" className="text-blue-600 dark:text-blue-500 hover:underline">her</a>.</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-5">
-			<button onClick={() => seta(a === 5 ? -1 : 5)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Jeg er uenig i dette, hva skal jeg gjøre?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-5" className={a===5 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Gråte, klage, diskutere, belite deg. Bruke tid på bybanediskusjoner.</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-6">
-			<button onClick={() => seta(a === 6 ? -1 : 6)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Hvor finner jeg flere lignende, ekstremt fine spill?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-6" className={a===6 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://www.nytimes.com/games/wordle/index.html" className="text-blue-600 dark:text-blue-500 hover:underline">Wordle:</a> Original spillekonseptet</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://worldle.teuteuf.fr/" className="text-blue-600 dark:text-blue-500 hover:underline">Worldle:</a> Gjettespill med land over hele kloden</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://oec.world/en/tradle/" className="text-blue-600 dark:text-blue-500 hover:underline">Tradle:</a> Basert på Worldle, men med informasjon over eksport</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://kommundle.no/" className="text-blue-600 dark:text-blue-500 hover:underline">Kommundle:</a> Gjettespill med norske kommuner</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-7">
-			<button onClick={() => seta(a === 7 ? -1 : 7)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Hvilke folk skal jeg takke for spillet / skjefte til?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-7" className={a===7 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-			<p className="mb-2 text-gray-500 dark:text-gray-400">Det er på tid å takke til:</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://www.powerlanguage.co.uk/" className="text-blue-600 dark:text-blue-500 hover:underline">Josh Wardle</a>, den originale oppfinneren av Wordle</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://github.com/teuteuf" className="text-blue-600 dark:text-blue-500 hover:underline">@teuteuf</a>, han som lagte Worldle og &quot;donerte&quot; store dele av kildekoden til denne siden</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://oyvindsolheim.com/code" className="text-blue-600 dark:text-blue-500 hover:underline">Øyvind Solheim</a> og Sandra Bruce som har lagt Kommundle</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://github.com/Dabendorf/" className="text-blue-600 dark:text-blue-500 hover:underline">Lukas</a>, meg som stjal programkoden fra Worldle, konseptet fra Wordle, oversettelsen fra Kommundle og brukte uforsvarlig mange timer for å tegne bergenske boligstrøk i et merkelig program for geografer</p>
-			<p className="mb-2 text-gray-500 dark:text-gray-400"><a href="https://github.com/AalyTokombaev" className="text-blue-600 dark:text-blue-500 hover:underline">Alexander</a>, for å prøve å gjøre nettsiden noe penere.</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-8">
-			<button onClick={() => seta(a === 8 ? -1 : 8)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Er det planlagt en versjon for Oslo?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-8" className={a===8 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-				<p className="mb-2 text-gray-500 dark:text-gray-400">Nei. Men vi kan forestille oss å lage en versjon for relevantere steder som Utne, Båtsfjord, Hardangervidda eller Dabendorf. Galtvort, Mordor eller Blåfjell kommer <i>sikkert</i> snart ut også.</p>
-				<p className="mb-2 text-gray-500 dark:text-gray-400">Et spill der man kan gjette alle to millioner foreslåtte Bybanetraséer har for tiden også høyere prioritet.</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-9">
-			<button onClick={() => seta(a === 9 ? -1 : 9)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Jeg hater designet av nettsiden, hva skal jeg gjøre?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-9" className={a===9 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-				<p className="mb-2 text-gray-500 dark:text-gray-400">Jeg også. Allerede fargekombinasjonen til denne siden, bruh. Foreslå meg bedre alternativer, takk.</p>
-				<p className="mb-2 text-gray-500 dark:text-gray-400">Du må gjerne lage en PullRequest med endringsforslag på <a href="https://github.com/Dabendorf/Bergle" className="text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>.</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-10">
-			<button onClick={() => seta(a === 10 ? -1 : 10)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Kan jeg bidra med flere funksjoner og endringsforslag?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-10" className={a===10 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-				<p className="mb-2 text-gray-500 dark:text-gray-400">Du er hjertelig velkommen å komme med gode innspill, forbedre ting og lage nye funksjoner.</p>
-				<p className="mb-2 text-gray-500 dark:text-gray-400">Koden er tilgjengelig på <a href="https://github.com/Dabendorf/Bergle" className="text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>.</p>
-			</div>
-		</div>
-
-		<h2 id="accordion-collapse-heading-11">
-			<button onClick={() => seta(a === 11 ? -1 : 11)} type="button" className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
-			<span>Est-ce qu&apos;il y a aussi une traduction française?</span>
-			<svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-				<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
-			</svg>
-			</button>
-		</h2>
-		<div id="accordion-collapse-body-11" className={a===11 ? "" : "hidden"} style={{backgroundColor: backgroundColour}} aria-labelledby="accordion-collapse-heading-3">
-			<div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-				<p className="mb-2 text-gray-500 dark:text-gray-400">Non.</p>
-			</div>
-		</div>
 	</div>
       
     </Panel>
