@@ -11,7 +11,7 @@ import { Guess } from "../domain/guess";
 import React from "react";
 import { SettingsData } from "../hooks/useSettings";
 
-const START_DATE = DateTime.fromISO("2023-10-17"); //always one day off
+const START_DATE = DateTime.fromISO("2023-12-31"); //always one day off (if 2024-01-01 wanted as day 1, write 2023-12-31)
 
 interface ShareProps {
   guesses: Guess[];
@@ -42,9 +42,9 @@ export function Share({
     const difficultyModifierEmoji = hideImageMode
       ? " 🙈"
       : rotationMode
-      ? " 🌀"
-      : "";
-    const title = `#Bergle #BetaDag${dayCount} ${guessCount}/6${difficultyModifierEmoji}`;
+        ? " 🌀"
+        : "";
+    const title = `#Bergle #Dag${dayCount} ${guessCount}/6${difficultyModifierEmoji}`;
 
     const guessString = guesses
       .map((guess) => {
