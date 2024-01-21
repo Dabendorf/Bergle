@@ -31,7 +31,13 @@ export default function Help({ isOpen, close }: HelpProps) {
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold">Hjelp</h1>
         <p className="text-lg">Hjelp kommer</p>
-        <GraphCanvas nodes={nodes} edges={edges} />
+        <div style={{ width: "500px", height: "500px" }}>
+          <GraphCanvas
+            nodes={nodes}
+            edges={edges}
+            onCanvasClick={() => close()}
+          />
+        </div>
       </div>
     </Panel>
   );
