@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Game } from "./components/Game";
 import React, { useEffect, useState } from "react";
 import { Infos } from "./components/panels/Infos";
+import Help from "./components/panels/Help";
 import { useTranslation } from "react-i18next";
 import { Settings } from "./components/panels/Settings";
 import { useSettings } from "./hooks/useSettings";
@@ -13,6 +14,7 @@ function App() {
   const { t, i18n } = useTranslation();
 
   const [infoOpen, setInfoOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
 
@@ -41,6 +43,7 @@ function App() {
         close={() => setInfoOpen(false)}
         settingsData={settingsData}
       />
+      <Help isOpen={helpOpen} close={() => setHelpOpen(false)} />
       <Settings
         isOpen={settingsOpen}
         close={() => setSettingsOpen(false)}
@@ -63,6 +66,13 @@ function App() {
               onClick={() => setInfoOpen(true)}
             >
               ❔
+            </button>
+            <button
+              className="mx-3 text-xl"
+              type="button"
+              onClick={() => setHelpOpen(true)}
+            >
+              📚
             </button>
             <h1 className="text-4xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
               <span className="text-amber-700">B</span>
