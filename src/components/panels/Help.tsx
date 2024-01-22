@@ -2,17 +2,6 @@ import React from "react";
 import { Panel } from "./Panel";
 import { GraphCanvas, GraphNode, GraphEdge } from "reagraph";
 
-interface Node {
-  id: number;
-  label: string;
-}
-
-interface Edge {
-  from: number;
-  to: number;
-  id: number;
-}
-
 const nodes: GraphNode[] = [
   { id: "1", label: "1" },
   { id: "2", label: "2" },
