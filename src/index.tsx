@@ -4,11 +4,13 @@ import "./index.css";
 import "./i18n";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import ts from "typescript";
 
 const root = document.getElementById("root");
 
 if (root !== null) {
+  // I'm not a fan
+  // TODO: Figure out how to use createRoot propperly
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   ReactDOM.createRoot(root).render(
     <React.StrictMode>

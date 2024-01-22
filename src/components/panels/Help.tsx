@@ -6,7 +6,6 @@ const nodes: GraphNode[] = [
   { id: "1", label: "1" },
   { id: "2", label: "2" },
 ];
-
 const edges: GraphEdge[] = [{ source: "1", target: "2", id: "1" }];
 
 interface HelpProps {
