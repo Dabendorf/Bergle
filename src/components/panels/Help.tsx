@@ -10,8 +10,6 @@ import {
 
 import { mapNodes } from "../../domain/neighborhoods";
 
-const edges: GraphEdge[] = [];
-
 function getNodePosition(
   id: string,
   nodes: NodePositionArgs
@@ -28,30 +26,20 @@ function getNodePosition(
   return {} as InternalGraphPosition;
 }
 
-for (const mapNode of mapNodes) {
-  for (const nbId of mapNode.neighborsIds) {
+const edges: GraphEdge[] = mapNodes.flatMap((node) => {
+  return node.neighborsIds.map((nbId) => {
     const src = nbId;
-    const target = mapNode.id;
+    const target = node.id;
     const id = `${src}-${target}`;
     const revId = `${target}-${src}`;
 
-    if (!edges.find((e) => e.id === id)) {
-      edges.push({
-        id: id,
-        source: src,
-        target: target,
-      });
-    }
-
-    if (!edges.find((e) => e.id === revId)) {
-      edges.push({
-        id: revId,
-        source: target,
-        target: src,
-      });
-    }
-  }
-}
+    return {
+      id: id,
+      source: src,
+      target: target,
+    } as GraphEdge;
+  });
+});
 
 interface HelpProps {
   isOpen: boolean;
@@ -66,6 +54,7 @@ export default function Help({ isOpen, close }: HelpProps) {
         <p className="text-lg">Hjelp kommer</p>
         <div style={{ width: "500px", height: "500px" }}>
           <GraphCanvas
+            edgeArrowPosition="none"
             nodes={mapNodes}
             edges={edges}
             onCanvasClick={() => close()}
