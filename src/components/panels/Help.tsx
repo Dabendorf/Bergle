@@ -2,11 +2,11 @@ import React from "react";
 import Modal from "react-modal";
 import {
   GraphCanvas,
-  GraphNode,
   GraphEdge,
   NodePositionArgs,
   InternalGraphPosition,
   darkTheme,
+  lightTheme
 } from "reagraph";
 
 import { mapNodes } from "../../domain/neighborhoods";
@@ -14,7 +14,7 @@ import { SettingsData } from "../../hooks/useSettings";
 
 function getNodePosition(
   id: string,
-  nodes: NodePositionArgs
+  { nodes }: NodePositionArgs
 ): InternalGraphPosition {
   const node = mapNodes.find((n) => n.id === id);
   if (node) {
@@ -61,7 +61,7 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
         onCanvasClick={() => close()}
         layoutType="custom"
         layoutOverrides={{ getNodePosition }}
-        theme={settingsData.theme === "dark" ? darkTheme : undefined}
+        theme={settingsData.theme === "dark" ? darkTheme : lightTheme}
       />
     </Modal>
   );
