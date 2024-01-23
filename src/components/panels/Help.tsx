@@ -31,7 +31,6 @@ const edges: GraphEdge[] = mapNodes.flatMap((node) => {
     const src = nbId;
     const target = node.id;
     const id = `${src}-${target}`;
-    const revId = `${target}-${src}`;
 
     return {
       id: id,
