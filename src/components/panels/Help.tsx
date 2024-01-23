@@ -1,14 +1,17 @@
 import React from "react";
 import { Panel } from "./Panel";
+import Modal from "react-modal";
 import {
   GraphCanvas,
   GraphNode,
   GraphEdge,
   NodePositionArgs,
   InternalGraphPosition,
+  darkTheme,
 } from "reagraph";
 
 import { mapNodes } from "../../domain/neighborhoods";
+import { SettingsData } from "../../hooks/useSettings";
 
 function getNodePosition(
   id: string,
@@ -28,8 +31,8 @@ function getNodePosition(
 
 const edges: GraphEdge[] = mapNodes.flatMap((node) => {
   return node.neighborsIds.map((nbId) => {
-    const src = nbId;
-    const target = node.id;
+    const src = node.id;
+    const target = nbId;
     const id = `${src}-${target}`;
 
     return {
@@ -43,25 +46,24 @@ const edges: GraphEdge[] = mapNodes.flatMap((node) => {
 interface HelpProps {
   isOpen: boolean;
   close: () => void;
+  settingsData: SettingsData;
 }
 
-export default function Help({ isOpen, close }: HelpProps) {
+export default function Help({ isOpen, close, settingsData }: HelpProps) {
   return (
-    <Panel title="Help" isOpen={isOpen} close={close}>
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold">Hjelp</h1>
-        <p className="text-lg">Hjelp kommer</p>
-        <div style={{ width: "500px", height: "500px" }}>
-          <GraphCanvas
-            edgeArrowPosition="none"
-            nodes={mapNodes}
-            edges={edges}
-            onCanvasClick={() => close()}
-            layoutType="custom"
-            layoutOverrides={{ getNodePosition }}
-          />
-        </div>
-      </div>
-    </Panel>
+    <Modal
+      isOpen={isOpen}
+      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0)" } }}
+    >
+      <GraphCanvas
+        edgeArrowPosition="none"
+        nodes={mapNodes}
+        edges={edges}
+        onCanvasClick={() => close()}
+        layoutType="custom"
+        layoutOverrides={{ getNodePosition }}
+        theme={settingsData.theme === "dark" ? darkTheme : undefined}
+      />
+    </Modal>
   );
 }

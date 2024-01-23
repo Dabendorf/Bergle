@@ -43,7 +43,11 @@ function App() {
         close={() => setInfoOpen(false)}
         settingsData={settingsData}
       />
-      <Help isOpen={helpOpen} close={() => setHelpOpen(false)} />
+      <Help
+        isOpen={helpOpen}
+        close={() => setHelpOpen(false)}
+        settingsData={settingsData}
+      />
       <Settings
         isOpen={settingsOpen}
         close={() => setSettingsOpen(false)}
