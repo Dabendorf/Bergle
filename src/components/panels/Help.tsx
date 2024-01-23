@@ -1,5 +1,4 @@
 import React from "react";
-import { Panel } from "./Panel";
 import Modal from "react-modal";
 import {
   GraphCanvas,

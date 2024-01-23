@@ -16,5 +16,5 @@ This fork aims to add a help feature.
 
 #### TODO:
 * Update dependencies 
-* Add neighbor data to the existing `countries.ts` file, and remove sample `neighborhood ts`. 
+* Add neighbor data to the existing `countries.ts` file, and remove sample `neighborhoods.ts`. 
 * Match theme on network graph to the rest of the app.
