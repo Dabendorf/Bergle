@@ -16,7 +16,7 @@ import { SettingsData } from "../hooks/useSettings";
 import { useMode } from "../hooks/useMode";
 import { useCountry } from "../hooks/useCountry";
 
-function getDayString() {
+export function getDayString() {
   return DateTime.now().toFormat("yyyy-MM-dd");
 }
 

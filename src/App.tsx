@@ -20,6 +20,8 @@ function App() {
 
   const [settingsData, updateSettings] = useSettings();
 
+  // Save guesses state here to pass it into the help component
+
   useEffect(() => {
     if (settingsData.theme === "dark") {
       document.documentElement.classList.add("dark");

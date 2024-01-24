@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Modal from "react-modal";
 import {
   GraphCanvas,
@@ -6,11 +6,26 @@ import {
   NodePositionArgs,
   InternalGraphPosition,
   darkTheme,
-  lightTheme
+  lightTheme,
 } from "reagraph";
+import { getDayString } from "../Game";
 
-import { mapNodes } from "../../domain/neighborhoods";
+import { MapNode, mapNodes } from "../../domain/neighborhoods";
 import { SettingsData } from "../../hooks/useSettings";
+import { Guess } from "../../domain/guess";
+
+const todayGuesses: string[] = getTodaysGuesses().map((guess: string) =>
+  guess.toLowerCase()
+);
+
+for (const guess of todayGuesses) {
+  const findNode: MapNode | undefined = mapNodes.find(
+    (node) => node.label.toLowerCase() === guess
+  );
+  if (findNode) {
+    findNode.fill = "red";
+  }
+}
 
 function getNodePosition(
   id: string,
@@ -42,6 +57,13 @@ const edges: GraphEdge[] = mapNodes.flatMap((node) => {
   });
 });
 
+function getTodaysGuesses(): string[] {
+  const dayString = getDayString();
+
+  const guesses = JSON.parse(localStorage.getItem("guesses") || "{}");
+  return guesses[dayString].map((guess: Guess) => guess.name);
+}
+
 interface HelpProps {
   isOpen: boolean;
   close: () => void;
@@ -49,6 +71,7 @@ interface HelpProps {
 }
 
 export default function Help({ isOpen, close, settingsData }: HelpProps) {
+  getTodaysGuesses();
   return (
     <Modal
       isOpen={isOpen}

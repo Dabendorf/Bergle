@@ -1,6 +1,6 @@
 import { GraphNode } from "reagraph";
 
-interface MapNode extends GraphNode {
+export interface MapNode extends GraphNode {
   id: string;
   label: string;
   /**
