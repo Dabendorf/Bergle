@@ -14,16 +14,17 @@ import { MapNode, mapNodes } from "../../domain/neighborhoods";
 import { SettingsData } from "../../hooks/useSettings";
 import { Guess } from "../../domain/guess";
 
-const todayGuesses: string[] = getTodaysGuesses().map((guess: string) =>
-  guess.toLowerCase()
-);
-
-for (const guess of todayGuesses) {
-  const findNode: MapNode | undefined = mapNodes.find(
-    (node) => node.label.toLowerCase() === guess
+function colorNodes() {
+  const todayGuesses: string[] = getTodaysGuesses().map((guess: string) =>
+    guess.toLowerCase()
   );
-  if (findNode) {
-    findNode.fill = "red";
+  for (const guess of todayGuesses) {
+    const findNode: MapNode | undefined = mapNodes.find(
+      (node) => node.label.toLowerCase() === guess
+    );
+    if (findNode) {
+      findNode.fill = "red";
+    }
   }
 }
 
@@ -71,7 +72,7 @@ interface HelpProps {
 }
 
 export default function Help({ isOpen, close, settingsData }: HelpProps) {
-  getTodaysGuesses();
+  colorNodes();
   return (
     <Modal
       isOpen={isOpen}
