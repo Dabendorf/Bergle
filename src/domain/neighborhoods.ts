@@ -66,4 +66,11 @@ export const mapNodes: MapNode[] = [
     lon: 5.223907726729444,
     neighborsIds: ["8"],
   },
+  {
+    id: "10",
+    label: "Kråkenes",
+    lat: 60.34877441531701,
+    lon: 5.252617812208449,
+    neighborsIds: ["9", "5"],
+  },
 ];

@@ -26,6 +26,7 @@ function colorNodes(winner: string) {
     if (findNode) {
       if (findNode.label.toLowerCase() === winner) {
         findNode.fill = "green";
+        continue;
       }
       findNode.fill = "red";
     }
