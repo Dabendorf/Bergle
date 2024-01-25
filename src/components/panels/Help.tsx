@@ -13,8 +13,9 @@ import { getDayString } from "../Game";
 import { MapNode, mapNodes } from "../../domain/neighborhoods";
 import { SettingsData } from "../../hooks/useSettings";
 import { Guess } from "../../domain/guess";
+import { useCountry } from "../../hooks/useCountry";
 
-function colorNodes() {
+function colorNodes(winner: string) {
   const todayGuesses: string[] = getTodaysGuesses().map((guess: string) =>
     guess.toLowerCase()
   );
@@ -23,6 +24,9 @@ function colorNodes() {
       (node) => node.label.toLowerCase() === guess
     );
     if (findNode) {
+      if (findNode.label.toLowerCase() === winner) {
+        findNode.fill = "green";
+      }
       findNode.fill = "red";
     }
   }
@@ -62,7 +66,10 @@ function getTodaysGuesses(): string[] {
   const dayString = getDayString();
 
   const guesses = JSON.parse(localStorage.getItem("guesses") || "{}");
-  return guesses[dayString].map((guess: Guess) => guess.name);
+  if (guesses[dayString]) {
+    return guesses[dayString].map((guess: Guess) => guess.name);
+  }
+  return [];
 }
 
 interface HelpProps {
@@ -72,7 +79,8 @@ interface HelpProps {
 }
 
 export default function Help({ isOpen, close, settingsData }: HelpProps) {
-  colorNodes();
+  const country = useCountry(getDayString())[0].name.toLowerCase();
+  colorNodes(country);
   return (
     <Modal
       isOpen={isOpen}
