@@ -7,13 +7,47 @@ import {
   InternalGraphPosition,
   darkTheme,
   lightTheme,
+  GraphNode,
 } from "reagraph";
 import { getDayString } from "../Game";
 
-import { MapNode, mapNodes } from "../../domain/neighborhoods";
+import { Country, countries } from "../../domain/countries";
 import { SettingsData } from "../../hooks/useSettings";
 import { Guess } from "../../domain/guess";
 import { useCountry } from "../../hooks/useCountry";
+
+class MapNode implements GraphNode {
+  code: string;
+  name: string;
+  longitude: number;
+  latitude: number;
+  district: string;
+  neighbours: string[];
+  fill = "white";
+
+  constructor(country: Country) {
+    this.code = country.code;
+    this.longitude = country.longitude;
+    this.latitude = country.latitude;
+    this.name = country.name;
+    this.district = country.district;
+    this.neighbours = country.neighbours;
+  }
+
+  get id(): string {
+    return this.code;
+  }
+
+  get label(): string {
+    return this.name;
+  }
+}
+
+const graphNodes: GraphNode[] = countries.map(
+  (country) => ({ label: country.name, id: country.code } as GraphNode)
+);
+
+const mapNodes = countries.map((country) => new MapNode(country));
 
 function colorNodes(winner: string) {
   const todayGuesses: string[] = getTodaysGuesses().map((guess: string) =>
@@ -41,8 +75,8 @@ function getNodePosition(
   if (node) {
     return {
       // TODO: Formulate a different basis and apply to coordinates.
-      x: node.lon * 1500,
-      y: node.lat * 1500,
+      x: node.longitude * 12000,
+      y: node.latitude * 12000,
       z: 1,
     } as InternalGraphPosition;
   }
@@ -50,10 +84,15 @@ function getNodePosition(
 }
 
 const edges: GraphEdge[] = mapNodes.flatMap((node) => {
-  return node.neighborsIds.map((nbId) => {
+  return node.neighbours.map((nbId) => {
+    console.log("mapping from ", node.id, " to ", nbId);
     const src = node.id;
     const target = nbId;
     const id = `${src}-${target}`;
+
+    if (edges.find((e) => e.id === id)) {
+      return {} as GraphEdge;
+    }
 
     return {
       id: id,
@@ -89,7 +128,7 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
     >
       <GraphCanvas
         edgeArrowPosition="none"
-        nodes={mapNodes}
+        nodes={graphNodes}
         edges={edges}
         onCanvasClick={() => close()}
         layoutType="custom"
