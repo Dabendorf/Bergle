@@ -8,7 +8,6 @@ import { createRoot } from "react-dom/client";
 const root = document.getElementById("root");
 
 if (root !== null) {
-  // I'm not a fan
   createRoot(root).render(
     <React.StrictMode>
       <App />

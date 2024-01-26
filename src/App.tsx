@@ -20,8 +20,6 @@ function App() {
 
   const [settingsData, updateSettings] = useSettings();
 
-  // Save guesses state here to pass it into the help component
-
   useEffect(() => {
     if (settingsData.theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -78,7 +76,7 @@ function App() {
               type="button"
               onClick={() => setHelpOpen(true)}
             >
-              📚
+              🗺️
             </button>
             <h1 className="text-4xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
               <span className="text-amber-700">B</span>
