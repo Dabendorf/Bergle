@@ -16,55 +16,73 @@ import { SettingsData } from "../../hooks/useSettings";
 import { Guess } from "../../domain/guess";
 import { useCountry } from "../../hooks/useCountry";
 
-class MapNode implements GraphNode {
-  code: string;
-  name: string;
-  longitude: number;
+interface MapNode extends GraphNode {
   latitude: number;
-  district: string;
+  longitude: number;
   neighbours: string[];
-  fill = "white";
-
-  constructor(country: Country) {
-    this.code = country.code;
-    this.longitude = country.longitude;
-    this.latitude = country.latitude;
-    this.name = country.name;
-    this.district = country.district;
-    this.neighbours = country.neighbours;
-  }
-
-  get id(): string {
-    return this.code;
-  }
-
-  get label(): string {
-    return this.name;
-  }
 }
 
-const graphNodes: GraphNode[] = countries.map(
-  (country) => ({ label: country.name, id: country.code } as GraphNode)
-);
+const mapNodes: MapNode[] = countries.map((country) => {
+  return {
+    id: country.code,
+    label: country.name,
+    latitude: country.latitude,
+    longitude: country.longitude,
+    neighbours: country.neighbours,
+  } as MapNode;
+});
 
-const mapNodes = countries.map((country) => new MapNode(country));
+const edges: GraphEdge[] = mapNodes.flatMap((node) => {
+  return node.neighbours.map((neighbor) => {
+    const source = node.id;
+    const target = neighbor;
+    const id = `${source}-${target}`;
 
-function colorNodes(winner: string) {
-  const todayGuesses: string[] = getTodaysGuesses().map((guess: string) =>
-    guess.toLowerCase()
+    return {
+      id: id,
+      source: source,
+      target: target,
+    } as GraphEdge;
+  });
+});
+
+interface HelpProps {
+  isOpen: boolean;
+  close: () => void;
+  settingsData: SettingsData;
+}
+
+Modal.setAppElement("#root");
+
+export default function Help({ isOpen, close, settingsData }: HelpProps) {
+  const country = useCountry(getDayString())[0].name.toLowerCase();
+  colorNodes(country);
+  return (
+    <Modal
+      isOpen={isOpen}
+      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0)" } }}
+    >
+      <GraphCanvas
+        edgeArrowPosition="none"
+        nodes={mapNodes}
+        edges={edges}
+        onCanvasClick={() => close()}
+        layoutType="custom"
+        layoutOverrides={{ getNodePosition }}
+        theme={settingsData.theme === "dark" ? darkTheme : lightTheme}
+      />
+    </Modal>
   );
-  for (const guess of todayGuesses) {
-    const findNode: MapNode | undefined = mapNodes.find(
-      (node) => node.label.toLowerCase() === guess
-    );
-    if (findNode) {
-      if (findNode.label.toLowerCase() === winner) {
-        findNode.fill = "green";
-        continue;
-      }
-      findNode.fill = "red";
-    }
+}
+
+function getTodaysGuesses(): string[] {
+  const dayString = getDayString();
+
+  const guesses = JSON.parse(localStorage.getItem("guesses") || "{}");
+  if (guesses[dayString]) {
+    return guesses[dayString].map((guess: Guess) => guess.name);
   }
+  return [];
 }
 
 function getNodePosition(
@@ -83,58 +101,20 @@ function getNodePosition(
   return {} as InternalGraphPosition;
 }
 
-const edges: GraphEdge[] = mapNodes.flatMap((node) => {
-  return node.neighbours.map((nbId) => {
-    console.log("mapping from ", node.id, " to ", nbId);
-    const src = node.id;
-    const target = nbId;
-    const id = `${src}-${target}`;
-
-    if (edges.find((e) => e.id === id)) {
-      return {} as GraphEdge;
-    }
-
-    return {
-      id: id,
-      source: src,
-      target: target,
-    } as GraphEdge;
-  });
-});
-
-function getTodaysGuesses(): string[] {
-  const dayString = getDayString();
-
-  const guesses = JSON.parse(localStorage.getItem("guesses") || "{}");
-  if (guesses[dayString]) {
-    return guesses[dayString].map((guess: Guess) => guess.name);
-  }
-  return [];
-}
-
-interface HelpProps {
-  isOpen: boolean;
-  close: () => void;
-  settingsData: SettingsData;
-}
-
-export default function Help({ isOpen, close, settingsData }: HelpProps) {
-  const country = useCountry(getDayString())[0].name.toLowerCase();
-  colorNodes(country);
-  return (
-    <Modal
-      isOpen={isOpen}
-      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0)" } }}
-    >
-      <GraphCanvas
-        edgeArrowPosition="none"
-        nodes={graphNodes}
-        edges={edges}
-        onCanvasClick={() => close()}
-        layoutType="custom"
-        layoutOverrides={{ getNodePosition }}
-        theme={settingsData.theme === "dark" ? darkTheme : lightTheme}
-      />
-    </Modal>
+function colorNodes(winner: string) {
+  const todayGuesses: string[] = getTodaysGuesses().map((guess: string) =>
+    guess.toLowerCase()
   );
+  for (const guess of todayGuesses) {
+    const findNode: MapNode | undefined = mapNodes.find(
+      (node: MapNode) => node.label!.toLowerCase() === guess
+    );
+    if (findNode) {
+      if (findNode.label!.toLowerCase() === winner) {
+        findNode.fill = "green";
+        continue;
+      }
+      findNode.fill = "red";
+    }
+  }
 }
