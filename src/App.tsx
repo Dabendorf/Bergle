@@ -11,7 +11,7 @@ import { Stats } from "./components/panels/Stats";
 import { Bergle } from "./components/Bergle";
 
 function App() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [infoOpen, setInfoOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);

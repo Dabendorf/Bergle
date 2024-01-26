@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -21,7 +22,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^11.15.3",
     "react-modal": "^3.16.1",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^8.1.0",
     "reagraph": "^4.15.4",
     "seedrandom": "^3.0.5",
