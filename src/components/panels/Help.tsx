@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Modal from "react-modal";
-import { toast } from "react-toastify";
 import {
   GraphCanvas,
   GraphEdge,
@@ -111,13 +110,18 @@ function colorNodes(winner: string) {
     guess.toLowerCase()
   );
   for (const guess of todayGuesses) {
-    const findNode: MapNode | undefined = mapNodes.find(
-      (node: MapNode) => node.label!.toLowerCase() === guess
-    );
+    const findNode: MapNode | undefined = mapNodes.find((node: MapNode) => {
+      if (node.label) {
+        return node.label.toLowerCase() === guess;
+      }
+      return [];
+    });
     if (findNode) {
-      if (findNode.label!.toLowerCase() === winner) {
-        findNode.fill = "green";
-        continue;
+      if (findNode.label) {
+        if (findNode.label.toLowerCase() === winner) {
+          findNode.fill = "green";
+          continue;
+        }
       }
       findNode.fill = "red";
     }
