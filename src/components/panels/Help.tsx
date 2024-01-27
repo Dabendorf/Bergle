@@ -5,13 +5,11 @@ import {
   GraphEdge,
   NodePositionArgs,
   InternalGraphPosition,
-  darkTheme,
-  lightTheme,
   GraphNode,
 } from "reagraph";
 import { getDayString } from "../Game";
 
-import { Country, countries } from "../../domain/countries";
+import { countries } from "../../domain/countries";
 import { SettingsData } from "../../hooks/useSettings";
 import { Guess } from "../../domain/guess";
 import { useCountry } from "../../hooks/useCountry";
@@ -57,6 +55,7 @@ Modal.setAppElement("#root");
 export default function Help({ isOpen, close, settingsData }: HelpProps) {
   const country = useCountry(getDayString())[0].name.toLowerCase();
   colorNodes(country);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -131,6 +130,9 @@ const graphTheme = {
     },
   },
 };
+/*
+ # Utility functions
+ */
 
 function getTodaysGuesses(): string[] {
   const dayString = getDayString();
@@ -149,7 +151,6 @@ function getNodePosition(
   const node = mapNodes.find((n) => n.id === id);
   if (node) {
     return {
-      // TODO: Formulate a different basis and apply to coordinates.
       x: node.longitude * 12000,
       y: node.latitude * 12000,
       z: 1,
@@ -163,13 +164,18 @@ function colorNodes(winner: string) {
     guess.toLowerCase()
   );
   for (const guess of todayGuesses) {
-    const findNode: MapNode | undefined = mapNodes.find(
-      (node: MapNode) => node.label!.toLowerCase() === guess
-    );
+    const findNode: MapNode | undefined = mapNodes.find((node: MapNode) => {
+      if (node.label) {
+        return node.label.toLowerCase() === guess;
+      }
+      return [];
+    });
     if (findNode) {
-      if (findNode.label!.toLowerCase() === winner) {
-        findNode.fill = "green";
-        continue;
+      if (findNode.label) {
+        if (findNode.label.toLowerCase() === winner) {
+          findNode.fill = "green";
+          continue;
+        }
       }
       findNode.fill = "red";
     }

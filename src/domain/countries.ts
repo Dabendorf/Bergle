@@ -22,7 +22,7 @@ export const countries: Country[] = [
     longitude: 5.336879786850015,
     name: "Solheim",
     district: "Årstad",
-    neighbours: ["2", "13", "15", "16", "45"],
+    neighbours: ["13", "15", "16", "2", "45"],
   },
   {
     code: "2",
@@ -54,7 +54,7 @@ export const countries: Country[] = [
     longitude: 5.274399475378052,
     name: "Nygård (Laksevåg)",
     district: "Laksevåg",
-    neighbours: ["4", "6", "39"],
+    neighbours: ["39", "4", "6"],
   },
   {
     code: "6",
@@ -62,7 +62,7 @@ export const countries: Country[] = [
     longitude: 5.261948541474975,
     name: "Gravdal",
     district: "Laksevåg",
-    neighbours: ["5", "39"],
+    neighbours: ["39", "5"],
   },
   {
     code: "7",
@@ -70,7 +70,7 @@ export const countries: Country[] = [
     longitude: 5.217881977173262,
     name: "Mathopen",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["110", "111", "94"],
   },
   {
     code: "8",
@@ -78,7 +78,7 @@ export const countries: Country[] = [
     longitude: 5.228395430381186,
     name: "Kjøkkelvik",
     district: "Laksevåg",
-    neighbours: [],
+    neighbours: ["12", "9"],
   },
   {
     code: "9",
@@ -86,7 +86,7 @@ export const countries: Country[] = [
     longitude: 5.219395927891131,
     name: "Olsvik",
     district: "Laksevåg",
-    neighbours: [],
+    neighbours: ["10", "11", "8"],
   },
   {
     code: "10",
@@ -94,7 +94,7 @@ export const countries: Country[] = [
     longitude: 5.195657170009791,
     name: "Godvik",
     district: "Laksevåg",
-    neighbours: [],
+    neighbours: ["110", "9"],
   },
   {
     code: "11",
@@ -102,7 +102,7 @@ export const countries: Country[] = [
     longitude: 5.228095970755056,
     name: "Vadmyra",
     district: "Laksevåg",
-    neighbours: [],
+    neighbours: ["111", "12", "9"],
   },
   {
     code: "12",
@@ -110,7 +110,7 @@ export const countries: Country[] = [
     longitude: 5.234393788763356,
     name: "Loddefjorddalen",
     district: "Laksevåg",
-    neighbours: [],
+    neighbours: ["11", "42", "8"],
   },
   {
     code: "13",
@@ -118,7 +118,7 @@ export const countries: Country[] = [
     longitude: 5.349236227727442,
     name: "Kronstad",
     district: "Årstad",
-    neighbours: ["1", "14", "15"],
+    neighbours: ["1", "14", "15", "20"],
   },
   {
     code: "14",
@@ -126,7 +126,7 @@ export const countries: Country[] = [
     longitude: 5.357208056412009,
     name: "Årstad",
     district: "Bergenhus",
-    neighbours: ["13", "44"],
+    neighbours: ["13", "20", "44"],
   },
   {
     code: "15",
@@ -134,7 +134,7 @@ export const countries: Country[] = [
     longitude: 5.356690900155878,
     name: "Fridalen",
     district: "Årstad",
-    neighbours: ["1", "13"],
+    neighbours: ["1", "13", "16", "20", "23"],
   },
   {
     code: "16",
@@ -142,7 +142,7 @@ export const countries: Country[] = [
     longitude: 5.341439029421865,
     name: "Minde",
     district: "Årstad",
-    neighbours: ["1"],
+    neighbours: ["1", "15", "17", "18", "22", "23"],
   },
   {
     code: "17",
@@ -150,7 +150,7 @@ export const countries: Country[] = [
     longitude: 5.334806602097346,
     name: "Fjøsanger",
     district: "Undefined",
-    neighbours: [],
+    neighbours: ["102", "16", "18", "37"],
   },
   {
     code: "18",
@@ -158,7 +158,7 @@ export const countries: Country[] = [
     longitude: 5.345093078905621,
     name: "Storetveit",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["102", "16", "17", "22"],
   },
   {
     code: "19",
@@ -166,7 +166,7 @@ export const countries: Country[] = [
     longitude: 5.371471221986871,
     name: "Nattland",
     district: "Årstad",
-    neighbours: [],
+    neighbours: ["20", "21", "22", "23"],
   },
   {
     code: "20",
@@ -174,7 +174,7 @@ export const countries: Country[] = [
     longitude: 5.3706233447145735,
     name: "Landås",
     district: "Årstad",
-    neighbours: [],
+    neighbours: ["13", "14", "15", "19", "23"],
   },
   {
     code: "21",
@@ -182,7 +182,7 @@ export const countries: Country[] = [
     longitude: 5.380579522275442,
     name: "Sædalen",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["102", "19", "22", "35", "85", "87"],
   },
   {
     code: "22",
@@ -190,7 +190,7 @@ export const countries: Country[] = [
     longitude: 5.35745856729457,
     name: "Fantoft",
     district: "Årstad",
-    neighbours: [],
+    neighbours: ["102", "16", "18", "19", "21"],
   },
   {
     code: "23",
@@ -198,7 +198,7 @@ export const countries: Country[] = [
     longitude: 5.362772286614167,
     name: "Slettebakken",
     district: "Årstad",
-    neighbours: [],
+    neighbours: ["15", "16", "19", "20", "23"],
   },
   {
     code: "24",
@@ -206,7 +206,7 @@ export const countries: Country[] = [
     longitude: 5.62581495661186,
     name: "Trengereid",
     district: "Arna",
-    neighbours: [],
+    neighbours: ["25"],
   },
   {
     code: "25",
@@ -214,7 +214,7 @@ export const countries: Country[] = [
     longitude: 5.541708289349967,
     name: "Skuggestranda",
     district: "Arna",
-    neighbours: [],
+    neighbours: ["24", "26"],
   },
   {
     code: "26",
@@ -222,7 +222,7 @@ export const countries: Country[] = [
     longitude: 5.477796450389986,
     name: "Garnes",
     district: "Arna",
-    neighbours: [],
+    neighbours: ["25", "28"],
   },
   {
     code: "27",
@@ -230,7 +230,7 @@ export const countries: Country[] = [
     longitude: 5.42963241871513,
     name: "Ytre Arna",
     district: "Arna",
-    neighbours: [],
+    neighbours: ["28", "31", "33", "76"],
   },
   {
     code: "28",
@@ -238,7 +238,7 @@ export const countries: Country[] = [
     longitude: 5.47022787865238,
     name: "Indre Arna",
     district: "Arna",
-    neighbours: [],
+    neighbours: ["26", "27", "76", "89"],
   },
   {
     code: "29",
@@ -246,7 +246,7 @@ export const countries: Country[] = [
     longitude: 5.303514830510578,
     name: "Hordvik",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["30", "64"],
   },
   {
     code: "30",
@@ -254,7 +254,7 @@ export const countries: Country[] = [
     longitude: 5.3526494440233146,
     name: "Hylkje",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["29", "32", "33"],
   },
   {
     code: "31",
@@ -262,7 +262,7 @@ export const countries: Country[] = [
     longitude: 5.387024899342976,
     name: "Blindheim",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["27", "32", "33", "34", "67", "76"],
   },
   {
     code: "32",
@@ -270,7 +270,7 @@ export const countries: Country[] = [
     longitude: 5.334011836557068,
     name: "Dalabygda",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["30", "31", "33", "34", "65", "68"],
   },
   {
     code: "33",
@@ -278,7 +278,7 @@ export const countries: Country[] = [
     longitude: 5.383981872195218,
     name: "Breistein",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["27", "30", "31", "32"],
   },
   {
     code: "34",
@@ -286,7 +286,7 @@ export const countries: Country[] = [
     longitude: 5.34616571320928,
     name: "Nyborg",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["31", "32", "65", "66", "67"],
   },
   {
     code: "35",
@@ -294,7 +294,7 @@ export const countries: Country[] = [
     longitude: 5.380086419501858,
     name: "Helldalsåsen",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["21", "84", "85", "87"],
   },
   {
     code: "36",
@@ -310,7 +310,7 @@ export const countries: Country[] = [
     longitude: 5.317863801272554,
     name: "Kråkenes",
     district: "Fyllingsdalen",
-    neighbours: [],
+    neighbours: ["104", "17"],
   },
   {
     code: "38",
@@ -318,7 +318,7 @@ export const countries: Country[] = [
     longitude: 5.269218591235345,
     name: "Søndre Fyllingen",
     district: "Fyllingsdalen",
-    neighbours: [],
+    neighbours: ["104", "40", "41", "42", "77"],
   },
   {
     code: "39",
@@ -326,7 +326,7 @@ export const countries: Country[] = [
     longitude: 5.2616789861285005,
     name: "Lyngbø",
     district: "Laksevåg",
-    neighbours: ["5", "6"],
+    neighbours: ["40", "42", "5", "6"],
   },
   {
     code: "40",
@@ -334,7 +334,7 @@ export const countries: Country[] = [
     longitude: 5.282553328328583,
     name: "Nordre Fyllingen",
     district: "Fyllingsdalen",
-    neighbours: [],
+    neighbours: ["38", "39", "41", "42"],
   },
   {
     code: "41",
@@ -342,7 +342,7 @@ export const countries: Country[] = [
     longitude: 5.304509245070241,
     name: "Øvre Fyllingen",
     district: "Fyllingsdalen",
-    neighbours: ["36"],
+    neighbours: ["104", "36", "38", "40"],
   },
   {
     code: "42",
@@ -350,7 +350,7 @@ export const countries: Country[] = [
     longitude: 5.246502118988286,
     name: "Bjørndal",
     district: "Laksevåg",
-    neighbours: [],
+    neighbours: ["111", "12", "38", "39", "40"],
   },
   {
     code: "43",
@@ -358,7 +358,7 @@ export const countries: Country[] = [
     longitude: 5.323768771492281,
     name: "Sandviken",
     district: "Bergenhus",
-    neighbours: ["51"],
+    neighbours: ["51", "73"],
   },
   {
     code: "44",
@@ -382,7 +382,7 @@ export const countries: Country[] = [
     longitude: 5.332049647740407,
     name: "Nygård (Sentrum)",
     district: "Bergenhus",
-    neighbours: ["45", "47", "44", "54", "48"],
+    neighbours: ["44", "45", "47", "48", "54"],
   },
   {
     code: "47",
@@ -390,7 +390,7 @@ export const countries: Country[] = [
     longitude: 5.315313892281608,
     name: "Sydnes",
     district: "Bergenhus",
-    neighbours: ["45", "46", "60", "53", "54"],
+    neighbours: ["45", "46", "53", "54", "60"],
   },
   {
     code: "48",
@@ -406,7 +406,7 @@ export const countries: Country[] = [
     longitude: 5.332890960963868,
     name: "Fjellet",
     district: "Bergenhus",
-    neighbours: ["44", "48", "55", "56"],
+    neighbours: ["44", "48", "50", "55", "56"],
   },
   {
     code: "50",
@@ -422,7 +422,7 @@ export const countries: Country[] = [
     longitude: 5.328503514770993,
     name: "Ladegården",
     district: "Bergenhus",
-    neighbours: ["52", "58", "59", "43"],
+    neighbours: ["43", "52", "58", "59"],
   },
   {
     code: "52",
@@ -430,7 +430,7 @@ export const countries: Country[] = [
     longitude: 5.330089058642569,
     name: "Eidemarken",
     district: "Bergenhus",
-    neighbours: ["50", "58", "51"],
+    neighbours: ["50", "51", "58"],
   },
   {
     code: "53",
@@ -438,7 +438,7 @@ export const countries: Country[] = [
     longitude: 5.318988512735579,
     name: "Engen",
     district: "Bergenhus",
-    neighbours: ["60", "47", "54"],
+    neighbours: ["47", "54", "60"],
   },
   {
     code: "54",
@@ -446,7 +446,7 @@ export const countries: Country[] = [
     longitude: 5.324107078959139,
     name: "Sentrum",
     district: "Bergenhus",
-    neighbours: ["53", "60", "61", "47", "46", "55"],
+    neighbours: ["46", "47", "53", "55", "60", "61"],
   },
   {
     code: "55",
@@ -454,7 +454,7 @@ export const countries: Country[] = [
     longitude: 5.327864753051345,
     name: "Vågsbunnen",
     district: "Bergenhus",
-    neighbours: ["54", "61", "49", "56"],
+    neighbours: ["49", "54", "56", "61"],
   },
   {
     code: "56",
@@ -462,7 +462,7 @@ export const countries: Country[] = [
     longitude: 5.3238410503509055,
     name: "Bryggen",
     district: "Bergenhus",
-    neighbours: ["55", "49", "58", "57"],
+    neighbours: ["49", "55", "57", "58"],
   },
   {
     code: "57",
@@ -470,7 +470,7 @@ export const countries: Country[] = [
     longitude: 5.317731969312446,
     name: "Bergenhus",
     district: "Bergenhus",
-    neighbours: ["56", "58"],
+    neighbours: ["56", "58", "59"],
   },
   {
     code: "58",
@@ -478,7 +478,7 @@ export const countries: Country[] = [
     longitude: 5.325408916154824,
     name: "Stølen",
     district: "Bergenhus",
-    neighbours: ["52", "56", "57", "59", "51"],
+    neighbours: ["51", "52", "56", "57", "59"],
   },
   {
     code: "59",
@@ -486,7 +486,7 @@ export const countries: Country[] = [
     longitude: 5.321111883780217,
     name: "Skuteviken",
     district: "Bergenhus",
-    neighbours: ["58", "51"],
+    neighbours: ["51", "57", "58"],
   },
   {
     code: "60",
@@ -494,7 +494,7 @@ export const countries: Country[] = [
     longitude: 5.31416802298282,
     name: "Nøstet",
     district: "Bergenhus",
-    neighbours: ["61", "62", "47", "53", "54"],
+    neighbours: ["47", "53", "54", "61", "62"],
   },
   {
     code: "61",
@@ -502,7 +502,7 @@ export const countries: Country[] = [
     longitude: 5.317263227372655,
     name: "Strandsiden",
     district: "Bergenhus",
-    neighbours: ["62", "63", "60", "54", "55"],
+    neighbours: ["54", "55", "60", "62", "63"],
   },
   {
     code: "62",
@@ -510,7 +510,7 @@ export const countries: Country[] = [
     longitude: 5.310144222414987,
     name: "Verftet",
     district: "Bergenhus",
-    neighbours: ["61", "63", "60"],
+    neighbours: ["60", "61", "63"],
   },
   {
     code: "63",
@@ -518,7 +518,7 @@ export const countries: Country[] = [
     longitude: 5.307448652388946,
     name: "Nordnes",
     district: "Bergenhus",
-    neighbours: ["62", "61"],
+    neighbours: ["61", "62"],
   },
   {
     code: "64",
@@ -526,7 +526,7 @@ export const countries: Country[] = [
     longitude: 5.2679014714438726,
     name: "Salhus",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["29", "68"],
   },
   {
     code: "65",
@@ -534,7 +534,7 @@ export const countries: Country[] = [
     longitude: 5.307590112649708,
     name: "Ulset",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["100", "32", "34", "66", "68", "69", "70"],
   },
   {
     code: "66",
@@ -542,7 +542,7 @@ export const countries: Country[] = [
     longitude: 5.330637490888099,
     name: "Rolland",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["100", "34", "65", "75"],
   },
   {
     code: "67",
@@ -550,7 +550,7 @@ export const countries: Country[] = [
     longitude: 5.362679821584606,
     name: "Flaktveit",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["31", "34", "75", "76"],
   },
   {
     code: "68",
@@ -558,7 +558,7 @@ export const countries: Country[] = [
     longitude: 5.282002696434712,
     name: "Mjølkeråen",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["32", "64", "65", "69"],
   },
   {
     code: "69",
@@ -566,7 +566,7 @@ export const countries: Country[] = [
     longitude: 5.2712877541173855,
     name: "Morvik",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["65", "68", "70"],
   },
   {
     code: "70",
@@ -574,7 +574,7 @@ export const countries: Country[] = [
     longitude: 5.287671148076753,
     name: "Tertnes",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["100", "65", "69"],
   },
   {
     code: "71",
@@ -582,7 +582,7 @@ export const countries: Country[] = [
     longitude: 5.32337411045491,
     name: "Ervik",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["100", "72", "74"],
   },
   {
     code: "72",
@@ -590,7 +590,7 @@ export const countries: Country[] = [
     longitude: 5.304452018926662,
     name: "Eidsvåg",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["71", "73", "74"],
   },
   {
     code: "73",
@@ -598,7 +598,7 @@ export const countries: Country[] = [
     longitude: 5.2987820340066,
     name: "Ytre Sandviken",
     district: "Bergenhus",
-    neighbours: [],
+    neighbours: ["43", "72"],
   },
   {
     code: "74",
@@ -606,7 +606,7 @@ export const countries: Country[] = [
     longitude: 5.357764160924607,
     name: "Jordal",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["71", "72"],
   },
   {
     code: "75",
@@ -614,7 +614,7 @@ export const countries: Country[] = [
     longitude: 5.375225478526746,
     name: "Hjortland",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["66", "67", "76"],
   },
   {
     code: "76",
@@ -622,7 +622,7 @@ export const countries: Country[] = [
     longitude: 5.429072112823776,
     name: "Langedalen",
     district: "Arna",
-    neighbours: [],
+    neighbours: ["27", "28", "31", "67", "75", "87", "89"],
   },
   {
     code: "77",
@@ -630,7 +630,7 @@ export const countries: Country[] = [
     longitude: 5.2644508409942,
     name: "Straume",
     district: "Fyllingsdalen",
-    neighbours: [],
+    neighbours: ["104", "38", "95"],
   },
   {
     code: "78",
@@ -638,7 +638,7 @@ export const countries: Country[] = [
     longitude: 5.253267158571382,
     name: "Kokstad",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["101", "79", "96", "97"],
   },
   {
     code: "79",
@@ -646,7 +646,7 @@ export const countries: Country[] = [
     longitude: 5.28194275466603,
     name: "Sandsli",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["101", "78", "80", "93", "95"],
   },
   {
     code: "80",
@@ -654,7 +654,7 @@ export const countries: Country[] = [
     longitude: 5.297842672599478,
     name: "Steinsvik",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["79", "81", "93", "95"],
   },
   {
     code: "81",
@@ -662,7 +662,7 @@ export const countries: Country[] = [
     longitude: 5.318770175488199,
     name: "Nordås",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["80", "82", "93"],
   },
   {
     code: "82",
@@ -670,7 +670,7 @@ export const countries: Country[] = [
     longitude: 5.339341288152076,
     name: "Skjold",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["103", "81", "83", "85", "92", "93"],
   },
   {
     code: "83",
@@ -678,7 +678,7 @@ export const countries: Country[] = [
     longitude: 5.365939405869743,
     name: "Øvsttun",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["82", "84", "85", "90"],
   },
   {
     code: "84",
@@ -686,7 +686,7 @@ export const countries: Country[] = [
     longitude: 5.370878994186152,
     name: "Midtun",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["35", "83", "85", "86", "87", "90"],
   },
   {
     code: "85",
@@ -694,7 +694,7 @@ export const countries: Country[] = [
     longitude: 5.353968274412763,
     name: "Nesttun",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["102", "103", "21", "35", "82", "83", "84"],
   },
   {
     code: "86",
@@ -702,7 +702,7 @@ export const countries: Country[] = [
     longitude: 5.395970771443804,
     name: "Dyngeland",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["84", "87", "90"],
   },
   {
     code: "87",
@@ -710,7 +710,7 @@ export const countries: Country[] = [
     longitude: 5.425640918944365,
     name: "Brattland",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["21", "35", "76", "84", "86", "89"],
   },
   {
     code: "88",
@@ -718,7 +718,7 @@ export const countries: Country[] = [
     longitude: 5.496516858905329,
     name: "Unneland",
     district: "Arna",
-    neighbours: [],
+    neighbours: ["89"],
   },
   {
     code: "89",
@@ -726,7 +726,7 @@ export const countries: Country[] = [
     longitude: 5.472930530997594,
     name: "Espeland",
     district: "Arna",
-    neighbours: [],
+    neighbours: ["28", "76", "87", "88"],
   },
   {
     code: "90",
@@ -734,7 +734,7 @@ export const countries: Country[] = [
     longitude: 5.384876621409309,
     name: "Kirkebirkeland",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["83", "84", "86", "91", "92", "99"],
   },
   {
     code: "91",
@@ -742,7 +742,7 @@ export const countries: Country[] = [
     longitude: 5.425683641878985,
     name: "Totland",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["90", "99"],
   },
   {
     code: "92",
@@ -750,7 +750,7 @@ export const countries: Country[] = [
     longitude: 5.35579929722164,
     name: "Smørås",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["106", "82", "90", "93", "99"],
   },
   {
     code: "93",
@@ -758,7 +758,7 @@ export const countries: Country[] = [
     longitude: 5.313435158011243,
     name: "Rådal",
     district: "Undefined",
-    neighbours: [],
+    neighbours: ["101", "105", "106", "79", "80", "81", "82", "92"],
   },
   {
     code: "94",
@@ -766,7 +766,7 @@ export const countries: Country[] = [
     longitude: 5.194406283031761,
     name: "Håkonshella",
     district: "Laksevåg",
-    neighbours: [],
+    neighbours: ["110", "7"],
   },
   {
     code: "95",
@@ -774,7 +774,7 @@ export const countries: Country[] = [
     longitude: 5.280372137117529,
     name: "Søreide",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["77", "79", "80", "96"],
   },
   {
     code: "96",
@@ -782,7 +782,7 @@ export const countries: Country[] = [
     longitude: 5.232878858560322,
     name: "Grimstad",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["78", "95", "97"],
   },
   {
     code: "97",
@@ -790,7 +790,7 @@ export const countries: Country[] = [
     longitude: 5.221691501400956,
     name: "Flesland",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["101", "78", "96"],
   },
   {
     code: "98",
@@ -798,7 +798,7 @@ export const countries: Country[] = [
     longitude: 5.364057314223059,
     name: "Nordvik",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["106", "107", "99"],
   },
   {
     code: "99",
@@ -806,7 +806,7 @@ export const countries: Country[] = [
     longitude: 5.464875307086978,
     name: "Kaland",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["106", "90", "91", "92", "98"],
   },
   {
     code: "100",
@@ -814,7 +814,7 @@ export const countries: Country[] = [
     longitude: 5.312612224743791,
     name: "Åstveit",
     district: "Åsane",
-    neighbours: [],
+    neighbours: ["65", "66", "70", "71"],
   },
   {
     code: "101",
@@ -822,7 +822,7 @@ export const countries: Country[] = [
     longitude: 5.254080965711176,
     name: "Blomsterdalen",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["105", "108", "78", "79", "93", "97"],
   },
   {
     code: "102",
@@ -830,7 +830,7 @@ export const countries: Country[] = [
     longitude: 5.348725070810083,
     name: "Paradis",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["103", "17", "18", "21", "22", "85"],
   },
   {
     code: "103",
@@ -838,7 +838,7 @@ export const countries: Country[] = [
     longitude: 5.339736581614291,
     name: "Hop",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["102", "82", "85"],
   },
   {
     code: "104",
@@ -846,7 +846,7 @@ export const countries: Country[] = [
     longitude: 5.29400409210771,
     name: "Bønes",
     district: "Fyllingsdalen",
-    neighbours: [],
+    neighbours: ["37", "38", "41", "77"],
   },
   {
     code: "105",
@@ -854,7 +854,7 @@ export const countries: Country[] = [
     longitude: 5.284847248760828,
     name: "Grimseid",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["101", "106", "108", "109", "93"],
   },
   {
     code: "106",
@@ -862,7 +862,7 @@ export const countries: Country[] = [
     longitude: 5.336646613494548,
     name: "Fanahammeren",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["105", "107", "92", "93", "98", "99"],
   },
   {
     code: "107",
@@ -870,7 +870,7 @@ export const countries: Country[] = [
     longitude: 5.289401666797668,
     name: "Krokeide",
     district: "Fana",
-    neighbours: [],
+    neighbours: ["106", "98"],
   },
   {
     code: "108",
@@ -878,7 +878,7 @@ export const countries: Country[] = [
     longitude: 5.249927798102046,
     name: "Hjellestad",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["101", "105", "109"],
   },
   {
     code: "109",
@@ -886,7 +886,7 @@ export const countries: Country[] = [
     longitude: 5.266952394444028,
     name: "Milde",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["105", "108"],
   },
   {
     code: "110",
@@ -894,7 +894,7 @@ export const countries: Country[] = [
     longitude: 5.195197641250439,
     name: "Alvøen",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["10", "7", "94"],
   },
   {
     code: "111",
@@ -902,7 +902,7 @@ export const countries: Country[] = [
     longitude: 5.223907726729444,
     name: "Hetlevik",
     district: "Ytrebygda",
-    neighbours: [],
+    neighbours: ["11", "42", "7"],
   },
 ];
 
