@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-modal";
+import { toast } from "react-toastify";
 import {
   GraphCanvas,
   GraphEdge,
@@ -57,6 +58,7 @@ Modal.setAppElement("#root");
 export default function Help({ isOpen, close, settingsData }: HelpProps) {
   const country = useCountry(getDayString())[0].name.toLowerCase();
   colorNodes(country);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -78,6 +80,7 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
 /*
  # Utility functions
  */
+
 function getTodaysGuesses(): string[] {
   const dayString = getDayString();
 
@@ -95,7 +98,6 @@ function getNodePosition(
   const node = mapNodes.find((n) => n.id === id);
   if (node) {
     return {
-      // TODO: Formulate a different basis and apply to coordinates.
       x: node.longitude * 12000,
       y: node.latitude * 12000,
       z: 1,
