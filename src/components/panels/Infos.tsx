@@ -350,6 +350,16 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
                   </>
                 }
               />
+              <FAQitemAnswerline
+                text={
+                  <>
+                    <CustomLink href="https://github.com/EirikBergesen">
+                      Eirik
+                    </CustomLink>
+                    , for styling av nettverk feature.
+                  </>
+                }
+              />
             </>
           }
         />
