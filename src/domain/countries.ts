@@ -182,7 +182,7 @@ export const countries: Country[] = [
     longitude: 5.380579522275442,
     name: "Sædalen",
     district: "Fana",
-    neighbours: ["102", "19", "22", "31", "33", "35", "85", "87"],
+    neighbours: ["102", "19", "22", "35", "85", "87"],
   },
   {
     code: "22",
@@ -230,7 +230,7 @@ export const countries: Country[] = [
     longitude: 5.42963241871513,
     name: "Ytre Arna",
     district: "Arna",
-    neighbours: ["28", "76"],
+    neighbours: ["28", "31", "33", "76"],
   },
   {
     code: "28",
@@ -262,7 +262,7 @@ export const countries: Country[] = [
     longitude: 5.387024899342976,
     name: "Blindheim",
     district: "Åsane",
-    neighbours: ["21", "32", "33", "34", "67", "76"],
+    neighbours: ["27", "32", "33", "34", "67", "76"],
   },
   {
     code: "32",
@@ -278,7 +278,7 @@ export const countries: Country[] = [
     longitude: 5.383981872195218,
     name: "Breistein",
     district: "Åsane",
-    neighbours: ["21", "30", "31", "32"],
+    neighbours: ["27", "30", "31", "32"],
   },
   {
     code: "34",
@@ -742,7 +742,7 @@ export const countries: Country[] = [
     longitude: 5.425683641878985,
     name: "Totland",
     district: "Fana",
-    neighbours: ["101", "90", "99"],
+    neighbours: ["90", "99"],
   },
   {
     code: "92",
@@ -758,7 +758,7 @@ export const countries: Country[] = [
     longitude: 5.313435158011243,
     name: "Rådal",
     district: "Undefined",
-    neighbours: ["105", "106", "79", "80", "81", "82", "92"],
+    neighbours: ["101", "105", "106", "79", "80", "81", "82", "92"],
   },
   {
     code: "94",
@@ -822,7 +822,7 @@ export const countries: Country[] = [
     longitude: 5.254080965711176,
     name: "Blomsterdalen",
     district: "Ytrebygda",
-    neighbours: ["105", "108", "78", "79", "91", "97"],
+    neighbours: ["105", "108", "78", "79", "93", "97"],
   },
   {
     code: "102",
