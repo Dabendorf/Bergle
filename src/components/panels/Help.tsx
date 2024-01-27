@@ -11,7 +11,7 @@ import {
 } from "reagraph";
 import { getDayString } from "../Game";
 
-import { Country, countries } from "../../domain/countries";
+import { countries } from "../../domain/countries";
 import { SettingsData } from "../../hooks/useSettings";
 import { Guess } from "../../domain/guess";
 import { useCountry } from "../../hooks/useCountry";
@@ -75,6 +75,9 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
   );
 }
 
+/*
+ # Utility functions
+ */
 function getTodaysGuesses(): string[] {
   const dayString = getDayString();
 
