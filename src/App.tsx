@@ -1,4 +1,4 @@
-import { ToastContainer, Flip } from "react-toastify";
+import { ToastContainer, Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Game } from "./components/Game";
 import React, { useEffect, useState } from "react";
@@ -74,7 +74,10 @@ function App() {
             <button
               className="mx-3 text-xl"
               type="button"
-              onClick={() => setHelpOpen(true)}
+              onClick={() => {
+                setHelpOpen(true);
+                toast("Trykk på grafen for å lukke");
+              }}
             >
               🗺️
             </button>
