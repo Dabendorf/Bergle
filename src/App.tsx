@@ -82,12 +82,7 @@ function App() {
               🗺️
             </button>
             <h1 className="text-4xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
-              <span className="text-amber-700">B</span>
-              <span className="text-yellow-600">E</span>
-              <span className="text-rose-700">R</span>
-              <span className="text-orange-500">G</span>
-              <span className="text-orange-200">L</span>
-              <span className="text-white-600">E</span>
+              <Bergle />
             </h1>
             <button
               className="ml-3 text-xl"
