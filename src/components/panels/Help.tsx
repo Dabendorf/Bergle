@@ -5,8 +5,6 @@ import {
   GraphEdge,
   NodePositionArgs,
   InternalGraphPosition,
-  darkTheme,
-  lightTheme,
   GraphNode,
 } from "reagraph";
 import { getDayString } from "../Game";
@@ -70,12 +68,68 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
         onCanvasClick={() => close()}
         layoutType="custom"
         layoutOverrides={{ getNodePosition }}
-        theme={settingsData.theme === "dark" ? darkTheme : lightTheme}
+        theme={graphTheme}
+        // theme={settingsData.theme === "dark" ? darkTheme : lightTheme}
       />
     </Modal>
   );
 }
 
+const graphTheme = {
+  canvas: { background: "#0f172a" }, // Navy Blue
+  node: {
+    fill: "#f2a900", // Yellow
+    activeFill: "#1DE9AC",
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.2,
+    label: {
+      color: "#fff",
+      stroke: "#000000",
+      activeColor: "#1DE9AC",
+    },
+    subLabel: {
+      color: "#000000",
+      stroke: "transparent",
+      activeColor: "#1DE9AC",
+    },
+  },
+  lasso: {
+    border: "1px solid #55aaff",
+    background: "rgba(75, 160, 255, 0.1)",
+  },
+  ring: {
+    fill: "#D8E6EA",
+    activeFill: "#1DE9AC",
+  },
+  edge: {
+    fill: "#D8E6EA",
+    activeFill: "#1DE9AC",
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.1,
+    label: {
+      stroke: "#fff",
+      color: "#2A6475",
+      activeColor: "#1DE9AC",
+      fontSize: 6,
+    },
+  },
+  arrow: {
+    fill: "#D8E6EA",
+    activeFill: "#1DE9AC",
+  },
+  cluster: {
+    stroke: "#D8E6EA",
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.1,
+    label: {
+      stroke: "#fff",
+      color: "#2A6475",
+    },
+  },
+};
 /*
  # Utility functions
  */
