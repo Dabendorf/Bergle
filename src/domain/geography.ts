@@ -1,4 +1,4 @@
-import  {DIRECTION_ARROWS} from "../components/GuessRow";
+import { DIRECTION_ARROWS } from "../components/GuessRow";
 const MAX_DISTANCE_ON_EARTH = 32414.604895;
 
 export type Direction =
@@ -27,7 +27,7 @@ export function computeProximityPercent(distance: number): number {
 export function generateSquareCharacters(
   proximity: number,
   theme: "light" | "dark",
-  direction: Direction,
+  direction: Direction
 ): string[] {
   const characters = new Array<string>(5);
   const greenSquareCount = Math.floor(proximity / 20);
@@ -49,10 +49,7 @@ const roundTo = function (num: number, places: number) {
   return Math.round(num * factor) / factor;
 };
 
-export function formatDistance(
-  distanceInMeters: number,
-  distanceUnit: "km"
-) {
+export function formatDistance(distanceInMeters: number, distanceUnit: "km") {
   const distanceInKm = distanceInMeters / 1000;
 
   return `${roundTo(distanceInKm, 2)}km`;

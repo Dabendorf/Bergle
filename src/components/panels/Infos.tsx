@@ -345,7 +345,18 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
                     <CustomLink href="https://github.com/AalyTokombaev">
                       Alexander
                     </CustomLink>
-                    , for å prøve å gjøre nettsiden noe penere.
+                    , for å implementere nettverk feature, og gjøre nettsiden
+                    noe penere.
+                  </>
+                }
+              />
+              <FAQitemAnswerline
+                text={
+                  <>
+                    <CustomLink href="https://github.com/EirikBergesen">
+                      Eirik
+                    </CustomLink>
+                    , for styling av nettverk feature.
                   </>
                 }
               />

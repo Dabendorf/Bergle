@@ -1,8 +1,9 @@
-import { ToastContainer, Flip } from "react-toastify";
+import { ToastContainer, Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Game } from "./components/Game";
 import React, { useEffect, useState } from "react";
 import { Infos } from "./components/panels/Infos";
+import Help from "./components/panels/Help";
 import { useTranslation } from "react-i18next";
 import { Settings } from "./components/panels/Settings";
 import { useSettings } from "./hooks/useSettings";
@@ -10,9 +11,10 @@ import { Stats } from "./components/panels/Stats";
 import { Bergle } from "./components/Bergle";
 
 function App() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [infoOpen, setInfoOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
 
@@ -41,6 +43,11 @@ function App() {
         close={() => setInfoOpen(false)}
         settingsData={settingsData}
       />
+      <Help
+        isOpen={helpOpen}
+        close={() => setHelpOpen(false)}
+        settingsData={settingsData}
+      />
       <Settings
         isOpen={settingsOpen}
         close={() => setSettingsOpen(false)}
@@ -64,13 +71,18 @@ function App() {
             >
               ❔
             </button>
+            <button
+              className="mx-3 text-xl"
+              type="button"
+              onClick={() => {
+                setHelpOpen(true);
+                toast("Trykk på grafen for å lukke");
+              }}
+            >
+              🗺️
+            </button>
             <h1 className="text-4xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
-              <span className="text-amber-700">B</span>
-              <span className="text-yellow-600">E</span>
-              <span className="text-rose-700">R</span>
-              <span className="text-orange-500">G</span>
-              <span className="text-orange-200">L</span>
-              <span className="text-white-600">E</span>
+              <Bergle />
             </h1>
             <button
               className="ml-3 text-xl"

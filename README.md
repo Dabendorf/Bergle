@@ -9,3 +9,4 @@ Play this geographical wordle here: https://bergle.privatevoid.eu!
 
 ## Resources used:
 - Areas based on https://commons.wikimedia.org/wiki/File:Boligomr%C3%A5der_Bergen.png
+

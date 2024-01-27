@@ -23,8 +23,14 @@ export function Panel({ title, isOpen, close, children }: PanelProps) {
       shouldCloseOnEsc={true}
       //ariaHideApp
     >
-      <div className="w-full max-w-3xl h-full max-h-1xl overflow-auto mt-10 pb-10 slate-100 bg-slate-100 rounded-xl" style={{ backgroundColor: "#161B48" }}>
-        <header className="flex justify-between items-center px-4 py-2 border-b border-gray-300" style={{ color: "slate-100" }}>
+      <div
+        className="w-full max-w-3xl h-full max-h-1xl overflow-auto mt-10 pb-10 slate-100 bg-slate-100 rounded-xl"
+        style={{ backgroundColor: "#161B48" }}
+      >
+        <header
+          className="flex justify-between items-center px-4 py-2 border-b border-gray-300"
+          style={{ color: "slate-100" }}
+        >
           <h2 className="text-lg font-medium text-slate-100">{title}</h2>
           <button
             type="button"
@@ -48,7 +54,9 @@ export function Panel({ title, isOpen, close, children }: PanelProps) {
             </svg>
           </button>
         </header>
-        <div className="p-4 text-slate-100" style={{color: 'slate-100'}}>{children}</div>
+        <div className="p-4 text-slate-100" style={{ color: "slate-100" }}>
+          {children}
+        </div>
       </div>
     </Modal>
   );

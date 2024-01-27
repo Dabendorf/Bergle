@@ -42,8 +42,8 @@ export function Share({
     const difficultyModifierEmoji = hideImageMode
       ? " 🙈"
       : rotationMode
-        ? " 🌀"
-        : "";
+      ? " 🌀"
+      : "";
     const title = `#Bergle #Dag${dayCount} ${guessCount}/6${difficultyModifierEmoji}`;
 
     const guessString = guesses
