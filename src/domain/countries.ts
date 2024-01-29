@@ -398,7 +398,7 @@ export const countries: Country[] = [
     longitude: 5.333477903089923,
     name: "Marken",
     district: "Bergenhus",
-    neighbours: ["44", "46", "49"],
+    neighbours: ["44", "46", "49", "54", "55"],
   },
   {
     code: "49",
@@ -446,7 +446,7 @@ export const countries: Country[] = [
     longitude: 5.324107078959139,
     name: "Sentrum",
     district: "Bergenhus",
-    neighbours: ["46", "47", "53", "55", "60", "61"],
+    neighbours: ["46", "47", "48", "53", "55", "60", "61"],
   },
   {
     code: "55",
@@ -454,7 +454,7 @@ export const countries: Country[] = [
     longitude: 5.327864753051345,
     name: "Vågsbunnen",
     district: "Bergenhus",
-    neighbours: ["49", "54", "56", "61"],
+    neighbours: ["48", "49", "54", "56", "61"],
   },
   {
     code: "56",
