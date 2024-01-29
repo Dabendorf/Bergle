@@ -78,12 +78,17 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
             ❌
           </button>
         </div>
+        <p className="text-slate-100 text-sm">
+          {isMobileDevice()
+            ? "Denne funksjonaliteten er ikke klar for mobil enda, så det kan dukke opp feil. For å bevege deg på kartet, bruk to fingre."
+            : ""}
+        </p>
         <div
           style={{
             border: "1px solid #fcd9bd",
             borderRadius: "2px",
             width: "1100px",
-            height: "500px",
+            height: isMobileDevice() ? "400px" : "500px",
             position: "relative",
             marginBottom: "5px",
           }}
@@ -173,6 +178,13 @@ function getTodaysGuesses(): string[] {
     return guesses[dayString].map((guess: Guess) => guess.name);
   }
   return [];
+}
+
+function isMobileDevice() {
+  return (
+    typeof window.matchMedia !== "undefined" &&
+    window.matchMedia("(pointer: coarse)").matches
+  );
 }
 
 function getNodePosition(
