@@ -73,7 +73,7 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
         }}
       >
         <div className="text-slate-100 text-bold justify-end flex space-x-20 w-full ml-30 ">
-          <div className=" w-full text-xl">Kart over bergen</div>
+          <div className=" w-full text-xl">Kart over Bergen</div>
           <button className="" onClick={close}>
             ❌
           </button>
