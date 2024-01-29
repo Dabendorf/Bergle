@@ -59,21 +59,57 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
   return (
     <Modal
       isOpen={isOpen}
-      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0)" } }}
+      style={{
+        overlay: { backgroundColor: "rgba(0, 0, 0, 0)" },
+        content: { backgroundColor: "#0f172a", border: "none" },
+      }}
     >
-      <GraphCanvas
-        edgeArrowPosition="none"
-        nodes={mapNodes}
-        edges={edges}
-        onCanvasClick={() => close()}
-        layoutType="custom"
-        layoutOverrides={{ getNodePosition }}
-        theme={graphTheme}
-        // theme={settingsData.theme === "dark" ? darkTheme : lightTheme}
-      />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          backgroundColor: "#0f172a",
+        }}
+      >
+        <div className="text-slate-100 text-bold justify-end flex space-x-20 w-full ml-30 ">
+          <div className=" w-full text-xl">Kart over Bergen</div>
+          <button className="" onClick={close}>
+            ❌
+          </button>
+        </div>
+        <p className="text-slate-100 text-sm">
+          {isMobileDevice()
+            ? "Denne funksjonaliteten er ikke klar for mobil enda, så det kan dukke opp feil. For å bevege deg på kartet, bruk to fingre."
+            : ""}
+        </p>
+        <div
+          style={{
+            border: "1px solid #fcd9bd",
+            borderRadius: "2px",
+            width: "1100px",
+            height: isMobileDevice() ? "400px" : "500px",
+            position: "relative",
+            marginBottom: "5px",
+          }}
+        >
+          <Graph />
+        </div>
+      </div>
     </Modal>
   );
 }
+
+const Graph = () => (
+  <GraphCanvas
+    edgeArrowPosition="none"
+    nodes={mapNodes}
+    edges={edges}
+    layoutType="custom"
+    layoutOverrides={{ getNodePosition }}
+    theme={graphTheme}
+  />
+);
 
 const graphTheme = {
   canvas: { background: "#0f172a" }, // Navy Blue
@@ -142,6 +178,13 @@ function getTodaysGuesses(): string[] {
     return guesses[dayString].map((guess: Guess) => guess.name);
   }
   return [];
+}
+
+function isMobileDevice() {
+  return (
+    typeof window.matchMedia !== "undefined" &&
+    window.matchMedia("(pointer: coarse)").matches
+  );
 }
 
 function getNodePosition(
