@@ -76,7 +76,6 @@ function App() {
               type="button"
               onClick={() => {
                 setHelpOpen(true);
-                toast("Trykk på grafen for å lukke");
               }}
             >
               🗺️
