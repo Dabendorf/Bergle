@@ -103,7 +103,6 @@ const Graph = () => (
     layoutType="custom"
     layoutOverrides={{ getNodePosition }}
     theme={graphTheme}
-    // theme={settingsData.theme === "dark" ? darkTheme : lightTheme}
   />
 );
 
