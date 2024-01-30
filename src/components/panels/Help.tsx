@@ -12,8 +12,8 @@ import { getDayString } from "../Game";
 
 import { countries } from "../../domain/countries";
 import { SettingsData } from "../../hooks/useSettings";
-import { strict } from "assert";
 import { Guess } from "../../domain/guess";
+import { useCountry } from "../../hooks/useCountry";
 
 interface MapNode extends GraphNode {
   latitude: number;
@@ -28,41 +28,22 @@ const mapNodes: MapNode[] = countries.map((country) => {
     latitude: country.latitude,
     longitude: country.longitude,
     neighbours: country.neighbours,
-    size: 1,
-  } as MapNode;
+  };
 });
 
-const edges: GraphEdge[] = mapNodes.flatMap((node) => {
-  return node.neighbours.map((neighbor) => {
-    const source = node.id;
-    const target = neighbor;
-    const id = `${source}-${target}`;
-
-    return {
-      id: id,
-      source: source,
-      target: target,
-    } as GraphEdge;
-  });
-});
-
-// generate 20 sample nodes
-const sampleNodes: GraphNode[] = Array.from({ length: 20 }, (_, i) => ({
-  id: `node-${i}`,
-  label: `Node ${i}`,
-}));
-
-const sampleEdges: GraphEdge[] = sampleNodes.flatMap((node) => {
-  const source = node.id;
-  const target = sampleNodes[Math.floor(Math.random() * sampleNodes.length)].id;
-  const id = `${source}-${target}`;
-
-  return {
-    id: id,
-    source: source,
-    target: target,
-  } as GraphEdge;
-});
+const mapEdges: GraphEdge[] = [];
+for (const node of mapNodes) {
+  for (const neighbour of node.neighbours) {
+    if (mapEdges.find((edge) => edge.id === `${neighbour}-${node.id}`)) {
+      continue;
+    }
+    mapEdges.push({
+      id: `${node.id}-${neighbour}`,
+      source: node.id,
+      target: neighbour,
+    });
+  }
+}
 
 interface HelpProps {
   isOpen: boolean;
@@ -71,8 +52,8 @@ interface HelpProps {
 }
 
 export default function Help({ isOpen, close, settingsData }: HelpProps) {
-  //const country = useCountry(getDayString())[0].name.toLowerCase();
-  //colorNodes(country);
+  const country = useCountry(getDayString())[0].name.toLowerCase();
+  colorNodes(country);
 
   return (
     <Modal
@@ -89,29 +70,37 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
         content: {
           width: "80%",
           height: "80%",
+          paddingBottom: "10px",
           backgroundColor: "#0f172a",
         },
       }}
     >
-      <div className="flex flew-row justify-between margin-auto">
-        <h1 className="margin-auto text-bold text-slate-100">Test</h1>
-        <button>❌</button>
+      <div className="flex flew-row justify-between margin-auto mb-0 pb-2">
+        <h1 className="margin-auto text-bold text-slate-100 p-4">
+          Kart over Bergen
+        </h1>
+        <button className="margin-auto p-4" onClick={close}>
+          ❌
+        </button>
       </div>
+      <p className="text-slate-100">
+        {isMobileDevice()
+          ? "Dete er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
+          : ""}
+      </p>
       <div
         style={{
           position: "sticky",
-          height: "90%",
+          height: "100%",
           width: "100%",
-          margin: "auto",
         }}
       >
         <GraphCanvas
           edgeArrowPosition="none"
           nodes={mapNodes}
-          edges={edges}
+          edges={mapEdges}
           layoutType="custom"
           layoutOverrides={{ getNodePosition }}
-          // theme={graphTheme}
           theme={darkTheme}
         />
       </div>
@@ -198,6 +187,7 @@ function getNodePosition(
   { nodes }: NodePositionArgs
 ): InternalGraphPosition {
   const node = mapNodes.find((node) => node.id === id);
+  console.log(node);
   return {
     x: (node?.longitude || 0) * 15000,
     y: (node?.latitude || 0) * 15000,
