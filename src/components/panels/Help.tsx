@@ -6,7 +6,6 @@ import {
   NodePositionArgs,
   GraphNode,
   InternalGraphPosition,
-  darkTheme,
 } from "reagraph";
 import { getDayString } from "../Game";
 
@@ -101,7 +100,7 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
           edges={mapEdges}
           layoutType="custom"
           layoutOverrides={{ getNodePosition }}
-          theme={darkTheme}
+          theme={graphTheme}
         />
       </div>
     </Modal>
@@ -162,8 +161,6 @@ const graphTheme = {
     },
   },
 };
-
-// Utility functions
 
 function getTodaysGuesses(): string[] {
   const dayString = getDayString();
