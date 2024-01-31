@@ -4,8 +4,8 @@ import {
   GraphCanvas,
   GraphEdge,
   NodePositionArgs,
-  InternalGraphPosition,
   GraphNode,
+  InternalGraphPosition,
 } from "reagraph";
 import { getDayString } from "../Game";
 
@@ -27,30 +27,28 @@ const mapNodes: MapNode[] = countries.map((country) => {
     latitude: country.latitude,
     longitude: country.longitude,
     neighbours: country.neighbours,
-  } as MapNode;
+  };
 });
 
-const edges: GraphEdge[] = mapNodes.flatMap((node) => {
-  return node.neighbours.map((neighbor) => {
-    const source = node.id;
-    const target = neighbor;
-    const id = `${source}-${target}`;
-
-    return {
-      id: id,
-      source: source,
-      target: target,
-    } as GraphEdge;
-  });
-});
+const mapEdges: GraphEdge[] = [];
+for (const node of mapNodes) {
+  for (const neighbour of node.neighbours) {
+    if (mapEdges.find((edge) => edge.id === `${neighbour}-${node.id}`)) {
+      continue;
+    }
+    mapEdges.push({
+      id: `${node.id}-${neighbour}`,
+      source: node.id,
+      target: neighbour,
+    });
+  }
+}
 
 interface HelpProps {
   isOpen: boolean;
   close: () => void;
   settingsData: SettingsData;
 }
-
-Modal.setAppElement("#root");
 
 export default function Help({ isOpen, close, settingsData }: HelpProps) {
   const country = useCountry(getDayString())[0].name.toLowerCase();
@@ -59,58 +57,55 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
   return (
     <Modal
       isOpen={isOpen}
+      onRequestClose={close}
+      className="modal"
       style={{
-        overlay: { backgroundColor: "rgba(0, 0, 0, 0)" },
-        content: { backgroundColor: "#0f172a", border: "none" },
-      }}
-    >
-      <div
-        style={{
+        overlay: {
+          backgroundColor: "rgba(0, 0, 0, 0.75)",
           display: "flex",
           alignItems: "center",
-          flexDirection: "column",
+          justifyContent: "center",
+        },
+        content: {
+          width: "80%",
+          height: "80%",
+          paddingBottom: "10px",
           backgroundColor: "#0f172a",
+        },
+      }}
+    >
+      <div className="flex flew-row justify-between margin-auto mb-0 pb-2">
+        <h1 className="margin-auto text-bold text-slate-100 p-4">
+          Kart over Bergen
+        </h1>
+        <button className="margin-auto p-4" onClick={close}>
+          ❌
+        </button>
+      </div>
+      <p className="text-slate-100">
+        {isMobileDevice()
+          ? "Dete er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
+          : ""}
+      </p>
+      <div
+        style={{
+          position: "sticky",
+          height: "100%",
+          width: "100%",
         }}
       >
-        <div className="text-slate-100 text-bold justify-end flex space-x-20 w-full ml-30 ">
-          <div className=" w-full text-xl">Kart over Bergen</div>
-          <button className="" onClick={close}>
-            ❌
-          </button>
-        </div>
-        <p className="text-slate-100 text-sm">
-          {isMobileDevice()
-            ? "Denne funksjonaliteten er ikke klar for mobil enda, så det kan dukke opp feil. For å bevege deg på kartet, bruk to fingre."
-            : ""}
-        </p>
-        <div
-          style={{
-            border: "1px solid #fcd9bd",
-            borderRadius: "2px",
-            width: "1100px",
-            height: isMobileDevice() ? "400px" : "500px",
-            position: "relative",
-            marginBottom: "5px",
-          }}
-        >
-          <Graph />
-        </div>
+        <GraphCanvas
+          edgeArrowPosition="none"
+          nodes={mapNodes}
+          edges={mapEdges}
+          layoutType="custom"
+          layoutOverrides={{ getNodePosition }}
+          theme={graphTheme}
+        />
       </div>
     </Modal>
   );
 }
-
-const Graph = () => (
-  <GraphCanvas
-    edgeArrowPosition="none"
-    nodes={mapNodes}
-    edges={edges}
-    layoutType="custom"
-    layoutOverrides={{ getNodePosition }}
-    theme={graphTheme}
-  />
-);
-
 const graphTheme = {
   canvas: { background: "#0f172a" }, // Navy Blue
   node: {
@@ -166,9 +161,6 @@ const graphTheme = {
     },
   },
 };
-/*
- # Utility functions
- */
 
 function getTodaysGuesses(): string[] {
   const dayString = getDayString();
@@ -191,15 +183,13 @@ function getNodePosition(
   id: string,
   { nodes }: NodePositionArgs
 ): InternalGraphPosition {
-  const node = mapNodes.find((n) => n.id === id);
-  if (node) {
-    return {
-      x: node.longitude * 12000,
-      y: node.latitude * 12000,
-      z: 1,
-    } as InternalGraphPosition;
-  }
-  return {} as InternalGraphPosition;
+  const node = mapNodes.find((node) => node.id === id);
+  console.log(node);
+  return {
+    x: (node?.longitude || 0) * 15000,
+    y: (node?.latitude || 0) * 15000,
+    z: 0,
+  } as InternalGraphPosition;
 }
 
 function colorNodes(winner: string) {
