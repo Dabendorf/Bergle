@@ -1,4 +1,5 @@
 import { DIRECTION_ARROWS } from "../components/GuessRow";
+import { DistanceUnits } from "../hooks/useSettings";
 const MAX_DISTANCE_ON_EARTH = 32414.604895;
 
 export type Direction =
@@ -49,8 +50,10 @@ const roundTo = function (num: number, places: number) {
   return Math.round(num * factor) / factor;
 };
 
-export function formatDistance(distanceInMeters: number, distanceUnit = "km") {
-  const distanceInKm = distanceInMeters / 1000;
-
-  return `${roundTo(distanceInKm, 2)}${distanceUnit}`;
+export function formatDistance(distanceInMeters: number, unit: DistanceUnits) {
+  let distance = distanceInMeters / 1000;
+  if (unit === "miles") {
+    distance = distanceInMeters / 1609;
+  }
+  return `${roundTo(distance, 2)}${unit}`;
 }
