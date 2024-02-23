@@ -26,18 +26,18 @@ export function Settings({
             {t("settings.difficultyModifiers")}
           </h3>
           <div className="text-sm italic text-gray-500">
-            {t("settings.startingNextDay")}
+            {t("settings.startsNextDay")}
           </div>
         </header>
         <div className="flex p-1">
           <input
             type="checkbox"
-            id="setting-noImage"
-            checked={settingsData.noImageMode}
-            onChange={(e) => updateSettings({ noImageMode: e.target.checked })}
+            id="setting-noMapMode"
+            checked={settingsData.noMapMode}
+            onChange={(e) => updateSettings({ noMapMode: e.target.checked })}
           />
-          <label className="flex-1 ml-2" htmlFor="setting-noImage">
-            {t("settings.noImageMode")}
+          <label className="flex-1 ml-2" htmlFor="setting-noMapMode">
+            {t("settings.noMapMode")}
           </label>
         </div>
         <div className="flex p-1">

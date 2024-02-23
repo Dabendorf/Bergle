@@ -49,8 +49,8 @@ const roundTo = function (num: number, places: number) {
   return Math.round(num * factor) / factor;
 };
 
-export function formatDistance(distanceInMeters: number, distanceUnit: "km") {
+export function formatDistance(distanceInMeters: number, distanceUnit = "km") {
   const distanceInKm = distanceInMeters / 1000;
 
-  return `${roundTo(distanceInKm, 2)}km`;
+  return `${roundTo(distanceInKm, 2)}${distanceUnit}`;
 }

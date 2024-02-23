@@ -35,7 +35,7 @@ export function Game() {
   const [hideImageMode, setHideImageMode] = useMode(
     "hideImageMode",
     dayString,
-    settingsData.noImageMode
+    settingsData.noMapMode
   );
   const [rotationMode, setRotationMode] = useMode(
     "rotationMode",
