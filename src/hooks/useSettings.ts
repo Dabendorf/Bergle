@@ -1,29 +1,38 @@
 import { useCallback, useState } from "react";
 
-export interface SettingsData {
-  noImageMode: boolean;
-  rotationMode: boolean;
-  distanceUnit: "km";
-  theme: "light" | "dark";
-}
+export type DistanceUnits = "km" | "miles";
+export type Themes = "dark" | "light";
 
-const defaultSettingsData: SettingsData = {
-  noImageMode: false,
+export type SettingsData = {
+  /** If the game should be played without assistance of map */
+  noMapMode: boolean;
+  /**
+   * If the map should be rotated
+   * TODO why not just support rotations by some degree?
+   * TODO refactor into "mapRotation"
+   */
+  rotationMode: boolean;
+  /** Which distance unit the user wishes to use */
+  distanceUnit: DistanceUnits;
+  /** The users desired application theme */
+  theme: Themes;
+};
+
+const defaultSettings: SettingsData = {
+  noMapMode: false,
   rotationMode: false,
   distanceUnit: "km",
   theme: "dark",
-  /*theme: window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light",*/
 };
 
 function loadSettings(): SettingsData {
-  const storedSettings = localStorage.getItem("settings");
-  const settingsData = storedSettings != null ? JSON.parse(storedSettings) : {};
-  return {
-    ...defaultSettingsData,
-    ...settingsData,
-  };
+  const localSettings = localStorage.getItem("settings");
+  const localSettingsJson = localSettings ? JSON.parse(localSettings) : {};
+  // TODO consider removing "theme" from defaultSettings, instead setting it from user settings
+  //     theme: window.matchMedia("(prefers-color-scheme: dark)").matches
+  //        ? "dark"
+  //        : "light",
+  return Object.assign({}, defaultSettings, localSettingsJson);
 }
 
 export function useSettings(): [

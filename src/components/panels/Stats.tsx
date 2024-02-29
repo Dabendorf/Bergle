@@ -2,11 +2,12 @@ import React from "react";
 // import { formatDistance } from "../../domain/geography";
 import { getStatsData } from "../../domain/stats";
 import { Panel } from "./Panel";
+import { DistanceUnits } from "../../hooks/useSettings";
 
 interface StatsProps {
   isOpen: boolean;
   close: () => void;
-  distanceUnit: "km" | "miles";
+  distanceUnit: DistanceUnits;
 }
 
 export function Stats({ isOpen, close, distanceUnit }: StatsProps) {

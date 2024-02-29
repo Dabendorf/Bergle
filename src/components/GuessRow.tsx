@@ -64,14 +64,16 @@ export function GuessRow({ guess, settingsData }: GuessRowProps) {
     case "NOT_STARTED":
       return (
         <div
-          className={`col-span-7 border-2 h-8 bg-gray-200 dark:bg-slate-600`}
+          className={"col-span-7 border-2 h-8 bg-gray-200 dark:bg-slate-600"}
         />
       );
     case "RUNNING":
       return (
         <>
           <div
-            className={`flex text-2xl w-full justify-evenly items-center col-span-6 border-2 h-8`}
+            className={
+              "flex text-2xl w-full justify-evenly items-center col-span-6 border-2 h-8"
+            }
           >
             {squares.map((character, index) => (
               <div
