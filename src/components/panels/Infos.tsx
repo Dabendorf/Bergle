@@ -353,6 +353,16 @@ export function Infos({ isOpen, close }: InfosProps) {
                   </>
                 }
               />
+              <FAQitemAnswerline
+                text={
+                  <>
+                    <CustomLink href="https://github.com/pmo022">
+                      Patrick Monslaup
+                    </CustomLink>
+                    , for forenkling, opprydning og speedup av koden.
+                  </>
+                }
+              />
             </>
           }
         />
