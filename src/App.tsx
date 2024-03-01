@@ -1,6 +1,6 @@
 import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Game } from "./components/Game";
+import Game from "./components/Game";
 import React, { useEffect } from "react";
 import { useSettings } from "./hooks/useSettings";
 import Navbar from "./components/Navbar";
