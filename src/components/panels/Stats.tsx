@@ -2,15 +2,13 @@ import React from "react";
 // import { formatDistance } from "../../domain/geography";
 import { getStatsData } from "../../domain/stats";
 import { Panel } from "./Panel";
-import { DistanceUnits } from "../../hooks/useSettings";
 
 interface StatsProps {
   isOpen: boolean;
   close: () => void;
-  distanceUnit: DistanceUnits;
 }
 
-export function Stats({ isOpen, close, distanceUnit }: StatsProps) {
+export function Stats({ isOpen, close }: StatsProps) {
   const {
     played,
     winRatio,
@@ -51,7 +49,7 @@ export function Stats({ isOpen, close, distanceUnit }: StatsProps) {
       {/* <div className="flex justify-center m-6">
         <div className="flex flex-col m-2">
           <p className="text-4xl font-bold text-center">
-            {formatDistance(averageBestDistance, distanceUnit)}
+            {formatDistance(averageBestDistance, settingsData.distanceUnit)}
           </p>
           <p className="text-lg text-center">
             {"Gjennomsnittlig korteste avstand"}

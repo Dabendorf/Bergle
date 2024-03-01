@@ -1,41 +1,43 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { Guess } from "../domain/guess";
 
-function loadAllGuesses(): Record<string, Guess[]> {
-  const storedGuesses = localStorage.getItem("guesses");
-  return storedGuesses != null ? JSON.parse(storedGuesses) : {};
+/** Class handling storage of guesses */
+class GuessStorage {
+  static loadAllGuesses(): Record<string, Guess[]> {
+    const storedGuesses = localStorage.getItem("guesses");
+    if (storedGuesses === null) return {};
+    return JSON.parse(storedGuesses);
+  }
+
+  static loadGuessesForDay(dayString: string) {
+    return this.loadAllGuesses()[dayString] ?? [];
+  }
+
+  static updateSavedGuesses(dayString: string, guesses: Guess[]) {
+    const allGuesses = this.loadAllGuesses();
+    localStorage.setItem(
+      "guesses",
+      JSON.stringify({
+        ...allGuesses,
+        [dayString]: guesses,
+      })
+    );
+  }
 }
 
-export function useGuesses(
-  dayString: string
-): [Guess[], (guess: Guess) => void] {
+export function useGuesses(dayString: string) {
   const [guesses, setGuesses] = useState<Guess[]>(
-    loadAllGuesses()[dayString] ?? []
+    GuessStorage.loadGuessesForDay(dayString)
   );
 
-  const saveGuesses = useCallback(
-    (guesses: Guess[]) => {
-      const allGuesses = loadAllGuesses();
-      localStorage.setItem(
-        "guesses",
-        JSON.stringify({
-          ...allGuesses,
-          [dayString]: guesses,
-        })
-      );
-    },
-    [dayString]
-  );
+  const addGuess = (guess: Guess) => {
+    const newGuesses = [...guesses, guess];
+    setGuesses(newGuesses);
+    GuessStorage.updateSavedGuesses(dayString, newGuesses);
+  };
 
-  const addGuess = useCallback(
-    (newGuess: Guess) => {
-      const newGuesses = [...guesses, newGuess];
-
-      setGuesses(newGuesses);
-      saveGuesses(newGuesses);
-    },
-    [guesses, saveGuesses]
-  );
-
-  return [guesses, addGuess];
+  return {
+    guesses,
+    addGuess,
+  };
 }

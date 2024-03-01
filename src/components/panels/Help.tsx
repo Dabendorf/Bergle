@@ -7,12 +7,10 @@ import {
   GraphNode,
   InternalGraphPosition,
 } from "reagraph";
-import { getDayString } from "../Game";
 
 import { countries } from "../../domain/countries";
-import { SettingsData } from "../../hooks/useSettings";
 import { Guess } from "../../domain/guess";
-import { useCountry } from "../../hooks/useCountry";
+import { useSharedGameState } from "../../shared/useGame";
 
 interface MapNode extends GraphNode {
   latitude: number;
@@ -21,6 +19,9 @@ interface MapNode extends GraphNode {
 }
 
 const mapNodes: MapNode[] = countries.map((country) => {
+  if (!country.latitude || !country.longitude) {
+    console.warn("WARNING! ", country);
+  }
   return {
     id: country.code,
     label: country.name,
@@ -47,12 +48,13 @@ for (const node of mapNodes) {
 interface HelpProps {
   isOpen: boolean;
   close: () => void;
-  settingsData: SettingsData;
 }
 
-export default function Help({ isOpen, close, settingsData }: HelpProps) {
-  const country = useCountry(getDayString())[0].name.toLowerCase();
-  colorNodes(country);
+export default function Help({ isOpen, close }: HelpProps) {
+  const {
+    state: { country, guesses },
+  } = useSharedGameState();
+  colorNodes(country.name.toLowerCase(), guesses);
 
   return (
     <Modal
@@ -84,7 +86,7 @@ export default function Help({ isOpen, close, settingsData }: HelpProps) {
       </div>
       <p className="text-slate-100">
         {isMobileDevice()
-          ? "Dete er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
+          ? "Dette er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
           : ""}
       </p>
       <div
@@ -162,16 +164,6 @@ const graphTheme = {
   },
 };
 
-function getTodaysGuesses(): string[] {
-  const dayString = getDayString();
-
-  const guesses = JSON.parse(localStorage.getItem("guesses") || "{}");
-  if (guesses[dayString]) {
-    return guesses[dayString].map((guess: Guess) => guess.name);
-  }
-  return [];
-}
-
 function isMobileDevice() {
   return (
     typeof window.matchMedia !== "undefined" &&
@@ -192,10 +184,8 @@ function getNodePosition(
   } as InternalGraphPosition;
 }
 
-function colorNodes(winner: string) {
-  const todayGuesses: string[] = getTodaysGuesses().map((guess: string) =>
-    guess.toLowerCase()
-  );
+function colorNodes(winner: string, guesses: Guess[]) {
+  const todayGuesses = guesses.map((guess: Guess) => guess.name.toLowerCase());
   for (const guess of todayGuesses) {
     const findNode: MapNode | undefined = mapNodes.find((node: MapNode) => {
       if (node.label) {
