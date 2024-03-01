@@ -84,9 +84,9 @@ const _useGameState = (): Game => {
   const [currentGuess, setCurrentGuess] = useState("");
   const [gameResult, setCurrentGameResult] = useState<GameResult>("ONGOING");
 
-  const updateCurrentGuess = useCallback(() => {
-    setCurrentGuess(currentGuess);
-  }, [currentGuess]);
+  const updateCurrentGuess = useCallback((updatedGuess) => {
+    setCurrentGuess(updatedGuess);
+  }, []);
 
   const activateMapForCurrentGame = useCallback(() => {
     setCurrentGameSettings(

@@ -19,6 +19,9 @@ interface MapNode extends GraphNode {
 }
 
 const mapNodes: MapNode[] = countries.map((country) => {
+  if (!country.latitude || !country.longitude) {
+    console.warn("WARNING! ", country);
+  }
   return {
     id: country.code,
     label: country.name,
@@ -83,7 +86,7 @@ export default function Help({ isOpen, close }: HelpProps) {
       </div>
       <p className="text-slate-100">
         {isMobileDevice()
-          ? "Dete er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
+          ? "Dette er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
           : ""}
       </p>
       <div

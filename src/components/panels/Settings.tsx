@@ -1,22 +1,16 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { SettingsData } from "../../hooks/useSettings";
+import { useSettings } from "../../hooks/useSettings";
 import { Panel } from "./Panel";
 
 interface SettingsProps {
   isOpen: boolean;
   close: () => void;
-  settingsData: SettingsData;
-  updateSettings: (newSettings: Partial<SettingsData>) => void;
 }
 
-export function Settings({
-  isOpen,
-  close,
-  settingsData,
-  updateSettings,
-}: SettingsProps) {
+export function Settings({ isOpen, close }: SettingsProps) {
   const { t } = useTranslation();
+  const [settingsData, updateSettings] = useSettings();
 
   return (
     <Panel title={t("settings.title")} isOpen={isOpen} close={close}>

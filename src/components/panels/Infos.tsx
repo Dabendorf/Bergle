@@ -1,17 +1,17 @@
-import { Guesses } from "../Guesses";
 import { Panel } from "./Panel";
 import React, { useState } from "react";
-import { SettingsData } from "../../hooks/useSettings";
+import { useSettings } from "../../hooks/useSettings";
 import { CustomLink, FAQitem, FAQitemAnswerline } from "./partials/FAQitem";
+import { GuessRow } from "../GuessRow";
 
 interface InfosProps {
   isOpen: boolean;
   close: () => void;
-  settingsData: SettingsData;
 }
 
-export function Infos({ isOpen, close, settingsData }: InfosProps) {
+export function Infos({ isOpen, close }: InfosProps) {
   const [openedIndex, setOpenedIndex] = useState(0);
+  const [settingsData] = useSettings();
 
   const handleItemClick = (index: number) => {
     setOpenedIndex(openedIndex === index ? -1 : index);
@@ -69,17 +69,16 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
               <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
                 <div className="font-bold">Eksempel</div>
                 <div>
-                  <Guesses
-                    rowCount={1}
-                    guesses={[
-                      {
-                        name: "Trengereid",
-                        direction: "SW",
-                        distance: 16800,
-                      },
-                    ]}
+                  <GuessRow
+                    key={"guess-example-2"}
+                    guess={{
+                      name: "Trengereid",
+                      direction: "SW",
+                      distance: 16800,
+                    }}
                     settingsData={settingsData}
                   />
+
                   <div className="my-2">
                     Din første gjetning{" "}
                     <span className="uppercase font-bold">Trengereid</span> er
@@ -89,15 +88,13 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
                   </div>
                 </div>
                 <div>
-                  <Guesses
-                    rowCount={1}
-                    guesses={[
-                      {
-                        name: "Fantoft",
-                        direction: "N",
-                        distance: 5960,
-                      },
-                    ]}
+                  <GuessRow
+                    key={"guess-example-2"}
+                    guess={{
+                      name: "Fantoft",
+                      direction: "N",
+                      distance: 5960,
+                    }}
                     settingsData={settingsData}
                   />
                   <div className="my-2">
@@ -108,15 +105,13 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
                   </div>
                 </div>
                 <div>
-                  <Guesses
-                    rowCount={1}
-                    guesses={[
-                      {
-                        name: "Vågsbunnen",
-                        direction: "NW",
-                        distance: 430,
-                      },
-                    ]}
+                  <GuessRow
+                    key={"guess-example-3"}
+                    guess={{
+                      name: "Vågsbunnen",
+                      direction: "NW",
+                      distance: 430,
+                    }}
                     settingsData={settingsData}
                   />
                   <div className="my-2">
@@ -127,15 +122,13 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
                   </div>
                 </div>
                 <div>
-                  <Guesses
-                    rowCount={1}
-                    guesses={[
-                      {
-                        name: "Bryggen",
-                        direction: "N",
-                        distance: 0,
-                      },
-                    ]}
+                  <GuessRow
+                    key={"guess-example-4"}
+                    guess={{
+                      name: "Bryggen",
+                      direction: "N",
+                      distance: 0,
+                    }}
                     settingsData={settingsData}
                   />
                   <div className="my-2">

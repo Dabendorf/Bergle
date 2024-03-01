@@ -29,11 +29,7 @@ export function Game() {
     <div className="flex-grow flex flex-col mx-2 mb-1">
       <GameSettingButtons />
       <LocationOutline />
-      <Guesses
-        rowCount={settings.maxAttempts}
-        guesses={guesses}
-        settingsData={settings}
-      />
+      <Guesses />
       <div className="my-2">
         <ShareGameResult />
         <SubmitGuessForm />

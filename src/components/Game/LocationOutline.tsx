@@ -13,7 +13,7 @@ const LocationOutline = () => {
 
   return (
     <img
-      className={`max-h-52 m-auto transition-transform duration-700 ease-in dark:invert ${
+      className={`max-h-52 my-2 mx-auto transition-transform duration-700 ease-in dark:invert ${
         noMapMode && gameResult === "ONGOING" ? "h-0" : "h-full"
       }`}
       alt="country to guess"

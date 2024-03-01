@@ -3,7 +3,6 @@ import { Infos } from "./panels/Infos";
 import Help from "./panels/Help";
 import { Settings } from "./panels/Settings";
 import { Stats } from "./panels/Stats";
-import { useSettings } from "../hooks/useSettings";
 import { Bergle } from "./Bergle";
 
 type NavbarPanel = "FAQ" | "MAP" | "SETTINGS" | "STATS" | null;
@@ -73,7 +72,6 @@ const Header = ({
 };
 
 const Navbar = () => {
-  const [settingsData, updateSettings] = useSettings();
   const [currentOpenNavbarPanel, setCurrentOpenNavbarPanel] =
     useState<NavbarPanel>(null);
 
@@ -85,27 +83,21 @@ const Navbar = () => {
         currentOpenNavbarPanel={currentOpenNavbarPanel}
         setCurrentOpenNavbarPanel={setCurrentOpenNavbarPanel}
       />
-
       <Infos
         isOpen={currentOpenNavbarPanel === "FAQ"}
         close={closeNavbarPanel}
-        settingsData={settingsData}
       />
       <Help
         isOpen={currentOpenNavbarPanel === "MAP"}
         close={closeNavbarPanel}
-        settingsData={settingsData}
       />
       <Settings
         isOpen={currentOpenNavbarPanel === "SETTINGS"}
         close={closeNavbarPanel}
-        settingsData={settingsData}
-        updateSettings={updateSettings}
       />
       <Stats
         isOpen={currentOpenNavbarPanel === "STATS"}
         close={closeNavbarPanel}
-        distanceUnit={settingsData.distanceUnit}
       />
     </>
   );
