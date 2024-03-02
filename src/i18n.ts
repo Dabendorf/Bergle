@@ -23,6 +23,8 @@ const resources = {
         rotationMode: "Roter kart",
       },
       contributeOnGitHub: "Bidra på GitHub!",
+      mapTitle: "Kart over Norges viktigste by",
+      mapMobileWarning: "Dette er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
     },
   },
 };

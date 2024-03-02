@@ -11,6 +11,7 @@ import {
 import { countries } from "../../domain/countries";
 import { Guess } from "../../domain/guess";
 import { useSharedGameState } from "../../shared/useGame";
+import { useTranslation } from "react-i18next";
 
 interface MapNode extends GraphNode {
   latitude: number;
@@ -56,6 +57,8 @@ export default function Help({ isOpen, close }: HelpProps) {
   } = useSharedGameState();
   colorNodes(country.name.toLowerCase(), guesses);
 
+  const { t } = useTranslation();
+
   return (
     <Modal
       isOpen={isOpen}
@@ -77,16 +80,16 @@ export default function Help({ isOpen, close }: HelpProps) {
       }}
     >
       <div className="flex flew-row justify-between margin-auto mb-0 pb-2">
-        <h1 className="margin-auto text-bold text-slate-100 p-4">
-          Kart over Bergen
+        <h1 className="margin-auto font-bold text-slate-100 p-4">
+        {t("mapTitle")}
         </h1>
         <button className="margin-auto p-4" onClick={close}>
           ❌
         </button>
       </div>
-      <p className="text-slate-100">
+      <p className="text-slate-100 px-4 pb-4">
         {isMobileDevice()
-          ? "Dette er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
+          ? t("mapMobileWarning")
           : ""}
       </p>
       <div
