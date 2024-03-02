@@ -69,8 +69,8 @@ export default function Help({ isOpen, close }: HelpProps) {
           justifyContent: "center",
         },
         content: {
-          width: "80%",
-          height: "80%",
+          width: isMobileDevice() ? "100%": "80%",
+          height:isMobileDevice() ? "100%": "80%",
           paddingBottom: "10px",
           backgroundColor: "#0f172a",
         },
@@ -176,7 +176,7 @@ function getNodePosition(
   { nodes }: NodePositionArgs
 ): InternalGraphPosition {
   const node = mapNodes.find((node) => node.id === id);
-  console.log(node);
+  //console.log(node);
   return {
     x: (node?.longitude || 0) * 15000,
     y: (node?.latitude || 0) * 15000,
