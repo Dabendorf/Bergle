@@ -19,7 +19,7 @@ import i18n from "../i18n";
 import { getCompassDirection, getDistance } from "geolib";
 import { Guess } from "../domain/guess";
 
-type GuessSubmitResult = "CORRECT" | "INCORRECT" | "INVALID";
+type GuessSubmitResult = "CORRECT" | "INCORRECT" | "INVALID" | "DUPLICATE";
 type GameResult = "VICTORY" | "LOSS" | "ONGOING";
 
 /** The state of the current game */
@@ -111,12 +111,18 @@ const _useGameState = (): Game => {
       return "INVALID";
     }
 
+    console.log(guesses.map(item=>item.name.toUpperCase()))
+    if (guesses.map(item=>item.name.toUpperCase()).includes(guessedCountry.name.toUpperCase())) {
+      return "DUPLICATE"
+    }
+
     const newGuess = {
       name: currentGuess,
       distance: getDistance(guessedCountry, country),
       direction: getCompassDirection(guessedCountry, country),
     };
     addGuess(newGuess);
+    setCurrentGuess("")
 
     if (newGuess.distance === 0) {
       setCurrentGameResult("VICTORY");

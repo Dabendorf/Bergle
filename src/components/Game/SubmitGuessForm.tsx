@@ -21,6 +21,10 @@ const SubmitGuessForm = () => {
         toast.error(t("unknownCountry"));
         return;
       }
+      if (guessResult === "DUPLICATE") {
+        toast.error(t("alreadyGuessed"));
+        return;
+      }
       if (guessResult === "CORRECT") {
         toast.success(t("welldone"), { delay: 2000 });
       }

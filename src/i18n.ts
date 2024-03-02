@@ -10,6 +10,7 @@ const resources = {
       showOnOSM: "👀 på OpenStreetMap",
       welldone: "Godt gjort",
       unknownCountry: "Ukjent sted!",
+      alreadyGuessed: "Allerede gjettet før!",
       copy: "Resultatene ble kopiert til utklippstavlen",
       showCountry: "🗺️ Vis kartet!",
       cancelRotation: "🌀 Stop rotasjon",
