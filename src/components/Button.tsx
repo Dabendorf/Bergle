@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-const baseBtnStyle = "border-2 px-4 py-2 uppercase ";
+const baseBtnStyle = "border-2 px-4 py-0.5 uppercase ";
 const buttonStyles = {
   primary:
     "hover:bg-gray-50 active:bg-gray-100 dark:hover:bg-slate-800 dark:active:bg-slate-700",

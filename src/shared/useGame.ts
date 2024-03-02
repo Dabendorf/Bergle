@@ -111,7 +111,6 @@ const _useGameState = (): Game => {
       return "INVALID";
     }
 
-    console.log(guesses.map(item=>item.name.toUpperCase()))
     if (guesses.map(item=>item.name.toUpperCase()).includes(guessedCountry.name.toUpperCase())) {
       return "DUPLICATE"
     }
