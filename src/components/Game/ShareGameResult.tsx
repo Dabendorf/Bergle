@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { DateTime, Interval } from "luxon";
 import { Button } from "../Button";
 
-// TODO: why was this hardcoded as 31. Dec 23?
+// Start date for day counter in the shared results
 const START_DATE = DateTime.fromISO("2023-12-31"); //always one day off (if 2024-01-01 wanted as day 1, write 2023-12-31)
 
 const ShareClipboard = () => {
@@ -36,7 +36,7 @@ const ShareClipboard = () => {
     const title = `#Bergle #Dag${dayCount} ${guessCount}/6${difficultyModifierEmoji}`;
 
     const guessString = guesses
-      .map((guess) => {
+      .map((guess: { distance: number; direction: any; }) => {
         const percent = computeProximityPercent(guess.distance);
         const direction = guess.direction;
         return generateSquareCharacters(percent, theme, direction).join("");

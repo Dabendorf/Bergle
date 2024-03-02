@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSettings } from "../../hooks/useSettings";
 import { CustomLink, FAQitem, FAQitemAnswerline } from "./partials/FAQitem";
 import { GuessRow } from "../GuessRow";
+import { GuessRowWrapper } from "../GuessRowWrapper";
 
 interface InfosProps {
   isOpen: boolean;
@@ -69,15 +70,17 @@ export function Infos({ isOpen, close }: InfosProps) {
               <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
                 <div className="font-bold">Eksempel</div>
                 <div>
+                <GuessRowWrapper>
                   <GuessRow
                     key={"guess-example-2"}
                     guess={{
                       name: "Trengereid",
                       direction: "SW",
                       distance: 16800,
-                    }}
+                    }} 
                     settingsData={settingsData}
                   />
+                </GuessRowWrapper>
 
                   <div className="my-2">
                     Din første gjetning{" "}
@@ -88,6 +91,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                   </div>
                 </div>
                 <div>
+                <GuessRowWrapper>
                   <GuessRow
                     key={"guess-example-2"}
                     guess={{
@@ -97,6 +101,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                     }}
                     settingsData={settingsData}
                   />
+                  </GuessRowWrapper>
                   <div className="my-2">
                     Din andre gjetning{" "}
                     <span className="uppercase font-bold">Fantoft</span> er
@@ -105,6 +110,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                   </div>
                 </div>
                 <div>
+                <GuessRowWrapper>
                   <GuessRow
                     key={"guess-example-3"}
                     guess={{
@@ -114,6 +120,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                     }}
                     settingsData={settingsData}
                   />
+                  </GuessRowWrapper>
                   <div className="my-2">
                     Din tredje gjetning,{" "}
                     <span className="uppercase font-bold">Vågsbunnen</span> er
@@ -122,6 +129,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                   </div>
                 </div>
                 <div>
+                <GuessRowWrapper>
                   <GuessRow
                     key={"guess-example-4"}
                     guess={{
@@ -131,6 +139,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                     }}
                     settingsData={settingsData}
                   />
+                  </GuessRowWrapper>
                   <div className="my-2">
                     Din fjerde gjetning,{" "}
                     <span className="uppercase font-bold">Bryggen</span>, er
