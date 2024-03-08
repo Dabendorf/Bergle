@@ -6,10 +6,10 @@ const resources = {
     translation: {
       placeholder: "Område i Bergen",
       guess: "Gjett",
-      share: "Del",
+      share: "Dabb tjommiene dine",
       showOnOSM: "👀 på OpenStreetMap",
-      welldone: "Godt gjort",
-      unknownCountry: "Ukjent sted!",
+      welldone: "Bra jobbet!",
+      unknownCountry: "Ukjent sted, det er meget kleint",
       alreadyGuessed: "Allerede gjettet før!",
       copy: "Resultatene ble kopiert til utklippstavlen",
       showCountry: "🗺️ Vis kartet!",
@@ -17,14 +17,14 @@ const resources = {
       settings: {
         title: "Innstillinger",
         theme: "Tema",
-        difficultyModifiers: "Forvanskere",
-        startsNextDay: "Begynner neste dag",
+        difficultyModifiers: "E' du ekte bergenser?",
+        startsNextDay: "Bevis at du kan mer enn bare Hansa øl og Brann ved å prøve deg på Bergle... Begynner i morgen",
         noMapMode: "Uten kart",
-        rotationMode: "Roter kart",
+        rotationMode: "Med et tilfeldig rotert kart",
       },
       contributeOnGitHub: "Bidra på GitHub!",
       mapTitle: "Kart over Norges viktigste by",
-      mapMobileWarning: "Dette er ikke helt klart for mobil, så det oppfører seg litt rart. Bruk to fingre for å navigere."
+      mapMobileWarning: "Dette kartet er boss på mobil. Bruk den på større skjerm eller naviger kun med to fingre."
     },
   },
 };
