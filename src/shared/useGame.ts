@@ -6,7 +6,7 @@ import { SettingsData, useSettings } from "../hooks/useSettings";
 // .. but both options (especially redux) requires a lot of code
 // For more details see https://www.npmjs.com/package/use-between
 import { useBetween } from "use-between";
-import { useGuesses } from "../hooks/useGuesses";
+import {useGameResults, useGuesses} from "../hooks/useGuesses";
 import { DateTime } from "luxon";
 import { useCountry } from "../hooks/useCountry";
 import {
@@ -81,8 +81,9 @@ const _useGameState = (): Game => {
   const dateString = DateTime.now().toFormat("yyyy-MM-dd");
   const [country] = useCountry(dateString);
   const { guesses, addGuess } = useGuesses(dateString);
+  const {gameResult, setTodaysGameResult} = useGameResults(dateString)
   const [currentGuess, setCurrentGuess] = useState("");
-  const [gameResult, setCurrentGameResult] = useState<GameResult>("ONGOING");
+  //const [gameResult, setCurrentGameResult] = useState<GameResult>(todaysGameResult);
 
   const updateCurrentGuess = useCallback((updatedGuess) => {
     setCurrentGuess(updatedGuess);
@@ -124,16 +125,16 @@ const _useGameState = (): Game => {
     setCurrentGuess("")
 
     if (newGuess.distance === 0) {
-      setCurrentGameResult("VICTORY");
+      setTodaysGameResult("VICTORY");
       return "CORRECT";
     }
 
     if (guesses.length + 1 === currentGameSettings.maxAttempts) {
-      setCurrentGameResult("LOSS");
+      setTodaysGameResult("LOSS");
     }
 
     return "INCORRECT";
-  }, [country, addGuess, currentGuess, guesses, currentGameSettings]);
+  }, [country, addGuess, currentGuess, guesses, currentGameSettings, setTodaysGameResult]);
 
   return {
     state: {

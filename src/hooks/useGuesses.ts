@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Guess } from "../domain/guess";
 
+type GameResult = "VICTORY" | "LOSS" | "ONGOING";
+
 /** Class handling storage of guesses */
 class GuessStorage {
   static loadAllGuesses(): Record<string, Guess[]> {
@@ -23,6 +25,42 @@ class GuessStorage {
       })
     );
   }
+
+  static loadAllGameResults(): Record<string, GameResult> {
+    const storedGameResults = localStorage.getItem("gameResult");
+    if (storedGameResults === null) return {};
+    return JSON.parse(storedGameResults);
+  }
+
+  static loadGameResultForDay(dayString: string) {
+    return this.loadAllGameResults()[dayString] ?? "ONGOING";
+  }
+
+  static updateGameResults(dayString: string, gameResult: GameResult) {
+    const allGameResults = this.loadAllGuesses();
+    localStorage.setItem(
+        "gameResult",
+        JSON.stringify({
+          ...allGameResults,
+          [dayString]: gameResult,
+        })
+    );
+  }
+}
+
+export function useGameResults(dayString: string) {
+  const [gameResult, setTodaysGameResultSetter] = useState<GameResult>(
+      GuessStorage.loadGameResultForDay(dayString)
+  );
+
+  const setTodaysGameResult = (gameRes: GameResult) => {
+    setTodaysGameResultSetter(gameRes);
+    GuessStorage.updateGameResults(dayString, gameRes)
+  };
+
+
+  return {gameResult, setTodaysGameResult}
+
 }
 
 export function useGuesses(dayString: string) {
