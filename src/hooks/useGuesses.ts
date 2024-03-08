@@ -48,34 +48,47 @@ class GuessStorage {
   }
 }
 
-export function useGameResults(dayString: string) {
-  const [gameResult, setTodaysGameResultSetter] = useState<GameResult>(
-      GuessStorage.loadGameResultForDay(dayString)
-  );
+const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
+  const lastGuessIdx = guesses.length;
+  if(lastGuessIdx === 0) {
+    return "ONGOING"
+  }
+  
+  const lastGuess = guesses[lastGuessIdx-1];
+  if (lastGuess.distance === 0) {
+    return "VICTORY";
+  }
+  if (lastGuessIdx + 1 === maxGuesses) {
+    return "LOSS";
+  }
+  return "ONGOING";
+};
 
-  const setTodaysGameResult = (gameRes: GameResult) => {
-    setTodaysGameResultSetter(gameRes);
-    GuessStorage.updateGameResults(dayString, gameRes)
-  };
-
-
-  return {gameResult, setTodaysGameResult}
-
-}
-
-export function useGuesses(dayString: string) {
+/** 
+ * NOTE: should only be used within useGame
+ * - usage multiple places may lead to bugs
+ */
+export function useGuesses(dayString: string, maxAttempts: number) {
   const [guesses, setGuesses] = useState<Guess[]>(
     GuessStorage.loadGuessesForDay(dayString)
+  );
+  const [gameResult, setGameResult] = useState<GameResult>(
+    GuessStorage.loadGameResultForDay(dayString)
   );
 
   const addGuess = (guess: Guess) => {
     const newGuesses = [...guesses, guess];
     setGuesses(newGuesses);
     GuessStorage.updateSavedGuesses(dayString, newGuesses);
+
+    const newGameResult = calculateGameResult(guesses, maxAttempts);
+    GuessStorage.updateGameResults(dayString, newGameResult);
+    setGameResult(newGameResult);
   };
 
   return {
     guesses,
     addGuess,
+    gameResult,
   };
 }

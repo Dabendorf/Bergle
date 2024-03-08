@@ -6,7 +6,7 @@ import { SettingsData, useSettings } from "../hooks/useSettings";
 // .. but both options (especially redux) requires a lot of code
 // For more details see https://www.npmjs.com/package/use-between
 import { useBetween } from "use-between";
-import {useGameResults, useGuesses} from "../hooks/useGuesses";
+import { useGuesses} from "../hooks/useGuesses";
 import { DateTime } from "luxon";
 import { useCountry } from "../hooks/useCountry";
 import {
@@ -80,10 +80,8 @@ const _useGameState = (): Game => {
   );
   const dateString = DateTime.now().toFormat("yyyy-MM-dd");
   const [country] = useCountry(dateString);
-  const { guesses, addGuess } = useGuesses(dateString);
-  const {gameResult, setTodaysGameResult} = useGameResults(dateString)
+  const { guesses, addGuess, gameResult } = useGuesses(dateString, currentGameSettings.maxAttempts);
   const [currentGuess, setCurrentGuess] = useState("");
-  //const [gameResult, setCurrentGameResult] = useState<GameResult>(todaysGameResult);
 
   const updateCurrentGuess = useCallback((updatedGuess) => {
     setCurrentGuess(updatedGuess);
@@ -104,16 +102,12 @@ const _useGameState = (): Game => {
   /** Submit a guess, returning if it was correct, incorrect, or invalid */
   const submitGuess = useCallback<() => GuessSubmitResult>(() => {
     const guessedCountry = countries.find(
-      (country) =>
-        sanitizeCountryName(getCountryName(i18n.language, country)) ===
-        sanitizeCountryName(currentGuess)
+        (country) =>
+            sanitizeCountryName(getCountryName(i18n.language, country)) ===
+            sanitizeCountryName(currentGuess)
     );
     if (guessedCountry == null) {
       return "INVALID";
-    }
-
-    if (guesses.map(item=>item.name.toUpperCase()).includes(guessedCountry.name.toUpperCase())) {
-      return "DUPLICATE"
     }
 
     const newGuess = {
@@ -122,19 +116,13 @@ const _useGameState = (): Game => {
       direction: getCompassDirection(guessedCountry, country),
     };
     addGuess(newGuess);
-    setCurrentGuess("")
 
     if (newGuess.distance === 0) {
-      setTodaysGameResult("VICTORY");
       return "CORRECT";
     }
 
-    if (guesses.length + 1 === currentGameSettings.maxAttempts) {
-      setTodaysGameResult("LOSS");
-    }
-
     return "INCORRECT";
-  }, [country, addGuess, currentGuess, guesses, currentGameSettings, setTodaysGameResult]);
+  }, [country, addGuess, currentGuess]);
 
   return {
     state: {
