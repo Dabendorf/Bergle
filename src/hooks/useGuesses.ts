@@ -49,17 +49,17 @@ class GuessStorage {
 }
 
 export function useGameResults(dayString: string) {
-  const [gameResult, setTodaysGameResultSetter] = useState<GameResult>(
+  const [gameResultInStorage, setTodaysGameResultInStorageSetter] = useState<GameResult>(
       GuessStorage.loadGameResultForDay(dayString)
   );
 
   const setTodaysGameResult = (gameRes: GameResult) => {
-    setTodaysGameResultSetter(gameRes);
+    setTodaysGameResultInStorageSetter(gameRes);
     GuessStorage.updateGameResults(dayString, gameRes)
   };
 
 
-  return {gameResult, setTodaysGameResult}
+  return {gameResultInStorage: gameResultInStorage, setTodaysGameResult}
 
 }
 

@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import {useState, useCallback, useEffect} from "react";
 import { SettingsData, useSettings } from "../hooks/useSettings";
 // Developer note: `useBetween` lets us create hooks which share state between components.
 // This is useful to avoid prop-drilling (from passing the state to child-components), increasing efficiency.
@@ -81,9 +81,9 @@ const _useGameState = (): Game => {
   const dateString = DateTime.now().toFormat("yyyy-MM-dd");
   const [country] = useCountry(dateString);
   const { guesses, addGuess } = useGuesses(dateString);
-  const {gameResult, setTodaysGameResult} = useGameResults(dateString)
+  const {gameResultInStorage, setTodaysGameResult} = useGameResults(dateString)
   const [currentGuess, setCurrentGuess] = useState("");
-  //const [gameResult, setCurrentGameResult] = useState<GameResult>(todaysGameResult);
+  const [gameResult, setCurrentGameResult] = useState<GameResult>(gameResultInStorage);
 
   const updateCurrentGuess = useCallback((updatedGuess) => {
     setCurrentGuess(updatedGuess);
@@ -101,19 +101,37 @@ const _useGameState = (): Game => {
     );
   }, [currentGameSettings]);
 
+  const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
+    const lastGuessIdx = guesses.length;
+
+    if(lastGuessIdx === 0) {
+      return "ONGOING"
+    }
+    const lastGuess = guesses[lastGuessIdx];
+    if (lastGuess.distance === 0) {
+      return "VICTORY";
+    }
+    if (lastGuessIdx + 1 === maxGuesses) {
+      return "LOSS";
+    }
+    return "ONGOING";
+  };
+
+  useEffect(() => {
+    const gameRes = calculateGameResult(guesses, currentGameSettings.maxAttempts)
+    setCurrentGameResult(gameRes);
+    setTodaysGameResult(gameRes)
+  }, [guesses, currentGameSettings, setTodaysGameResult]);
+
   /** Submit a guess, returning if it was correct, incorrect, or invalid */
   const submitGuess = useCallback<() => GuessSubmitResult>(() => {
     const guessedCountry = countries.find(
-      (country) =>
-        sanitizeCountryName(getCountryName(i18n.language, country)) ===
-        sanitizeCountryName(currentGuess)
+        (country) =>
+            sanitizeCountryName(getCountryName(i18n.language, country)) ===
+            sanitizeCountryName(currentGuess)
     );
     if (guessedCountry == null) {
       return "INVALID";
-    }
-
-    if (guesses.map(item=>item.name.toUpperCase()).includes(guessedCountry.name.toUpperCase())) {
-      return "DUPLICATE"
     }
 
     const newGuess = {
@@ -122,19 +140,13 @@ const _useGameState = (): Game => {
       direction: getCompassDirection(guessedCountry, country),
     };
     addGuess(newGuess);
-    setCurrentGuess("")
 
     if (newGuess.distance === 0) {
-      setTodaysGameResult("VICTORY");
       return "CORRECT";
     }
 
-    if (guesses.length + 1 === currentGameSettings.maxAttempts) {
-      setTodaysGameResult("LOSS");
-    }
-
     return "INCORRECT";
-  }, [country, addGuess, currentGuess, guesses, currentGameSettings, setTodaysGameResult]);
+  }, [country, addGuess, currentGuess]);
 
   return {
     state: {
