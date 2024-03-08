@@ -53,13 +53,13 @@ export function useGameResults(dayString: string) {
       GuessStorage.loadGameResultForDay(dayString)
   );
 
-  const setTodaysGameResult = (gameRes: GameResult) => {
+  const setTodaysGameResultToLocalStorage = (gameRes: GameResult) => {
     setTodaysGameResultInStorageSetter(gameRes);
     GuessStorage.updateGameResults(dayString, gameRes)
   };
 
 
-  return {gameResultInStorage: gameResultInStorage, setTodaysGameResult}
+  return {gameResultInStorage: gameResultInStorage, setTodaysGameResultToLocalStorage}
 
 }
 

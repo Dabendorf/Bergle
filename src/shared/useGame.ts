@@ -81,9 +81,9 @@ const _useGameState = (): Game => {
   const dateString = DateTime.now().toFormat("yyyy-MM-dd");
   const [country] = useCountry(dateString);
   const { guesses, addGuess } = useGuesses(dateString);
-  const {gameResultInStorage, setTodaysGameResult} = useGameResults(dateString)
+  const {gameResultInStorage, setTodaysGameResultToLocalStorage} = useGameResults(dateString)
   const [currentGuess, setCurrentGuess] = useState("");
-  const [gameResult, setCurrentGameResult] = useState<GameResult>(gameResultInStorage);
+  const [gameResult, setCurrentGameResult] = useState<GameResult>(gameResultInStorage || "ONGOING");
 
   const updateCurrentGuess = useCallback((updatedGuess) => {
     setCurrentGuess(updatedGuess);
@@ -103,10 +103,10 @@ const _useGameState = (): Game => {
 
   const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
     const lastGuessIdx = guesses.length;
-
     if(lastGuessIdx === 0) {
       return "ONGOING"
     }
+
     const lastGuess = guesses[lastGuessIdx];
     if (lastGuess.distance === 0) {
       return "VICTORY";
@@ -117,11 +117,7 @@ const _useGameState = (): Game => {
     return "ONGOING";
   };
 
-  useEffect(() => {
-    const gameRes = calculateGameResult(guesses, currentGameSettings.maxAttempts)
-    setCurrentGameResult(gameRes);
-    setTodaysGameResult(gameRes)
-  }, [guesses, currentGameSettings, setTodaysGameResult]);
+
 
   /** Submit a guess, returning if it was correct, incorrect, or invalid */
   const submitGuess = useCallback<() => GuessSubmitResult>(() => {
@@ -147,6 +143,12 @@ const _useGameState = (): Game => {
 
     return "INCORRECT";
   }, [country, addGuess, currentGuess]);
+
+  useEffect(() => {
+    const newRes = calculateGameResult(guesses, currentGameSettings.maxAttempts)
+    setCurrentGameResult(newRes);
+    setTodaysGameResultToLocalStorage(newRes);
+  }, [guesses, currentGameSettings, setTodaysGameResultToLocalStorage]);
 
   return {
     state: {
