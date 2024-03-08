@@ -56,12 +56,12 @@ export function Infos({ isOpen, close }: InfosProps) {
                   område i Bergen kommune.
                 </div>
                 <div>
-                  Etter hver gjetning får du vite hvor langt unna du er og
+                  Etter hver gjetning får du vite kor langt unna du er og
                   hvilken retning det korrekte stedet ligger relativ til den du
-                  har gjettet. I tillegg får du en prosentandel som sier hvor
+                  har gjettet. I tillegg får du en prosentandel som sier kor
                   nærme du er relativ til størrelsen av Nordens viktigste
                   metropol Bergen. Et lavt tall nær 0% tilsier at du er på feil
-                  side av Bergen. Et tall nær 100% betyr at det ikke er langt
+                  side av Bergen. Et tall nær 100% betyr at det ikkje er langt
                   igjen til riktig området. Områdets plassering er det beregnede
                   midtpunktet for dette området. Områder som har en felles
                   grense kan derfor muligens vise store avstand.
@@ -86,7 +86,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                     Din første gjetning{" "}
                     <span className="uppercase font-bold">Trengereid</span> er
                     16.80km unna riktig sted, det riktige området ligger
-                    sørvestover. Forresten er Trengereid ikke nødvendigvis
+                    sørvestover. Forresten er Trengereid ikkje nødvendigvis
                     geografisk bra plassert for å være første gjett.
                   </div>
                 </div>
@@ -158,7 +158,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           answer={
             <FAQitemAnswerline
               text={
-                "Distansen er den euklidske distansen mellom to områdets midtpunkter. Den beregnes ikke fra grensen til områdene. Man får derfor kun 0km som distanse dersom man finner det korrekte svaret."
+                "Distansen er den euklidske distansen mellom to områdets midtpunkter. Den beregnes ikkje fra grensen til områdene. Man får derfor kun 0km som distanse dersom man finner det korrekte svaret."
               }
             />
           }
@@ -194,7 +194,7 @@ export function Infos({ isOpen, close }: InfosProps) {
             <>
               <FAQitemAnswerline
                 text={
-                  "Siden bergensere ikke er enige i ting, så finnes det ikke en offisiell definisjon over kordan byen burde inndeles på nivået under bydelene."
+                  "Siden bergensere ikkje er enige i ting, så finnes det ikkje en offisiell definisjon over kordan byen burde inndeles på nivået under bydelene."
                 }
               />
               <FAQitemAnswerline
