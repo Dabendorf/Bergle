@@ -49,7 +49,6 @@ class GuessStorage {
 }
 
 const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
-  console.log("Calculating game result with", guesses, maxGuesses)
   const lastGuessIdx = guesses.length;
   if(lastGuessIdx === 0) {
     return "ONGOING"
