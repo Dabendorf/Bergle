@@ -1,4 +1,4 @@
-import {useState, useCallback, useEffect} from "react";
+import { useState, useCallback } from "react";
 import { SettingsData, useSettings } from "../hooks/useSettings";
 // Developer note: `useBetween` lets us create hooks which share state between components.
 // This is useful to avoid prop-drilling (from passing the state to child-components), increasing efficiency.
@@ -6,7 +6,7 @@ import { SettingsData, useSettings } from "../hooks/useSettings";
 // .. but both options (especially redux) requires a lot of code
 // For more details see https://www.npmjs.com/package/use-between
 import { useBetween } from "use-between";
-import {useGameResults, useGuesses} from "../hooks/useGuesses";
+import { useGuesses} from "../hooks/useGuesses";
 import { DateTime } from "luxon";
 import { useCountry } from "../hooks/useCountry";
 import {
@@ -80,10 +80,8 @@ const _useGameState = (): Game => {
   );
   const dateString = DateTime.now().toFormat("yyyy-MM-dd");
   const [country] = useCountry(dateString);
-  const { guesses, addGuess } = useGuesses(dateString);
-  const {gameResultInStorage, setTodaysGameResultToLocalStorage} = useGameResults(dateString)
+  const { guesses, addGuess, gameResult } = useGuesses(dateString, currentGameSettings.maxAttempts);
   const [currentGuess, setCurrentGuess] = useState("");
-  const [gameResult, setCurrentGameResult] = useState<GameResult>(gameResultInStorage || "ONGOING");
 
   const updateCurrentGuess = useCallback((updatedGuess) => {
     setCurrentGuess(updatedGuess);
@@ -100,24 +98,6 @@ const _useGameState = (): Game => {
       Object.assign({}, currentGameSettings, { rotationMode: false })
     );
   }, [currentGameSettings]);
-
-  const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
-    const lastGuessIdx = guesses.length;
-    if(lastGuessIdx === 0) {
-      return "ONGOING"
-    }
-
-    const lastGuess = guesses[lastGuessIdx];
-    if (lastGuess.distance === 0) {
-      return "VICTORY";
-    }
-    if (lastGuessIdx + 1 === maxGuesses) {
-      return "LOSS";
-    }
-    return "ONGOING";
-  };
-
-
 
   /** Submit a guess, returning if it was correct, incorrect, or invalid */
   const submitGuess = useCallback<() => GuessSubmitResult>(() => {
@@ -143,12 +123,6 @@ const _useGameState = (): Game => {
 
     return "INCORRECT";
   }, [country, addGuess, currentGuess]);
-
-  useEffect(() => {
-    const newRes = calculateGameResult(guesses, currentGameSettings.maxAttempts)
-    setCurrentGameResult(newRes);
-    setTodaysGameResultToLocalStorage(newRes);
-  }, [guesses, currentGameSettings, setTodaysGameResultToLocalStorage]);
 
   return {
     state: {
