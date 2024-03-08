@@ -110,19 +110,24 @@ const _useGameState = (): Game => {
       return "INVALID";
     }
 
+    if (guesses.map(item=>item.name.toUpperCase()).includes(guessedCountry.name.toUpperCase())) {
+      return "DUPLICATE"
+    }
+
     const newGuess = {
       name: currentGuess,
       distance: getDistance(guessedCountry, country),
       direction: getCompassDirection(guessedCountry, country),
     };
     addGuess(newGuess);
+    setCurrentGuess("")
 
     if (newGuess.distance === 0) {
       return "CORRECT";
     }
 
     return "INCORRECT";
-  }, [country, addGuess, currentGuess]);
+  }, [country, addGuess, currentGuess, guesses]);
 
   return {
     state: {

@@ -81,7 +81,7 @@ export function useGuesses(dayString: string, maxAttempts: number) {
     setGuesses(newGuesses);
     GuessStorage.updateSavedGuesses(dayString, newGuesses);
 
-    const newGameResult = calculateGameResult(guesses, maxAttempts);
+    const newGameResult = calculateGameResult(newGuesses, maxAttempts);
     GuessStorage.updateGameResults(dayString, newGameResult);
     setGameResult(newGameResult);
   };
