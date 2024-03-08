@@ -23,7 +23,7 @@ export function Settings({ isOpen, close }: SettingsProps) {
             {t("settings.startsNextDay")}
           </div>
         </header>
-        <div className="flex p-1">
+        <div className="flex p-1 items-center">
           <input
             type="checkbox"
             id="setting-noMapMode"
@@ -34,7 +34,7 @@ export function Settings({ isOpen, close }: SettingsProps) {
             {t("settings.noMapMode")}
           </label>
         </div>
-        <div className="flex p-1">
+        <div className="flex p-1 items-center">
           <input
             type="checkbox"
             id="setting-rotationMode"

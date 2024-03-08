@@ -47,7 +47,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={1}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Hvordan spiller man spillet?"}
+          question={"Kordan spiller man spillet?"}
           answer={
             <>
               <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
@@ -154,7 +154,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={2}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Hvordan måles distansen?"}
+          question={"Kordan måles distansen?"}
           answer={
             <FAQitemAnswerline
               text={
@@ -168,7 +168,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={3}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Hva er et område?"}
+          question={"Ka e' et område?"}
           answer={
             <>
               <FAQitemAnswerline
@@ -189,12 +189,12 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={4}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Hvor kommer din data fra?"}
+          question={"Kor kommer din data fra?"}
           answer={
             <>
               <FAQitemAnswerline
                 text={
-                  "Siden bergensere ikke er enige i ting, så finnes det ikke en offisiell definisjon over hvordan byen burde inndeles på nivået under bydelene."
+                  "Siden bergensere ikke er enige i ting, så finnes det ikke en offisiell definisjon over kordan byen burde inndeles på nivået under bydelene."
                 }
               />
               <FAQitemAnswerline
@@ -220,7 +220,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={5}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Jeg er uenig i dette, hva skal jeg gjøre?"}
+          question={"Eg e' uenig i dette, ka skal eg gjøre?"}
           answer={
             <FAQitemAnswerline
               text={
@@ -233,7 +233,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={6}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Hvor finner jeg flere lignende, ekstremt fine spill?"}
+          question={"Kor finner eg flere lignende, ekstremt fine spill?"}
           answer={
             <>
               <FAQitemAnswerline
@@ -293,7 +293,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={7}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Hvilke folk skal jeg takke for spillet / skjefte til?"}
+          question={"Hvilke folk skal eg takke for spillet / skjefte til?"}
           answer={
             <>
               <FAQitemAnswerline text={"Det er på tid å takke til:"} />
@@ -409,12 +409,12 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={9}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Jeg hater designet av nettsiden, hva skal jeg gjøre?"}
+          question={"Eg hater designet av nettsiden, ka skal eg gjøre?"}
           answer={
             <>
               <FAQitemAnswerline
                 text={
-                  "Jeg også. Allerede fargekombinasjonen til denne siden, bruh. Foreslå meg bedre alternativer, takk."
+                  "Eg også. Allerede fargekombinasjonen til denne siden, bruh. Foreslå meg bedre alternativer, takk."
                 }
               />
               <FAQitemAnswerline
@@ -435,7 +435,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={10}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Kan jeg bidra med flere funksjoner og endringsforslag?"}
+          question={"Kan eg bidra med flere funksjoner og endringsforslag?"}
           answer={
             <>
               <FAQitemAnswerline
@@ -461,7 +461,7 @@ export function Infos({ isOpen, close }: InfosProps) {
           index={11}
           openedIndex={openedIndex}
           setOpenedIndex={handleItemClick}
-          question={"Hvordan kan jeg ta kontakt?"}
+          question={"Kvordan kan eg ta kontakt?"}
           answer={
             <FAQitemAnswerline
               text={
