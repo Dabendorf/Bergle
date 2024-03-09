@@ -58,7 +58,8 @@ const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
   if (lastGuess.distance === 0) {
     return "VICTORY";
   }
-  if (lastGuessIdx + 1 === maxGuesses) {
+  
+  if (lastGuessIdx === maxGuesses) {
     return "LOSS";
   }
   return "ONGOING";
