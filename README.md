@@ -1,9 +1,9 @@
 # Bergle
 
-Play this geographical wordle here: https://bergle.privatevoid.eu!
+Play this geographical wordle here: [www.bergle.no](https://www.bergle.no)
 
 # Based on
-* Original idea:  [Wordle](https://www.nytimes.com/games/wordle/index.html)
+* Original idea: [Wordle](https://www.nytimes.com/games/wordle/index.html)
 * Geographical idea: [Worldle](https://worldle.teuteuf.fr/)
 * Similar game and translations: [Kommundle](https://kommundle.no/)
 

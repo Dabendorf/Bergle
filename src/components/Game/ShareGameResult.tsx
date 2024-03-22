@@ -43,7 +43,7 @@ const ShareClipboard = () => {
       })
       .join("\n");
 
-    return [title, guessString, "https://bergle.privatevoid.eu"].join("\n");
+    return [title, guessString, "https://www.bergle.no"].join("\n");
   }, [dateString, guesses, noMapMode, rotationMode, theme]);
 
   return (
