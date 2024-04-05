@@ -1,6 +1,7 @@
 {
   "short_name": "Bergle",
-  "name": "Bergle, gjett områder i Bergen",
+  "name": "Bergle, gjett steder i Bergen",
+  "description": "Gjett steder i Nordens viktigste by",
   "icons": [
     {
       "src": "favicon.ico",
