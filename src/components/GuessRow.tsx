@@ -11,21 +11,14 @@ import { SettingsData } from "../hooks/useSettings";
 
 export const DIRECTION_ARROWS: Record<Direction, string> = {
   N: "⬆️",
-  NNE: "↗️",
   NE: "↗️",
-  ENE: "↗️",
   E: "➡️",
-  ESE: "↘️",
   SE: "↘️",
-  SSE: "↘️",
   S: "⬇️",
-  SSW: "↙️",
   SW: "↙️",
-  WSW: "↙️",
   W: "⬅️",
-  WNW: "↖️",
   NW: "↖️",
-  NNW: "↖️",
+  ERROR: "❌",
 };
 
 const SQUARE_ANIMATION_LENGTH = 250;

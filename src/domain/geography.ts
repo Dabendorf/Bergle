@@ -5,20 +5,13 @@ const MAX_DISTANCE_ON_EARTH = 32414.604895;
 export type Direction =
   | "S"
   | "W"
-  | "NNE"
   | "NE"
-  | "ENE"
   | "E"
-  | "ESE"
   | "SE"
-  | "SSE"
-  | "SSW"
   | "SW"
-  | "WSW"
-  | "WNW"
   | "NW"
-  | "NNW"
-  | "N";
+  | "N"
+  | "ERROR";
 
 export function computeProximityPercent(distance: number): number {
   const proximity = Math.max(MAX_DISTANCE_ON_EARTH - distance, 0);
@@ -56,4 +49,41 @@ export function formatDistance(distanceInMeters: number, unit: DistanceUnits) {
     distance = distanceInMeters / 1609;
   }
   return `${roundTo(distance, 2)}${unit}`;
+}
+
+export function getDirectionFromAToB(x1: number, y1: number, x2: number, y2: number) {
+	const diffX = x2 - x1
+	const diffY = y2 - y1
+	const angleInRadians: number = Math.atan2(diffX, diffY)
+	const angleInDegrees: number = (angleInRadians * (180 / Math.PI) + 360) % 360
+
+	return degreeToDirection(angleInDegrees)
+}
+
+function degreeToDirection(degree: number): Direction {
+	if (360 - 22.5 <= degree || degree < 22.5) {
+		return "N"
+	}
+	if (22.5 <= degree && degree < 22.5 + 45 * 1) {
+		return "NE"
+	}
+	if (22.5 + 45 * 1 <= degree && degree < 22.5 + 45 * 2) {
+		return "E"
+	}
+	if (22.5 + 45 * 2 <= degree && degree < 22.5 + 45 * 3) {
+		return "SE"
+	}
+	if (22.5 + 45 * 3 <= degree && degree < 22.5 + 45 * 4) {
+		return "S"
+	}
+	if (22.5 + 45 * 4 <= degree && degree < 22.5 + 45 * 5) {
+		return "SW"
+	}
+	if (22.5 + 45 * 5 <= degree && degree < 22.5 + 45 * 6) {
+		return "W"
+	}
+	if (22.5 + 45 * 6 <= degree && degree < 22.5 + 45 * 7) {
+		return "NW"
+	}
+	return "ERROR"
 }
