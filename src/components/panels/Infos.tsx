@@ -279,7 +279,7 @@ export function Infos({ isOpen, close }: InfosProps) {
               <FAQitemAnswerline
                 text={
                   <>
-                    <CustomLink href="https://oslole.privatevoid.eu/">
+                    <CustomLink href="https://oslole.bergle.no/">
                       Oslole:
                     </CustomLink>{" "}
                     Gjett en kommune som er bedre enn Oslo
@@ -386,7 +386,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                 text={
                   <>
                     Ja, den finnes{" "}
-                    <CustomLink href="https://oslole.privatevoid.eu/">
+                    <CustomLink href="https://oslole.bergle.no/">
                       her
                     </CustomLink>
                     . Vi kan også forestille oss å lage versjoner for like
