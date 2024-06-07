@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Modal from "react-modal";
 import * as d3 from "d3";
 import { countries } from "../../domain/countries";
@@ -22,6 +22,7 @@ interface HelpProps {
 
 const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
   const {
     state: { country, guesses },
   } = useSharedGameState();
@@ -31,8 +32,8 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     if (!svgRef.current) return;
   
     const svg = d3.select(svgRef.current);
-    const width = svgRef.current.clientWidth;
-    const height = svgRef.current.clientHeight;
+    const width = svgDimensions.width;
+    const height = svgDimensions.height;
   
     const mapNodes: MapNode[] = countries.map((country) => ({
       id: country.code,
@@ -91,10 +92,13 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("stroke-width", 1)
       .attr("fill", "none");
   
-    g.selectAll("circle")
+    const nodeGroup = g.selectAll(".node-group")
       .data(mapNodes)
       .enter()
-      .append("circle")
+      .append("g")
+      .attr("class", "node-group");
+  
+    nodeGroup.append("circle")
       .attr("cx", (d) => projection([d.longitude, d.latitude])?.[0] || 0)
       .attr("cy", (d) => projection([d.longitude, d.latitude])?.[1] || 0)
       .attr("r", 5)
@@ -103,21 +107,19 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
         d.label.toLowerCase() === country.name.toLowerCase() ? graphTheme.node.activeFill : graphTheme.node.fill
       );
   
-    g.selectAll("text")
-      .data(mapNodes)
-      .enter()
-      .append("text")
+    nodeGroup.append("text")
       .attr("x", (d) => projection([d.longitude, d.latitude])?.[0] || 0)
       .attr("y", (d) => projection([d.longitude, d.latitude])?.[1] || 0)
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
+      .attr("dy", "1.5em") // Adjusting position to be below the node
       .attr("font-size", "10px")
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
   
     // Color the nodes
-    colorNodes(country.name.toLowerCase(), guesses, mapNodes, svg, projection);
-  }, [isOpen, country, guesses]);
+    colorNodes(country.name.toLowerCase(), guesses, mapNodes, nodeGroup, projection);
+  }, [isOpen, country, guesses, svgDimensions]);
   
   
   function nodeToFeature(node: MapNode) {
@@ -144,17 +146,42 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
           justifyContent: "center",
         },
         content: {
-          width: "80%",
-          height: "80%",
+          width: isMobileDevice() ? "100%": "90%",
+          height:isMobileDevice() ? "100%": "90%",
           paddingBottom: "10px",
           backgroundColor: graphTheme.canvas.background,
         },
       }}
+      onAfterOpen={() => {
+        const width = svgRef.current?.clientWidth || 0;
+        const height = svgRef.current?.clientHeight || 0;
+        setSvgDimensions({ width, height });
+      }}
     >
+       <div className="flex flew-row justify-between margin-auto mb-0 pb-2">
+        <h1 className="margin-auto font-bold text-slate-100 p-4">
+        {t("mapTitle")}
+        </h1>
+        <button className="margin-auto p-4" onClick={close}>
+          ❌
+        </button>
+      </div>
+      <p className="text-slate-100 px-4 pb-4">
+        {isMobileDevice()
+          ? t("mapMobileWarning")
+          : ""}
+      </p>
       <svg ref={svgRef} style={{ width: "100%", height: "100%" }}></svg>
     </Modal>
   );
 };
+
+function isMobileDevice() {
+  return (
+    typeof window.matchMedia !== "undefined" &&
+    window.matchMedia("(pointer: coarse)").matches
+  );
+}
 
 function generateMapEdges(mapNodes: MapNode[]): { source: string; target: string }[] {
   const mapEdges: { source: string; target: string }[] = [];
@@ -221,8 +248,10 @@ const graphTheme = {
 
 function colorNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: any, projection: any) {
   const todayGuesses = guesses.map((guess: Guess) => guess.name.toLowerCase());
+  const nodeGroups = svg.selectAll(".node-group");
   for (const guess of todayGuesses) {
-    const findNode: MapNode | undefined = mapNodes.find((node: MapNode) => {
+    const findNode: MapNode | undefined = mapNodes
+    .find((node: MapNode) => {
       if (node.label) {
         return node.label.toLowerCase() === guess;
       }
@@ -231,15 +260,11 @@ function colorNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: 
     if (findNode) {
       if (findNode.label) {
         if (findNode.label.toLowerCase() === winner) {
-          svg
-            .select(`circle[id="${findNode.id}"]`)
-            .attr("fill", "green");
+          nodeGroups.select(`circle[id="${findNode.id}"]`).attr("fill", "green");
           continue;
         }
       }
-      svg
-        .select(`circle[id="${findNode.id}"]`)
-        .attr("fill", "red");
+      nodeGroups.select(`circle[id="${findNode.id}"]`).attr("fill", "red");
     }
   }
 }
