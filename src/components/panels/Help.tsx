@@ -43,9 +43,6 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       neighbours: country.neighbours,
     }));
   
-    const longitudeExtent = d3.extent(mapNodes, (d) => d.longitude);
-    const latitudeExtent = d3.extent(mapNodes, (d) => d.latitude);
-  
     const mapEdges = generateMapEdges(mapNodes);
   
     const projection = d3
@@ -118,7 +115,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .text((d) => d.label);
   
     // Color the nodes
-    colorNodes(country.name.toLowerCase(), guesses, mapNodes, nodeGroup, projection);
+    colorNodes(country.name.toLowerCase(), guesses, mapNodes, g, projection);
   }, [isOpen, country, guesses, svgDimensions]);
   
   
@@ -249,9 +246,9 @@ const graphTheme = {
 function colorNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: any, projection: any) {
   const todayGuesses = guesses.map((guess: Guess) => guess.name.toLowerCase());
   const nodeGroups = svg.selectAll(".node-group");
+  console.log(nodeGroups)
   for (const guess of todayGuesses) {
-    const findNode: MapNode | undefined = mapNodes
-    .find((node: MapNode) => {
+    const findNode: MapNode | undefined = mapNodes.find((node: MapNode) => {
       if (node.label) {
         return node.label.toLowerCase() === guess;
       }
@@ -259,6 +256,7 @@ function colorNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: 
     });
     if (findNode) {
       if (findNode.label) {
+        console.log(findNode.label)
         if (findNode.label.toLowerCase() === winner) {
           nodeGroups.select(`circle[id="${findNode.id}"]`).attr("fill", "green");
           continue;
