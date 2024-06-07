@@ -72,26 +72,13 @@ export default function Help({ isOpen, close }: HelpProps) {
           justifyContent: "center",
         },
         content: {
-          width: isMobileDevice() ? "100%": "80%",
-          height:isMobileDevice() ? "100%": "80%",
+          width: "80%",
+          height: "80%",
           paddingBottom: "10px",
           backgroundColor: "#0f172a",
         },
       }}
     >
-      <div className="flex flew-row justify-between margin-auto mb-0 pb-2">
-        <h1 className="margin-auto font-bold text-slate-100 p-4">
-        {t("mapTitle")}
-        </h1>
-        <button className="margin-auto p-4" onClick={close}>
-          ❌
-        </button>
-      </div>
-      <p className="text-slate-100 px-4 pb-4">
-        {isMobileDevice()
-          ? t("mapMobileWarning")
-          : ""}
-      </p>
       <div
         style={{
           position: "sticky",
@@ -105,81 +92,18 @@ export default function Help({ isOpen, close }: HelpProps) {
           edges={mapEdges}
           layoutType="custom"
           layoutOverrides={{ getNodePosition }}
-          theme={graphTheme}
         />
       </div>
     </Modal>
   );
 }
-const graphTheme = {
-  canvas: { background: "#0f172a" }, // Navy Blue
-  node: {
-    fill: "#f2a900", // Yellow
-    activeFill: "#1DE9AC",
-    opacity: 1,
-    selectedOpacity: 1,
-    inactiveOpacity: 0.2,
-    label: {
-      color: "#fff",
-      stroke: "#000000",
-      activeColor: "#1DE9AC",
-    },
-    subLabel: {
-      color: "#000000",
-      stroke: "transparent",
-      activeColor: "#1DE9AC",
-    },
-  },
-  lasso: {
-    border: "1px solid #55aaff",
-    background: "rgba(75, 160, 255, 0.1)",
-  },
-  ring: {
-    fill: "#D8E6EA",
-    activeFill: "#1DE9AC",
-  },
-  edge: {
-    fill: "#D8E6EA",
-    activeFill: "#1DE9AC",
-    opacity: 1,
-    selectedOpacity: 1,
-    inactiveOpacity: 0.1,
-    label: {
-      stroke: "#fff",
-      color: "#2A6475",
-      activeColor: "#1DE9AC",
-      fontSize: 6,
-    },
-  },
-  arrow: {
-    fill: "#D8E6EA",
-    activeFill: "#1DE9AC",
-  },
-  cluster: {
-    stroke: "#D8E6EA",
-    opacity: 1,
-    selectedOpacity: 1,
-    inactiveOpacity: 0.1,
-    label: {
-      stroke: "#fff",
-      color: "#2A6475",
-    },
-  },
-};
 
-function isMobileDevice() {
-  return (
-    typeof window.matchMedia !== "undefined" &&
-    window.matchMedia("(pointer: coarse)").matches
-  );
-}
 
 function getNodePosition(
   id: string,
   { nodes }: NodePositionArgs
 ): InternalGraphPosition {
   const node = mapNodes.find((node) => node.id === id);
-  //console.log(node);
   return {
     x: (node?.longitude || 0) * 15000,
     y: (node?.latitude || 0) * 15000,
@@ -207,3 +131,4 @@ function colorNodes(winner: string, guesses: Guess[]) {
     }
   }
 }
+
