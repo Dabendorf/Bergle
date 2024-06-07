@@ -32,8 +32,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     if (!svgRef.current) return;
   
     const svg = d3.select(svgRef.current);
-    const width = svgDimensions.width;
-    const height = svgDimensions.height;
+    const { width, height } = svgDimensions;
   
     const mapNodes: MapNode[] = countries.map((country) => ({
       id: country.code,
@@ -110,15 +109,27 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
       .attr("dy", "1.5em") // Adjusting position to be below the node
-      .attr("font-size", "10px")
+      .attr("font-size", "6px")
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
   
     // Color the nodes
-    colorNodes(country.name.toLowerCase(), guesses, mapNodes, g, projection);
+    colourNodes(country.name.toLowerCase(), guesses, mapNodes, g, projection);
   }, [isOpen, country, guesses, svgDimensions]);
-  
-  
+
+  useEffect(() => {
+    function handleResize() {
+      const width = svgRef.current?.clientWidth || 0;
+      const height = svgRef.current?.clientHeight || 0;
+      setSvgDimensions({ width, height });
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   function nodeToFeature(node: MapNode) {
     return {
       type: "Feature",
@@ -129,7 +140,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       properties: node,
     };
   }
-  
+
   return (
     <Modal
       isOpen={isOpen}
@@ -143,8 +154,8 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
           justifyContent: "center",
         },
         content: {
-          width: isMobileDevice() ? "100%": "90%",
-          height:isMobileDevice() ? "100%": "90%",
+          width: isMobileDevice() ? "100%" : "90%",
+          height: isMobileDevice() ? "100%" : "90%",
           paddingBottom: "10px",
           backgroundColor: graphTheme.canvas.background,
         },
@@ -155,20 +166,18 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
         setSvgDimensions({ width, height });
       }}
     >
-       <div className="flex flew-row justify-between margin-auto mb-0 pb-2">
+      <div className="flex flew-row justify-between margin-auto mb-0 pb-2">
         <h1 className="margin-auto font-bold text-slate-100 p-4">
-        {t("mapTitle")}
+          {t("mapTitle")}
         </h1>
         <button className="margin-auto p-4" onClick={close}>
           ❌
         </button>
       </div>
       <p className="text-slate-100 px-4 pb-4">
-        {isMobileDevice()
-          ? t("mapMobileWarning")
-          : ""}
+        {isMobileDevice() ? t("mapMobileWarning") : ""}
       </p>
-      <svg ref={svgRef} style={{ width: "100%", height: "100%" }}></svg>
+      <svg ref={svgRef} style={{ width: "100%", height: "80vh" }}></svg>
     </Modal>
   );
 };
@@ -243,7 +252,7 @@ const graphTheme = {
   },
 };
 
-function colorNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: any, projection: any) {
+function colourNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: any, projection: any) {
   const todayGuesses = guesses.map((guess: Guess) => guess.name.toLowerCase());
   const nodeGroups = svg.selectAll(".node-group");
   console.log(nodeGroups)
