@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import React, { useMemo } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {
+  Direction,
   computeProximityPercent,
   generateSquareCharacters,
 } from "../../domain/geography";
@@ -36,7 +37,7 @@ const ShareClipboard = () => {
     const title = `#Bergle #Dag${dayCount} ${guessCount}/6${difficultyModifierEmoji}`;
 
     const guessString = guesses
-      .map((guess: { distance: number; direction: any; }) => {
+      .map((guess: { distance: number; direction: Direction; }) => {
         const percent = computeProximityPercent(guess.distance);
         const direction = guess.direction;
         return generateSquareCharacters(percent, theme, direction).join("");

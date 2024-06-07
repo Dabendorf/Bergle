@@ -57,7 +57,6 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
   
     const g = svg.append("g");
   
-    // Add zoom behavior
     const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([0.5, 8]).on("zoom", zoomed);
   
     svg.call(zoom);
@@ -113,8 +112,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
   
-    // Color the nodes
-    colourNodes(country.name.toLowerCase(), guesses, mapNodes, g, projection);
+    colourNodes(country.name.toLowerCase(), guesses, mapNodes, g);
   }, [isOpen, country, guesses, svgDimensions]);
 
   useEffect(() => {
@@ -252,7 +250,7 @@ const graphTheme = {
   },
 };
 
-function colourNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: any, projection: any) {
+function colourNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: d3.Selection<SVGGElement, unknown, null, undefined>) {
   const todayGuesses = guesses.map((guess: Guess) => guess.name.toLowerCase());
   const nodeGroups = svg.selectAll(".node-group");
   console.log(nodeGroups)
@@ -267,11 +265,11 @@ function colourNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg:
       if (findNode.label) {
         console.log(findNode.label)
         if (findNode.label.toLowerCase() === winner) {
-          nodeGroups.select(`circle[id="${findNode.id}"]`).attr("fill", "green");
+          nodeGroups.select(`circle[id="${findNode.id}"]`).style("fill", "green");
           continue;
         }
       }
-      nodeGroups.select(`circle[id="${findNode.id}"]`).attr("fill", "red");
+      nodeGroups.select(`circle[id="${findNode.id}"]`).style("fill", "red");
     }
   }
 }
