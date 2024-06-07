@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, SetStateAction } from "react";
 import { SettingsData, useSettings } from "../hooks/useSettings";
 // Developer note: `useBetween` lets us create hooks which share state between components.
 // This is useful to avoid prop-drilling (from passing the state to child-components), increasing efficiency.
@@ -84,7 +84,7 @@ const _useGameState = (): Game => {
   const { guesses, addGuess, gameResult } = useGuesses(dateString, currentGameSettings.maxAttempts);
   const [currentGuess, setCurrentGuess] = useState("");
 
-  const updateCurrentGuess = useCallback((updatedGuess) => {
+  const updateCurrentGuess = useCallback((updatedGuess: SetStateAction<string>) => {
     setCurrentGuess(updatedGuess);
   }, []);
 
