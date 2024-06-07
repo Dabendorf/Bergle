@@ -46,7 +46,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
   
     const projection = d3
       .geoMercator()
-      .fitSize([width, height], {
+      .fitExtent([[20, 20], [width - 20, height - 20]], {
         type: "FeatureCollection",
         features: mapNodes.map(nodeToFeature),
       } as GeoJSON.FeatureCollection<GeoJSON.GeometryObject>);
@@ -108,8 +108,8 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("y", (d) => projection([d.longitude, d.latitude])?.[1] || 0)
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
-      .attr("dy", "1.5em") // Adjusting position to be below the node
-      .attr("font-size", "6px")
+      .attr("dy", "1em") // Adjusting position to be closer to the node
+      .attr("font-size", "10px")
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
   
