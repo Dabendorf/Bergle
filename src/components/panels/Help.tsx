@@ -58,11 +58,14 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     const g = svg.append("g");
   
     const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([0.5, 8]).on("zoom", zoomed);
+    console.log(zoom)
   
     svg.call(zoom);
   
     function zoomed(event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
       g.attr("transform", event.transform.toString());
+      console.log(event.transform.k)
+      g.selectAll("text").attr("font-size", `${10 / event.transform.k}px`);
     }
   
     g.selectAll("path")
@@ -96,7 +99,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     nodeGroup.append("circle")
       .attr("cx", (d) => projection([d.longitude, d.latitude])?.[0] || 0)
       .attr("cy", (d) => projection([d.longitude, d.latitude])?.[1] || 0)
-      .attr("r", 5)
+      .attr("r", 5) // TODO
       .attr("id", (d) => d.id) // Assigning ID to circles
       .style("fill", (d) =>
         d.label.toLowerCase() === country.name.toLowerCase() ? graphTheme.node.activeFill : graphTheme.node.fill
@@ -108,7 +111,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
       .attr("dy", "1em") // Adjusting position to be closer to the node
-      .attr("font-size", "10px")
+      .attr("font-size", "10px") // TODO
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
   
@@ -206,7 +209,7 @@ const graphTheme = {
   canvas: { background: "#0f172a" }, // Navy Blue
   node: {
     fill: "#f2a900", // Yellow
-    activeFill: "#1DE9AC",
+    activeFill: "#f2a900",
     opacity: 1,
     selectedOpacity: 1,
     inactiveOpacity: 0.2,

@@ -41,33 +41,42 @@ const Header = ({
   );
 
   return (
-    <header className="border-b-2 border-gray-200 flex">
-      <HeaderButton
-        btnIcon="❔"
-        btnLabel="Frequently asked questions"
-        btnNavbarPanel={"FAQ"}
-      />
-      <HeaderButton
-        btnIcon="🗺️"
-        btnLabel="Map of Bergen"
-        btnNavbarPanel={"MAP"}
-      />
+    <>
+      <header className="border-b-2 border-gray-200 flex">
+        <HeaderButton
+          btnIcon="❔"
+          btnLabel="Frequently asked questions"
+          btnNavbarPanel={"FAQ"}
+        />
+        <HeaderButton
+          btnIcon="🗺️"
+          btnLabel="Map of Bergen"
+          btnNavbarPanel={"MAP"}
+        />
 
-      <h1 className="text-4xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
-        <Bergle />
-      </h1>
+        <h1 className="text-4xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
+          <Bergle />
+          
+        </h1>
 
-      <HeaderButton
-        btnIcon="📈"
-        btnLabel="Statistics"
-        btnNavbarPanel={"STATS"}
-      />
-      <HeaderButton
-        btnIcon="⚙️"
-        btnLabel="Settings"
-        btnNavbarPanel={"SETTINGS"}
-      />
-    </header>
+        <HeaderButton
+          btnIcon="📈"
+          btnLabel="Statistics"
+          btnNavbarPanel={"STATS"}
+        />
+        <HeaderButton
+          btnIcon="⚙️"
+          btnLabel="Settings"
+          btnNavbarPanel={"SETTINGS"}
+        />
+      </header>
+      <div className="limit w-full" style={{ height: '0.125rem' }}>
+    <div className="w-full z-50" style={{ color: '#0F172A', margin: '0', padding: '0' }}></div>
+    <div className="w-full z-0 flex justify-center items-center" style={{ color: '#0F172A', margin: '0', padding: '0' }}>
+      Gjett områder i Nordens viktigste by
+    </div>
+  </div>
+    </>
   );
 };
 
