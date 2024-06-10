@@ -65,7 +65,10 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     function zoomed(event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
       g.attr("transform", event.transform.toString());
       console.log(event.transform.k)
-      g.selectAll("text").attr("font-size", `${10 / event.transform.k}px`);
+      g.selectAll("text").attr("dy", "1em")
+      g.selectAll("text").attr("font-size", `${20 / event.transform.k}px`);
+      g.selectAll("circle").attr("r", 5 / event.transform.k);
+      g.selectAll("path").attr("stroke-width", 1 / event.transform.k);
     }
   
     g.selectAll("path")
