@@ -57,17 +57,27 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
   
     const g = svg.append("g");
   
-    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([0.5, 8]).on("zoom", zoomed);
+    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([1, 8]).on("zoom", zoomed);
     console.log(zoom)
+
+    const startscale=1;
+    const radiusStart=5;
+    console.log(startscale,radiusStart)
   
     svg.call(zoom);
+    svg.call(
+      zoom.transform,
+      d3.zoomIdentity
+        .translate(100,50)
+        .scale(startscale)
+    );
   
     function zoomed(event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
       g.attr("transform", event.transform.toString());
       console.log(event.transform.k)
       g.selectAll("text").attr("dy", "1em")
-      g.selectAll("text").attr("font-size", `${20 / event.transform.k}px`);
-      g.selectAll("circle").attr("r", 5 / event.transform.k);
+      //g.selectAll("text").attr("font-size", `${20 / event.transform.k}px`);
+      g.selectAll("circle").attr("r", 4.5 - 1.4428 * (Math.log(event.transform.k)));
       g.selectAll("path").attr("stroke-width", 1 / event.transform.k);
     }
   
@@ -102,7 +112,8 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     nodeGroup.append("circle")
       .attr("cx", (d) => projection([d.longitude, d.latitude])?.[0] || 0)
       .attr("cy", (d) => projection([d.longitude, d.latitude])?.[1] || 0)
-      .attr("r", 5) // TODO
+      //.attr("r", 5) // TODO
+      .attr("r", radiusStart)
       .attr("id", (d) => d.id) // Assigning ID to circles
       .style("fill", (d) =>
         d.label.toLowerCase() === country.name.toLowerCase() ? graphTheme.node.activeFill : graphTheme.node.fill
@@ -114,7 +125,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
       .attr("dy", "1em") // Adjusting position to be closer to the node
-      .attr("font-size", "10px") // TODO
+      .attr("font-size", "0px") // TODO
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
   
