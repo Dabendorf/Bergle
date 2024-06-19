@@ -57,7 +57,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
   
     const g = svg.append("g");
   
-    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([1, 8]).on("zoom", zoomed);
+    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([1, 9]).on("zoom", zoomed);
 
     const startscale=1;
     const radiusStart=5;
@@ -66,7 +66,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     svg.call(
       zoom.transform,
       d3.zoomIdentity
-        .translate(100,50)
+        .translate(100,0)
         .scale(startscale)
     );
   
@@ -137,8 +137,8 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
   useEffect(() => {
     function handleResize() {
       const width = svgRef.current?.clientWidth || 0;
-      const height = svgRef.current?.clientHeight || 0;
-      setSvgDimensions({ width, height });
+      const height = window.innerHeight * 0.8;
+      setSvgDimensions({ width, height: height });
     }
 
     window.addEventListener("resize", handleResize);
@@ -180,7 +180,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       onAfterOpen={() => {
         const width = svgRef.current?.clientWidth || 0;
         const height = svgRef.current?.clientHeight || 0;
-        setSvgDimensions({ width, height });
+        setSvgDimensions({ width, height: height });
       }}
     >
       <div className="flex flew-row justify-between margin-auto mb-0 pb-2">
@@ -194,7 +194,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       <p className="text-slate-100 px-4 pb-4">
         {isMobileDevice() ? t("mapMobileWarning") : ""}
       </p>
-      <svg ref={svgRef} style={{ width: "100%", height: "80vh" }}></svg>
+      <svg ref={svgRef} style={{ width: "100%", height: `${svgDimensions.height}px` }}></svg>
     </Modal>
   );
 };
