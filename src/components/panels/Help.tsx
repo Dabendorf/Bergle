@@ -76,6 +76,8 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
 
       if(event.transform.k <= 6) {
         g.selectAll("text").attr("font-size", `${(-4.03955 * Math.log(0.109089 *event.transform.k))}px`);
+      } else {
+        g.selectAll("text").attr("font-size", `${(2.34836 - 0.106045 * event.transform.k )}px`);
       }
       
       g.selectAll("circle").attr("r", 4.5 - 1.4428 * (Math.log(event.transform.k)));
