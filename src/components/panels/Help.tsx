@@ -57,7 +57,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
   
     const g = svg.append("g");
   
-    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([1, 9]).on("zoom", zoomed);
+    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([1, 10]).on("zoom", zoomed);
 
     const startscale=1;
     const radiusStart=5;
@@ -66,17 +66,18 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     svg.call(
       zoom.transform,
       d3.zoomIdentity
-        .translate(100,0)
+        .translate(isMobileDevice() ? 0 : 100,0)
         .scale(startscale)
     );
   
     function zoomed(event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
       g.attr("transform", event.transform.toString());
-      g.selectAll("text").attr("dy", "1em")
 
       if(event.transform.k <= 6) {
+        g.selectAll("text").attr("dy", "1em")
         g.selectAll("text").attr("font-size", `${(-4.03955 * Math.log(0.109089 *event.transform.k))}px`);
       } else {
+        g.selectAll("text").attr("dy", "2em")
         g.selectAll("text").attr("font-size", `${(2.34836 - 0.106045 * event.transform.k )}px`);
       }
       
@@ -191,9 +192,6 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
           ❌
         </button>
       </div>
-      <p className="text-slate-100 px-4 pb-4">
-        {isMobileDevice() ? t("mapMobileWarning") : ""}
-      </p>
       <svg ref={svgRef} style={{ width: "100%", height: `${svgDimensions.height}px` }}></svg>
     </Modal>
   );
