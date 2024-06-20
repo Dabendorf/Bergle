@@ -24,7 +24,8 @@ const resources = {
       },
       contributeOnGitHub: "Bidra på GitHub!",
       mapTitle: "Kart over Norges viktigste by",
-      mapMobileWarning: "Dette kartet er boss på mobil. Bruk den på større skjerm eller naviger kun med to fingre."
+      mapMobileWarning: "Dette kartet er boss på mobil. Bruk den på større skjerm eller naviger kun med to fingre.",
+      mapHelperRecommendation: "Fy faen, trenger du hjelp med å løse dette her? Prøv kartfunksjonen! Klikk på kartknappen oppe på venstre.",
     },
   },
 };

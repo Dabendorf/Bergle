@@ -6,12 +6,14 @@ import { LocationOutline } from "./LocationOutline";
 import { ShareGameResult } from "./ShareGameResult";
 import { SubmitGuessForm } from "./SubmitGuessForm";
 import { GameSettingButtons } from "./GameSettingButtons";
+import { useTranslation } from "react-i18next";
 
 export function Game() {
   const {
     settings,
-    state: { country, guesses },
+    state: { country, guesses, gameResult },
   } = useSharedGameState();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (
@@ -33,6 +35,9 @@ export function Game() {
       <div className="my-2">
         <ShareGameResult />
         <SubmitGuessForm />
+      </div>
+      <div className={(guesses.length >= 3 && gameResult === "ONGOING") ? "p-4 text-center" : ""}>
+          {(guesses.length >= 3 && gameResult === "ONGOING") && t("mapHelperRecommendation")}
       </div>
     </div>
   );
