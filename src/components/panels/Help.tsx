@@ -67,7 +67,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       zoom.transform,
       d3.zoomIdentity
         .translate(isMobileDevice() ? 0 : 100,0)
-        .scale(startscale).translate(1, 1)
+        .scale(startscale)
     );
   
     function zoomed(event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
@@ -88,11 +88,6 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
         //g.selectAll("text").attr("stroke-width", 0.05)
       }
       
-      g.selectAll("text")
-      .style("text-rendering", "optimizeLegibility")
-      .style("image-rendering", "optimizeQuality");
-
-
       g.selectAll("circle").attr("r", 4.5 - 1.4428 * (Math.log(event.transform.k)));
       g.selectAll("path").attr("stroke-width", 1 / event.transform.k);
     }
@@ -206,7 +201,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
           ❌
         </button>
       </div>
-      <svg ref={svgRef} style={{ width: "100%", height: `${svgDimensions.height}px`, shapeRendering: "crispEdges", textRendering: "geometricPrecision", }}></svg>
+      <svg ref={svgRef} style={{ width: "100%", height: `${svgDimensions.height}px` }}></svg>
     </Modal>
   );
 };
