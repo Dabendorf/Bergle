@@ -21,7 +21,7 @@ import { Guess } from "../domain/guess";
 import { getDirectionFromAToB } from "../domain/geography";
 
 type GuessSubmitResult = "CORRECT" | "INCORRECT" | "INVALID" | "DUPLICATE";
-type GameResult = "VICTORY" | "LOSS" | "ONGOING";
+type GameResult = "VICTORY" | "VICTORY_WITH_MAP" |"LOSS" | "ONGOING";
 
 /** The state of the current game */
 export type GameState = {
@@ -37,6 +37,8 @@ export type GameState = {
   dateString: string;
   /** The district the current player must locate */
   country: Country;
+  /** If user used the map*/
+  usedHint: boolean;
 };
 
 /** The actions a user can make in a game */
@@ -45,6 +47,7 @@ export type GameActions = {
   submitGuess: () => GuessSubmitResult;
   /** Update the current guess (e.g. when the user writes their guess) */
   updateCurrentGuess: (currentGuess: string) => void;
+  setUsedHintFunc: (usedHint: boolean) => void;
 };
 
 /** Actions which only affect the setting of the current game */
@@ -81,11 +84,16 @@ const _useGameState = (): Game => {
   );
   const dateString = DateTime.now().toFormat("yyyy-MM-dd");
   const [country] = useCountry(dateString);
-  const { guesses, addGuess, gameResult } = useGuesses(dateString, currentGameSettings.maxAttempts);
+  const [usedHint, setUsedHint] = useState(false);
+  const { guesses, addGuess, gameResult } = useGuesses(dateString, currentGameSettings.maxAttempts, usedHint);
   const [currentGuess, setCurrentGuess] = useState("");
 
   const updateCurrentGuess = useCallback((updatedGuess: SetStateAction<string>) => {
     setCurrentGuess(updatedGuess);
+  }, []);
+
+  const setUsedHintFunc = useCallback((newUsedHint: SetStateAction<boolean>) => {
+    setUsedHint(newUsedHint);
   }, []);
 
   const activateMapForCurrentGame = useCallback(() => {
@@ -137,12 +145,14 @@ const _useGameState = (): Game => {
       currentAttempt: guesses.length + 1,
       gameResult,
       dateString,
-      country, // TODO refakturer
+      country, // TODO refakturer,
+      usedHint
     },
     settings: currentGameSettings,
     gameActions: {
       submitGuess,
       updateCurrentGuess,
+      setUsedHintFunc,
     },
     settingActions: {
       activateMapForCurrentGame,

@@ -18,7 +18,7 @@ const ShareClipboard = () => {
   const { t } = useTranslation();
   const {
     settings: { noMapMode, rotationMode, theme },
-    state: { guesses, dateString },
+    state: { guesses, dateString, usedHint },
   } = useSharedGameState();
 
   const shareText = useMemo(() => {
@@ -34,7 +34,9 @@ const ShareClipboard = () => {
       : rotationMode
       ? " 🌀"
       : "";
-    const title = `#Bergle #Dag${dayCount} ${guessCount}/6${difficultyModifierEmoji}`;
+
+    const hintEmoji = usedHint ? " 🗺️" : "";
+    const title = `#Bergle #Dag${dayCount} ${guessCount}/6${difficultyModifierEmoji}${hintEmoji}`;
 
     const guessString = guesses
       .map((guess: { distance: number; direction: Direction; }) => {
@@ -45,7 +47,7 @@ const ShareClipboard = () => {
       .join("\n");
 
     return [title, guessString, "https://www.bergle.no"].join("\n");
-  }, [dateString, guesses, noMapMode, rotationMode, theme]);
+  }, [dateString, guesses, noMapMode, rotationMode, theme, usedHint]);
 
   return (
     <CopyToClipboard

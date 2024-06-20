@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Infos } from "./panels/Infos";
 import Help from "./panels/Help";
 import { Settings } from "./panels/Settings";
 import { Stats } from "./panels/Stats";
 import { Bergle } from "./Bergle";
+import { useSharedGameState } from "../shared/useGame";
 
 type NavbarPanel = "FAQ" | "MAP" | "SETTINGS" | "STATS" | null;
 
@@ -85,6 +86,15 @@ const Navbar = () => {
     useState<NavbarPanel>(null);
 
   const closeNavbarPanel = () => setCurrentOpenNavbarPanel(null);
+  const {
+    gameActions: { setUsedHintFunc },
+  } = useSharedGameState();
+
+  useEffect(() => {
+    if (currentOpenNavbarPanel === "MAP") {
+      setUsedHintFunc(true)
+    }
+  }, [currentOpenNavbarPanel, setUsedHintFunc]);
 
   return (
     <>

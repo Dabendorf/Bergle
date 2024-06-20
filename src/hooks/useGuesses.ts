@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Guess } from "../domain/guess";
 
-type GameResult = "VICTORY" | "LOSS" | "ONGOING";
+type GameResult = "VICTORY" | "VICTORY_WITH_MAP" | "LOSS" | "ONGOING";
 
 /** Class handling storage of guesses */
 class GuessStorage {
@@ -48,7 +48,7 @@ class GuessStorage {
   }
 }
 
-const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
+const calculateGameResult = (guesses: Guess[], maxGuesses: number, usedHint: boolean) => {
   const lastGuessIdx = guesses.length;
   if(lastGuessIdx === 0) {
     return "ONGOING"
@@ -56,6 +56,9 @@ const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
   
   const lastGuess = guesses[lastGuessIdx-1];
   if (lastGuess.distance === 0) {
+    if(usedHint) {
+      return "VICTORY_WITH_MAP";
+    }
     return "VICTORY";
   }
   
@@ -69,7 +72,7 @@ const calculateGameResult = (guesses: Guess[], maxGuesses: number) => {
  * NOTE: should only be used within useGame
  * - usage multiple places may lead to bugs
  */
-export function useGuesses(dayString: string, maxAttempts: number) {
+export function useGuesses(dayString: string, maxAttempts: number, usedHint: boolean) {
   const [guesses, setGuesses] = useState<Guess[]>(
     GuessStorage.loadGuessesForDay(dayString)
   );
@@ -82,7 +85,7 @@ export function useGuesses(dayString: string, maxAttempts: number) {
     setGuesses(newGuesses);
     GuessStorage.updateSavedGuesses(dayString, newGuesses);
 
-    const newGameResult = calculateGameResult(newGuesses, maxAttempts);
+    const newGameResult = calculateGameResult(newGuesses, maxAttempts, usedHint);
     GuessStorage.updateGameResults(dayString, newGameResult);
     setGameResult(newGameResult);
   };
