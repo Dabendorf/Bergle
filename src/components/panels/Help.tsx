@@ -76,9 +76,11 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       if(event.transform.k <= 6) {
         g.selectAll("text").attr("dy", "1em")
         g.selectAll("text").attr("font-size", `${(-4.03955 * Math.log(0.109089 *event.transform.k))}px`);
+        //g.selectAll("text").attr("stroke-width", 0.05)
       } else {
         g.selectAll("text").attr("dy", "2em")
         g.selectAll("text").attr("font-size", `${(2.34836 - 0.106045 * event.transform.k )}px`);
+        //g.selectAll("text").attr("stroke-width", 0.05)
       }
       
       g.selectAll("circle").attr("r", 4.5 - 1.4428 * (Math.log(event.transform.k)));
@@ -128,7 +130,9 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
       .attr("dy", "1em") // Adjusting position to be closer to the node
-      .attr("font-size", "10px") 
+      .attr("font-size", "10px")
+      //.attr("stroke", "#000000")
+      //.attr("stroke-width", 0.05)
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
   
@@ -228,7 +232,7 @@ const graphTheme = {
     selectedOpacity: 1,
     inactiveOpacity: 0.2,
     label: {
-      color: "#fff",
+      color: "#AAAAAA",
       stroke: "#000000",
       activeColor: "#1DE9AC",
     },

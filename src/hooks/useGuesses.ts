@@ -80,6 +80,8 @@ export function useGuesses(dayString: string, maxAttempts: number, usedHint: boo
     GuessStorage.loadGameResultForDay(dayString)
   );
 
+  //const usedHintOrig = usedHint || gameResult === "VICTORY_WITH_MAP";
+
   const addGuess = (guess: Guess) => {
     const newGuesses = [...guesses, guess];
     setGuesses(newGuesses);
@@ -94,5 +96,6 @@ export function useGuesses(dayString: string, maxAttempts: number, usedHint: boo
     guesses,
     addGuess,
     gameResult,
+    //usedHintOrig
   };
 }
