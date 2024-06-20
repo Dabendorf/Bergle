@@ -78,7 +78,12 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
         g.selectAll("text").attr("font-size", `${(-4.03955 * Math.log(0.109089 *event.transform.k))}px`);
         //g.selectAll("text").attr("stroke-width", 0.05)
       } else {
-        g.selectAll("text").attr("dy", "2em")
+        if(isMobileDevice()) {
+          g.selectAll("text").attr("dy", "1em")
+        } else {
+          g.selectAll("text").attr("dy", "2em")
+        }
+        
         g.selectAll("text").attr("font-size", `${(2.34836 - 0.106045 * event.transform.k )}px`);
         //g.selectAll("text").attr("stroke-width", 0.05)
       }
