@@ -7,6 +7,7 @@ const resources = {
       placeholder: "Område i Bergen",
       guess: "Gjett",
       share: "Dabb tjommiene dine",
+      shareFail: "Feil. Del din evneløshet med andre.",
       showOnOSM: "👀 på OpenStreetMap",
       welldone: "Bra jobbet!",
       unknownCountry: "Ukjent sted, det er meget kleint",

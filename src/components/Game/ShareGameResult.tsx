@@ -18,7 +18,7 @@ const ShareClipboard = () => {
   const { t } = useTranslation();
   const {
     settings: { noMapMode, rotationMode, theme },
-    state: { guesses, dateString, usedHint },
+    state: { guesses, dateString, usedHint, gameResult },
   } = useSharedGameState();
 
   const shareText = useMemo(() => {
@@ -57,7 +57,7 @@ const ShareClipboard = () => {
         format: "text/plain",
       }}
     >
-      <Button buttonStyle="secondary">{t("share")}</Button>
+      <Button buttonStyle="secondary">{gameResult === "LOSS" ? t("shareFail") : t("share")}</Button>
     </CopyToClipboard>
   );
 };
