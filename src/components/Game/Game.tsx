@@ -7,11 +7,12 @@ import { ShareGameResult } from "./ShareGameResult";
 import { SubmitGuessForm } from "./SubmitGuessForm";
 import { GameSettingButtons } from "./GameSettingButtons";
 import { useTranslation } from "react-i18next";
+import { DateTime, Interval } from "luxon";
 
 export function Game() {
   const {
     settings,
-    state: { country, guesses, gameResult },
+    state: { country, guesses, gameResult, dateString },
   } = useSharedGameState();
   const { t } = useTranslation();
 
@@ -38,6 +39,12 @@ export function Game() {
       </div>
       <div className={(guesses.length >= 3 && gameResult === "ONGOING") ? "p-4 text-center" : ""}>
           {(guesses.length >= 3 && gameResult === "ONGOING") && t("mapHelperRecommendation")}
+      </div>
+      <div className={(Math.floor(Interval.fromDateTimes(DateTime.fromISO("2023-12-31"), DateTime.fromISO(dateString)).length("day"))<327) ? "p-4 text-center" : ""}>
+          {(Math.floor(Interval.fromDateTimes(DateTime.fromISO("2023-12-31"), DateTime.fromISO(dateString)).length("day"))<327) && "Hallaien irriterte Bergensere! Vi har lagt om random-funksjonen i Bergle. Det blir forhåpentligvis ikke lenger duplikater flere dager på rad i fremtiden."}
+      </div>
+      <div className={(Math.floor(Interval.fromDateTimes(DateTime.fromISO("2023-12-31"), DateTime.fromISO(dateString)).length("day"))===365) ? "p-4 text-center" : ""}>
+          {(Math.floor(Interval.fromDateTimes(DateTime.fromISO("2023-12-31"), DateTime.fromISO(dateString)).length("day"))===365) && "I dag er det et år siden Bergle ble publisert! Tusen takk for at du fortsatt spiller!"}
       </div>
     </div>
   );
