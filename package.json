@@ -12,8 +12,8 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
-    "@types/jest": "^27.4.0",
-    "@types/node": "^16.11.19",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.1",
     "@types/react-dom": "^18.2.18",
     "d3": "^7.9.0",
     "flowbite": "^1.8.1",
@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@types/d3": "^7.4.3",
-    "@types/luxon": "^2.0.9",
+    "@types/luxon": "^3.4.2",
     "@types/react-autosuggest": "^10.1.5",
     "@types/react-copy-to-clipboard": "^5.0.2",
     "@types/react-modal": "^3.13.1",
@@ -76,7 +76,6 @@
     "autoprefixer": "^10.4.2",
     "mini-css-extract-plugin": "2.4.5",
     "postcss": "^8.4.5",
-    "prettier": "^2.5.1",
     "tailwindcss": "^3.0.18"
   }
 }
