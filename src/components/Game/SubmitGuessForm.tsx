@@ -18,15 +18,15 @@ const SubmitGuessForm = () => {
       const guessResult = submitGuess();
       // TODO if invalid and it was your last attempt, show different msg
       if (guessResult === "INVALID") {
-        toast.error(t("unknownCountry"));
+        toast.error(t("unknownCountry") as string); // Cast to string
         return;
       }
       if (guessResult === "DUPLICATE") {
-        toast.error(t("alreadyGuessed"));
+        toast.error(t("alreadyGuessed") as string); // Cast to string
         return;
       }
       if (guessResult === "CORRECT") {
-        toast.success(t("welldone"), { delay: 2000 });
+        toast.success(t("welldone") as string, { delay: 2000 }); // Cast to string
       }
     },
     [t, submitGuess]
