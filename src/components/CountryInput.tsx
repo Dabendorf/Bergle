@@ -51,14 +51,19 @@ export function CountryInput({
         value: currentGuess,
         onChange: (_e, { newValue }) => setCurrentGuess(newValue),
       }}
-      renderSuggestionsContainer={({ containerProps, children }) => (
-        <div
-          {...containerProps}
-          className={`${containerProps.className} absolute bottom-full w-full bg-white mb-1 divide-x-2 max-h-52 overflow-auto`}
-        >
-          {children}
-        </div>
-      )}
+      renderSuggestionsContainer={({ containerProps, children }) => {
+        const { key, ...restProps } = containerProps;
+        return (
+          <div
+            key={Math.random()}  // Ensure each element has a unique key (only if you don't have other unique identifiers)
+            {...restProps}
+            className={`${restProps.className} absolute bottom-full w-full bg-white mb-1 divide-x-2 max-h-52 overflow-auto`}
+          >
+            {children}
+          </div>
+        );
+      }}
+      
     />
   );
 }
