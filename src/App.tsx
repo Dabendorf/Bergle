@@ -23,7 +23,7 @@ function App() {
 
   return (
     <PageContainer>
-      <Snowfall color="#AA0000" />
+      <Snowfall color="#AA00AA" />
       <ToastContainer
         hideProgressBar
         position="top-center"
