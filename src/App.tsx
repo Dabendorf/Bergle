@@ -6,6 +6,7 @@ import { useSettings } from "./hooks/useSettings";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PageContainer from "./components/PageContainer";
+import Snowfall from 'react-snowfall'
 
 function App() {
   const [{ theme }] = useSettings();
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <PageContainer>
+      <Snowfall />
       <ToastContainer
         hideProgressBar
         position="top-center"
