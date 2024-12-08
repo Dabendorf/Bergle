@@ -6,9 +6,11 @@ import { useSettings } from "./hooks/useSettings";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PageContainer from "./components/PageContainer";
+import Snowfall from 'react-snowfall'
 
 function App() {
   const [{ theme }] = useSettings();
+  const isDecember = new Date().getMonth() === 11;
 
   useEffect(() => {
     if (theme === "dark") {
@@ -22,6 +24,14 @@ function App() {
 
   return (
     <PageContainer>
+      {isDecember && (
+				<Snowfall
+					// Changes the snowflake color
+					color="#00BCD4"
+          snowflakeCount={window.innerWidth*0.1}
+          speed={[1.0, 1.1]}
+				/>
+			)}
       <ToastContainer
         hideProgressBar
         position="top-center"
