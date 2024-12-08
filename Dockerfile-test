@@ -1,0 +1,6 @@
+FROM node:16.11.1-slim
+
+COPY ./ /app
+WORKDIR /app
+RUN npm install
+CMD [ "npm", "run", "start-dev"]
