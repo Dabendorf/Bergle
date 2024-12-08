@@ -28,6 +28,8 @@ function App() {
 				<Snowfall
 					// Changes the snowflake color
 					color="#00BCD4"
+          snowflakeCount={window.innerWidth*0.1}
+          speed={[1.0, 1.1]}
 				/>
 			)}
       <ToastContainer
