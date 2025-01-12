@@ -16,7 +16,10 @@ export type SettingsData = {
   distanceUnit: DistanceUnits;
   /** The users desired application theme */
   theme: Themes;
+  /**no useless comment here */
   hideNamesOnMap: boolean;
+  /** If the game shows if the bydel is correct */
+  bydelHelperMode: boolean;
 };
 
 const defaultSettings: SettingsData = {
@@ -25,6 +28,7 @@ const defaultSettings: SettingsData = {
   distanceUnit: "km",
   theme: "dark",
   hideNamesOnMap: false,
+  bydelHelperMode: false
 };
 
 export function loadSettings(): SettingsData {

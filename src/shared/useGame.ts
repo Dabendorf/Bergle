@@ -20,8 +20,8 @@ import { getDistance } from "geolib";
 import { Guess } from "../domain/guess";
 import { getDirectionFromAToB } from "../domain/geography";
 
-type GuessSubmitResult = "CORRECT" | "INCORRECT" | "INVALID" | "DUPLICATE";
-type GameResult = "VICTORY" | "VICTORY_WITH_MAP" |"LOSS" | "ONGOING";
+type GuessSubmitResult = "CORRECT" | "INCORRECT" | "INVALID" | "DUPLICATE" | "INCORRECT_BUT_SAME_BYDEL";
+type GameResult = "VICTORY" | "VICTORY_WITH_MAP" | "VICTORY_WITH_BYDEL" | "VICTORY_WITH_MAP_AND_BYDEL" |"LOSS" | "ONGOING";
 
 /** The state of the current game */
 export type GameState = {
@@ -32,7 +32,7 @@ export type GameState = {
   /** Which attempt the user is at (counting from 1)*/
   currentAttempt: number;
   /** Which phase the game is in */
-  gameResult: GameResult; // TODO change name, not happy with it
+  gameResult: GameResult;
   /** Date of the current game */
   dateString: string;
   /** The district the current player must locate */
@@ -127,6 +127,7 @@ const _useGameState = (): Game => {
       name: currentGuess,
       distance: getDistance(guessedCountry, country),
       direction: getDirectionFromAToB(guessedCountry.longitude, guessedCountry.latitude, country.longitude, country.latitude),
+      bydelIsCorrect: country.district === guessedCountry.district,
     };
     addGuess(newGuess);
     setCurrentGuess("")
@@ -134,9 +135,13 @@ const _useGameState = (): Game => {
     if (newGuess.distance === 0) {
       return "CORRECT";
     }
+    
+    if(_globalSettingsData.bydelHelperMode && newGuess.bydelIsCorrect) {
+      return "INCORRECT_BUT_SAME_BYDEL"
+    }
 
     return "INCORRECT";
-  }, [country, addGuess, currentGuess, guesses]);
+  }, [country, addGuess, currentGuess, guesses, _globalSettingsData.bydelHelperMode]);
 
   return {
     state: {
@@ -145,7 +150,7 @@ const _useGameState = (): Game => {
       currentAttempt: guesses.length + 1,
       gameResult,
       dateString,
-      country, // TODO refakturer,
+      country,
       usedHint
     },
     settings: currentGameSettings,

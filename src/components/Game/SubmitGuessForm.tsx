@@ -25,11 +25,15 @@ const SubmitGuessForm = () => {
         toast.error(t("alreadyGuessed") as string); // Cast to string
         return;
       }
+      if (guessResult === "INCORRECT_BUT_SAME_BYDEL") {
+        //toast.info(`${String(t("correctBydel"))} (${country.district})`);
+        return;
+      }
       if (guessResult === "CORRECT") {
         toast.success(t("welldone") as string, { delay: 2000 }); // Cast to string
       }
     },
-    [t, submitGuess]
+    [t, submitGuess, /*country.district*/]
   );
 
   if (gameResult !== "ONGOING") return null;

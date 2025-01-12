@@ -77,6 +77,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                       name: "Trengereid",
                       direction: "SW",
                       distance: 16800,
+                      bydelIsCorrect: false,
                     }} 
                     settingsData={settingsData}
                   />
@@ -98,6 +99,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                       name: "Fantoft",
                       direction: "N",
                       distance: 5960,
+                      bydelIsCorrect: false,
                     }}
                     settingsData={settingsData}
                   />
@@ -117,6 +119,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                       name: "Vågsbunnen",
                       direction: "NW",
                       distance: 430,
+                      bydelIsCorrect: true,
                     }}
                     settingsData={settingsData}
                   />
@@ -136,6 +139,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                       name: "Bryggen",
                       direction: "N",
                       distance: 0,
+                      bydelIsCorrect: true,
                     }}
                     settingsData={settingsData}
                   />
@@ -369,6 +373,16 @@ export function Infos({ isOpen, close }: InfosProps) {
                       Patrick Monslaup
                     </CustomLink>
                     , for forenkling, opprydning og speedup av koden.
+                  </>
+                }
+              />
+              <FAQitemAnswerline
+                text={
+                  <>
+                    <CustomLink href="https://github.com/picosmos">
+                      Tom (picosmos)
+                    </CustomLink>
+                    , for å fikse noen logiske feil.
                   </>
                 }
               />
