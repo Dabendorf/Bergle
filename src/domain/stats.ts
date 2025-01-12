@@ -31,7 +31,7 @@ export function getStatsData(): StatsData {
   let bestDistanceSum = 0;
   for (const [dayStringNew, guesses] of allGuessesEntries) {
     bestDistanceSum += Math.min(...guesses.map((guess) => guess.distance));
-    const currentDate = DateTime.fromFormat(dayStringNew, "dd-MM-yyyy");
+    const currentDate = DateTime.fromFormat(dayStringNew, "yyyy-MM-dd");
     const winIndex = guesses.findIndex((guess) => guess.distance === 0);
     const won = winIndex >= 0;
     if (won) {
@@ -54,6 +54,12 @@ export function getStatsData(): StatsData {
       maxStreak = currentStreak;
     }
     previousDate = currentDate;
+  }
+
+  if(previousDate != null && 
+    !previousDate?.plus({ days: 1 }).hasSame(DateTime.now(), "day") && 
+    !previousDate?.hasSame(DateTime.now(), "day")) {
+      currentStreak = 0;
   }
 
   const winCount = Object.values(guessDistribution).reduce(
