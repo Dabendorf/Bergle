@@ -127,6 +127,7 @@ const _useGameState = (): Game => {
       name: currentGuess,
       distance: getDistance(guessedCountry, country),
       direction: getDirectionFromAToB(guessedCountry.longitude, guessedCountry.latitude, country.longitude, country.latitude),
+      bydelIsCorrect: country.district === guessedCountry.district,
     };
     addGuess(newGuess);
     setCurrentGuess("")
@@ -138,8 +139,7 @@ const _useGameState = (): Game => {
     console.log(_globalSettingsData.bydelHelperMode)
     console.log(country.district)
     console.log(guessedCountry.district)
-    if(_globalSettingsData.bydelHelperMode && country.district === guessedCountry.district) {
-      console.log("Same district!!!")
+    if(_globalSettingsData.bydelHelperMode && newGuess.bydelIsCorrect) {
       return "INCORRECT_BUT_SAME_BYDEL"
     }
 
@@ -153,7 +153,7 @@ const _useGameState = (): Game => {
       currentAttempt: guesses.length + 1,
       gameResult,
       dateString,
-      country, // TODO refakturer,
+      country,
       usedHint
     },
     settings: currentGameSettings,

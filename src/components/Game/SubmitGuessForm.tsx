@@ -8,7 +8,7 @@ import { Button } from "../Button";
 const SubmitGuessForm = () => {
   const { t } = useTranslation();
   const {
-    state: { currentGuess, gameResult, country },
+    state: { currentGuess, gameResult },
     gameActions: { updateCurrentGuess, submitGuess },
   } = useSharedGameState();
 
@@ -26,14 +26,14 @@ const SubmitGuessForm = () => {
         return;
       }
       if (guessResult === "INCORRECT_BUT_SAME_BYDEL") {
-        toast.info(`${String(t("correctBydel"))} (${country.district})`); //TODO change to something better
+        //toast.info(`${String(t("correctBydel"))} (${country.district})`);
         return;
       }
       if (guessResult === "CORRECT") {
         toast.success(t("welldone") as string, { delay: 2000 }); // Cast to string
       }
     },
-    [t, submitGuess, country.district]
+    [t, submitGuess, /*country.district*/]
   );
 
   if (gameResult !== "ONGOING") return null;

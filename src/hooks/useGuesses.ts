@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Guess } from "../domain/guess";
 
-type GameResult = "VICTORY" | "VICTORY_WITH_MAP" | "LOSS" | "ONGOING";
+type GameResult = "VICTORY" | "VICTORY_WITH_MAP" | "VICTORY_WITH_BYDEL" | "VICTORY_WITH_MAP_AND_BYDEL" |"LOSS" | "ONGOING";
 
 /** Class handling storage of guesses */
 class GuessStorage {

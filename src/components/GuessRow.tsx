@@ -92,7 +92,13 @@ export function GuessRow({ guess, settingsData }: GuessRowProps) {
     case "ENDED":
       return (
         <>
-          <div className="flex items-center justify-center border-2 h-8 col-span-3 animate-reveal">
+          <div className={`flex items-center justify-center border-2 h-8 col-span-3 animate-reveal ${guess?.bydelIsCorrect && settingsData.bydelHelperMode ? "dark:bg-green-800" : ""}`}
+          {...(settingsData.bydelHelperMode && {
+            title: guess?.bydelIsCorrect
+              ? "Bydelen er korrekt"
+              : "Bydelen er ikke korrekt",
+          })}
+          >
             <p className="text-ellipsis overflow-hidden whitespace-nowrap">
               {guess?.name.toUpperCase()}
             </p>
