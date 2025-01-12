@@ -32,7 +32,7 @@ export type GameState = {
   /** Which attempt the user is at (counting from 1)*/
   currentAttempt: number;
   /** Which phase the game is in */
-  gameResult: GameResult; // TODO change name, not happy with it
+  gameResult: GameResult;
   /** Date of the current game */
   dateString: string;
   /** The district the current player must locate */
