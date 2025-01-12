@@ -136,9 +136,6 @@ const _useGameState = (): Game => {
       return "CORRECT";
     }
     
-    console.log(_globalSettingsData.bydelHelperMode)
-    console.log(country.district)
-    console.log(guessedCountry.district)
     if(_globalSettingsData.bydelHelperMode && newGuess.bydelIsCorrect) {
       return "INCORRECT_BUT_SAME_BYDEL"
     }
