@@ -17,7 +17,7 @@ const START_DATE = DateTime.fromISO("2023-12-31"); // always one day off (if 202
 const ShareClipboard = () => {
   const { t } = useTranslation();
   const {
-    settings: { noMapMode, rotationMode, theme },
+    settings: { noMapMode, rotationMode, theme, hideNamesOnMap },
     state: { guesses, dateString, usedHint, gameResult },
   } = useSharedGameState();
 
@@ -35,7 +35,7 @@ const ShareClipboard = () => {
       ? " 🌀"
       : "";
 
-    const hintEmoji = usedHint ? " 🗺️" : "";
+    const hintEmoji = usedHint ? (hideNamesOnMap ? " 🌐": " 🗺️" ): "";
     const title = `#Bergle #Dag${dayCount} ${guessCount}/6${difficultyModifierEmoji}${hintEmoji}`;
 
     const guessString = guesses

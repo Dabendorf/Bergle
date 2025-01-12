@@ -27,14 +27,13 @@ const defaultSettings: SettingsData = {
   hideNamesOnMap: false,
 };
 
-function loadSettings(): SettingsData {
+export function loadSettings(): SettingsData {
   const localSettings = localStorage.getItem("settings");
   const localSettingsJson = localSettings ? JSON.parse(localSettings) : {};
   // TODO consider removing "theme" from defaultSettings, instead setting it from user settings
   //     theme: window.matchMedia("(prefers-color-scheme: dark)").matches
   //        ? "dark"
   //        : "light",
-  console.log(localSettings);
   return Object.assign({}, defaultSettings, localSettingsJson);
 }
 
@@ -46,8 +45,8 @@ export function useSettings(): [
     loadSettings()
   );
 
-  // put back usecallback here if not working
-  const updateSettingsData =  (newSettings: Partial<SettingsData>) => {
+  const updateSettingsData = useCallback(
+    (newSettings: Partial<SettingsData>) => {
       const updatedSettings = {
         ...settingsData,
         ...newSettings,
@@ -55,7 +54,9 @@ export function useSettings(): [
 
       setSettingsData(updatedSettings);
       localStorage.setItem("settings", JSON.stringify(updatedSettings));
-    }
+    },
+    [settingsData]
+  );
 
   return [settingsData, updateSettingsData];
 }
