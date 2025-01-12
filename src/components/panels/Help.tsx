@@ -5,6 +5,7 @@ import { countries } from "../../domain/countries";
 import { Guess } from "../../domain/guess";
 import { useSharedGameState } from "../../shared/useGame";
 import { useTranslation } from "react-i18next";
+import { useSettings } from "../../hooks/useSettings";
 
 interface MapNode {
   id: string;
@@ -27,12 +28,16 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
     state: { country, guesses },
   } = useSharedGameState();
   const { t } = useTranslation();
+  const [settings, _ ] = useSettings()
+
 
   useEffect(() => {
     if (!svgRef.current) return;
 
     const svg = d3.select(svgRef.current);
     const { width, height } = svgDimensions;
+    //const [settings,] = useSettings();
+    console.log('settings', settings)
 
     const mapNodes: MapNode[] = countries.map((country) => ({
       id: country.code,
@@ -141,8 +146,8 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
 
-    adjustNodes(country.name.toLowerCase(), guesses, mapNodes, g, true);
-  }, [isOpen, country, guesses, svgDimensions]);
+    adjustNodes(country.name.toLowerCase(), guesses, mapNodes, g, settings.hideNamesOnMap);
+  }, [isOpen, country, guesses, svgDimensions, settings]);
 
   useEffect(() => {
     function handleResize() {

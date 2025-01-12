@@ -16,6 +16,7 @@ export type SettingsData = {
   distanceUnit: DistanceUnits;
   /** The users desired application theme */
   theme: Themes;
+  hideNamesOnMap: boolean;
 };
 
 const defaultSettings: SettingsData = {
@@ -23,6 +24,7 @@ const defaultSettings: SettingsData = {
   rotationMode: false,
   distanceUnit: "km",
   theme: "dark",
+  hideNamesOnMap: false,
 };
 
 function loadSettings(): SettingsData {
@@ -32,6 +34,7 @@ function loadSettings(): SettingsData {
   //     theme: window.matchMedia("(prefers-color-scheme: dark)").matches
   //        ? "dark"
   //        : "light",
+  console.log(localSettings);
   return Object.assign({}, defaultSettings, localSettingsJson);
 }
 
@@ -43,8 +46,8 @@ export function useSettings(): [
     loadSettings()
   );
 
-  const updateSettingsData = useCallback(
-    (newSettings: Partial<SettingsData>) => {
+  // put back usecallback here if not working
+  const updateSettingsData =  (newSettings: Partial<SettingsData>) => {
       const updatedSettings = {
         ...settingsData,
         ...newSettings,
@@ -52,9 +55,7 @@ export function useSettings(): [
 
       setSettingsData(updatedSettings);
       localStorage.setItem("settings", JSON.stringify(updatedSettings));
-    },
-    [settingsData]
-  );
+    }
 
   return [settingsData, updateSettingsData];
 }

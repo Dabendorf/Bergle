@@ -45,6 +45,17 @@ export function Settings({ isOpen, close }: SettingsProps) {
             {t("settings.rotationMode")}
           </label>
         </div>
+        <div className="flex p-1 items-center">
+          <input
+            type="checkbox"
+            id="setting-hideNamesOnMap"
+            checked={settingsData.hideNamesOnMap}
+            onChange={(e) => updateSettings({ hideNamesOnMap: e.target.checked })}
+          />
+          <label className="flex-1 ml-2" htmlFor="setting-hideNamesOnMap">
+            {t("settings.hideNamesOnMap")}
+          </label>
+        </div>
       </div>
     </Panel>
   );

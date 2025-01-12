@@ -22,6 +22,7 @@ const resources = {
         startsNextDay: "Bevis at du kan mer enn bare Hansa øl og Brann ved å prøve deg på Bergle... Begynner i morgen",
         noMapMode: "Uten kart",
         rotationMode: "Med et tilfeldig rotert kart",
+        hideNamesOnMap: "Gjemme navn på kart"
       },
       contributeOnGitHub: "Bidra på GitHub!",
       mapTitle: "Kart over Norges viktigste by",
