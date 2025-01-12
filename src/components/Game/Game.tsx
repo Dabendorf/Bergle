@@ -8,7 +8,6 @@ import { SubmitGuessForm } from "./SubmitGuessForm";
 import { GameSettingButtons } from "./GameSettingButtons";
 import { useTranslation } from "react-i18next";
 import { DateTime, Interval } from "luxon";
-import { countries, getCountryName } from "../../domain/countries";
 
 export function Game() {
 
