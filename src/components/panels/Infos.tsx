@@ -378,7 +378,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                     <CustomLink href="https://github.com/picosmos">
                       Tom (picosmos)
                     </CustomLink>
-                    , for å fikse noen logisk feil.
+                    , for å fikse noen logiske feil.
                   </>
                 }
               />
