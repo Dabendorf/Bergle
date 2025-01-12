@@ -4,6 +4,7 @@ export interface Guess {
   name: string;
   distance: number;
   direction: Direction;
+  bydelIsCorrect: boolean;
 }
 
 export function loadAllGuesses(): Record<string, Guess[]> {

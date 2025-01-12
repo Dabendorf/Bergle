@@ -12,6 +12,7 @@ const resources = {
       welldone: "Bra jobbet!",
       unknownCountry: "Ukjent sted, det er meget kleint",
       alreadyGuessed: "Allerede gjettet før!",
+      correctBydel: "Bydelen er korrekt",
       copy: "Resultatene ble kopiert til utklippstavlen",
       showCountry: "🗺️ Vis kartet!",
       cancelRotation: "🌀 Stop rotasjon",
@@ -22,6 +23,9 @@ const resources = {
         startsNextDay: "Bevis at du kan mer enn bare Hansa øl og Brann ved å prøve deg på Bergle... Begynner i morgen",
         noMapMode: "Uten kart",
         rotationMode: "Med et tilfeldig rotert kart",
+        easyMode: "Enkel mode",
+        easyModeDescription: "Hvis du ikke er bergenser, så finnes det noen forenklinger som kan hjelpe deg",
+        bydel: "Hvis om bydelen er korrekt"
       },
       contributeOnGitHub: "Bidra på GitHub!",
       mapTitle: "Kart over Norges viktigste by",

@@ -14,7 +14,7 @@ export function Settings({ isOpen, close }: SettingsProps) {
 
   return (
     <Panel title={t("settings.title")} isOpen={isOpen} close={close}>
-      <div className="my-4 pl-4 pr4">
+      <div className="my-4 pl-4 pr-4">
         <header className="my-2">
           <h3 className="text-lg font-bold">
             {t("settings.difficultyModifiers")}
@@ -45,7 +45,30 @@ export function Settings({ isOpen, close }: SettingsProps) {
             {t("settings.rotationMode")}
           </label>
         </div>
+        <div className="flex p-1 items-center" style={{ marginBottom: "1rem" }}>
+        </div>
+        <header className="my-2">
+          <h3 className="text-lg font-bold">
+            {t("settings.easyMode")}
+          </h3>
+          <div className="text-sm italic text-gray-500">
+            {t("settings.easyModeDescription")}
+          </div>
+        </header>
+        <div className="flex p-1 items-center">
+          <input
+            type="checkbox"
+            id="setting-bydel"
+            checked={settingsData.bydelHelperMode}
+            onChange={(e) => updateSettings({ bydelHelperMode: e.target.checked })}
+          />
+          <label className="flex-1 ml-2" htmlFor="setting-bydel">
+            {t("settings.bydel")}
+          </label>
+        </div>
       </div>
     </Panel>
   );
+  
+  
 }

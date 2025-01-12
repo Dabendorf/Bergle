@@ -16,6 +16,8 @@ export type SettingsData = {
   distanceUnit: DistanceUnits;
   /** The users desired application theme */
   theme: Themes;
+  /** If the game shows if the bydel is correct */
+  bydelHelperMode: boolean;
 };
 
 const defaultSettings: SettingsData = {
@@ -23,6 +25,7 @@ const defaultSettings: SettingsData = {
   rotationMode: false,
   distanceUnit: "km",
   theme: "dark",
+  bydelHelperMode: false,
 };
 
 function loadSettings(): SettingsData {
