@@ -1,5 +1,6 @@
 import { DIRECTION_ARROWS } from "../components/GuessRow";
 import { DistanceUnits } from "../hooks/useSettings";
+import { Country } from "./countries";
 const MAX_DISTANCE_ON_EARTH = 32414.604895;
 
 export type Direction =
@@ -16,6 +17,40 @@ export type Direction =
 export function computeProximityPercent(distance: number): number {
   const proximity = Math.max(MAX_DISTANCE_ON_EARTH - distance, 0);
   return Math.round((proximity / MAX_DISTANCE_ON_EARTH) * 100);
+}
+
+export function getNodeDistance(guessCode: string, targetCode: string, countries: Country[]): number {
+  if (guessCode === targetCode) return 0;
+
+  const neighborMap: Record<string, string[]> = {};
+  countries.forEach(country => {
+    neighborMap[country.code] = country.neighbours;
+  });
+
+  const visited = new Set<string>();
+  const queue: [string, number][] = [[guessCode, 0]]; // [currentNode, currentDistance]
+
+  while (queue.length > 0) {
+    const [currentNode, distance] = queue.shift()!;
+
+    // If the current node is the destination, return the distance
+    if (currentNode === targetCode) {
+      return distance;
+    }
+
+    // Mark the current node as visited
+    visited.add(currentNode);
+
+    // Add unvisited neighbors to the queue
+    for (const neighbor of neighborMap[currentNode] || []) {
+      if (!visited.has(neighbor)) {
+        queue.push([neighbor, distance + 1]);
+      }
+    }
+  }
+
+  // If no path exists, return -1
+  return -1;
 }
 
 export function generateSquareCharacters(

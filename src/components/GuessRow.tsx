@@ -34,6 +34,7 @@ export function GuessRow({ guess, settingsData }: GuessRowProps) {
   const proximity = guess != null ? computeProximityPercent(guess.distance) : 0;
   const direction = guess?.direction ?? "N";
   const squares = generateSquareCharacters(proximity, theme, direction);
+  const nodeDistance = guess?.nodeDistance ?? 0;
 
   const [animationState, setAnimationState] =
     useState<AnimationState>("NOT_STARTED");
@@ -82,8 +83,8 @@ export function GuessRow({ guess, settingsData }: GuessRowProps) {
           </div>
           <div className="border-2 h-8 col-span-1 animate-reveal">
             <CountUp
-              end={proximity}
-              suffix="%"
+              end={nodeDistance}
+              suffix=""
               duration={(SQUARE_ANIMATION_LENGTH * 5) / 1000}
             />
           </div>
@@ -106,7 +107,7 @@ export function GuessRow({ guess, settingsData }: GuessRowProps) {
               : guess && DIRECTION_ARROWS[guess.direction]}
           </div>
           <div className="flex items-center justify-center border-2 h-8 col-span-1 animate-reveal animate-pop">
-            {`${proximity}%`}
+            {`${nodeDistance}`}
           </div>
         </>
       );
