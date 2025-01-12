@@ -12,6 +12,7 @@ const resources = {
       welldone: "Bra jobbet!",
       unknownCountry: "Ukjent sted, det er meget kleint",
       alreadyGuessed: "Allerede gjettet før!",
+      correctBydel: "Bydelen er korrekt",
       copy: "Resultatene ble kopiert til utklippstavlen",
       showCountry: "🗺️ Vis kartet!",
       cancelRotation: "🌀 Stop rotasjon",

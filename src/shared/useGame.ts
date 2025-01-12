@@ -20,8 +20,8 @@ import { getDistance } from "geolib";
 import { Guess } from "../domain/guess";
 import { getDirectionFromAToB } from "../domain/geography";
 
-type GuessSubmitResult = "CORRECT" | "INCORRECT" | "INVALID" | "DUPLICATE";
-type GameResult = "VICTORY" | "VICTORY_WITH_MAP" |"LOSS" | "ONGOING";
+type GuessSubmitResult = "CORRECT" | "INCORRECT" | "INVALID" | "DUPLICATE" | "INCORRECT_BUT_SAME_BYDEL";
+type GameResult = "VICTORY" | "VICTORY_WITH_MAP" | "VICTORY_WITH_BYDEL" | "VICTORY_WITH_MAP_AND_BYDEL" |"LOSS" | "ONGOING";
 
 /** The state of the current game */
 export type GameState = {
@@ -134,9 +134,17 @@ const _useGameState = (): Game => {
     if (newGuess.distance === 0) {
       return "CORRECT";
     }
+    
+    console.log(_globalSettingsData.bydelHelperMode)
+    console.log(country.district)
+    console.log(guessedCountry.district)
+    if(_globalSettingsData.bydelHelperMode && country.district === guessedCountry.district) {
+      console.log("Same district!!!")
+      return "INCORRECT_BUT_SAME_BYDEL"
+    }
 
     return "INCORRECT";
-  }, [country, addGuess, currentGuess, guesses]);
+  }, [country, addGuess, currentGuess, guesses, _globalSettingsData.bydelHelperMode]);
 
   return {
     state: {
