@@ -37,7 +37,7 @@ class GuessStorage {
   }
 
   static updateGameResults(dayString: string, gameResult: GameResult) {
-    const allGameResults = this.loadAllGuesses();
+    const allGameResults = this.loadAllGameResults();
     localStorage.setItem(
         "gameResult",
         JSON.stringify({
