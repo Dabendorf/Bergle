@@ -372,6 +372,16 @@ export function Infos({ isOpen, close }: InfosProps) {
                   </>
                 }
               />
+              <FAQitemAnswerline
+                text={
+                  <>
+                    <CustomLink href="https://github.com/picosmos">
+                      Tom (picosmos)
+                    </CustomLink>
+                    , for å fikse noen logisk feil.
+                  </>
+                }
+              />
             </>
           }
         />
