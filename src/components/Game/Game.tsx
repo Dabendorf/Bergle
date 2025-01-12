@@ -8,6 +8,7 @@ import { SubmitGuessForm } from "./SubmitGuessForm";
 import { GameSettingButtons } from "./GameSettingButtons";
 import { useTranslation } from "react-i18next";
 import { DateTime, Interval } from "luxon";
+import NeighbourAlert from "../NeighbourAlert";
 
 export function Game() {
 
@@ -40,6 +41,7 @@ export function Game() {
         <ShareGameResult />
         <SubmitGuessForm />
       </div>
+      <NeighbourAlert />
       <div className={(guesses.length >= 3 && gameResult === "ONGOING") ? "p-4 text-center" : ""}>
         {(guesses.length >= 3 && gameResult === "ONGOING") && t("mapHelperRecommendation")}
       </div>
