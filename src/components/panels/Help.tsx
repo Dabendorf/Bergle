@@ -30,10 +30,10 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
 
   useEffect(() => {
     if (!svgRef.current) return;
-  
+
     const svg = d3.select(svgRef.current);
     const { width, height } = svgDimensions;
-  
+
     const mapNodes: MapNode[] = countries.map((country) => ({
       id: country.code,
       label: country.name,
@@ -41,57 +41,57 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       longitude: country.longitude || 0,
       neighbours: country.neighbours,
     }));
-  
+
     const mapEdges = generateMapEdges(mapNodes);
-  
+
     const projection = d3
       .geoMercator()
       .fitExtent([[20, 20], [width - 20, height - 20]], {
         type: "FeatureCollection",
         features: mapNodes.map(nodeToFeature),
       } as GeoJSON.FeatureCollection<GeoJSON.GeometryObject>);
-  
+
     const path = d3.geoPath().projection(projection);
-  
+
     svg.selectAll("*").remove();
-  
+
     const g = svg.append("g");
-  
+
     const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([1, 10]).on("zoom", zoomed);
 
-    const startscale=1;
-    const radiusStart=5;
-  
+    const startscale = 1;
+    const radiusStart = 5;
+
     svg.call(zoom);
     svg.call(
       zoom.transform,
       d3.zoomIdentity
-        .translate(isMobileDevice() ? 0 : 100,0)
+        .translate(isMobileDevice() ? 0 : 100, 0)
         .scale(startscale)
     );
-  
+
     function zoomed(event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
       g.attr("transform", event.transform.toString());
 
-      if(event.transform.k <= 6) {
+      if (event.transform.k <= 6) {
         g.selectAll("text").attr("dy", "1em")
-        g.selectAll("text").attr("font-size", `${(-4.03955 * Math.log(0.109089 *event.transform.k))}px`);
+        g.selectAll("text").attr("font-size", `${(-4.03955 * Math.log(0.109089 * event.transform.k))}px`);
         //g.selectAll("text").attr("stroke-width", 0.05)
       } else {
-        if(isMobileDevice()) {
+        if (isMobileDevice()) {
           g.selectAll("text").attr("dy", "1em")
         } else {
           g.selectAll("text").attr("dy", "2em")
         }
-        
-        g.selectAll("text").attr("font-size", `${(2.34836 - 0.106045 * event.transform.k )}px`);
+
+        g.selectAll("text").attr("font-size", `${(2.34836 - 0.106045 * event.transform.k)}px`);
         //g.selectAll("text").attr("stroke-width", 0.05)
       }
-      
+
       g.selectAll("circle").attr("r", 4.5 - 1.4428 * (Math.log(event.transform.k)));
       g.selectAll("path").attr("stroke-width", 1 / event.transform.k);
     }
-  
+
     g.selectAll("path")
       .data(mapEdges)
       .enter()
@@ -113,13 +113,13 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .attr("stroke", graphTheme.edge.stroke)
       .attr("stroke-width", 1)
       .attr("fill", "none");
-  
+
     const nodeGroup = g.selectAll(".node-group")
       .data(mapNodes)
       .enter()
       .append("g")
       .attr("class", "node-group");
-  
+
     nodeGroup.append("circle")
       .attr("cx", (d) => projection([d.longitude, d.latitude])?.[0] || 0)
       .attr("cy", (d) => projection([d.longitude, d.latitude])?.[1] || 0)
@@ -128,7 +128,7 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       .style("fill", (d) =>
         d.label.toLowerCase() === country.name.toLowerCase() ? graphTheme.node.activeFill : graphTheme.node.fill
       );
-  
+
     nodeGroup.append("text")
       .attr("x", (d) => projection([d.longitude, d.latitude])?.[0] || 0)
       .attr("y", (d) => projection([d.longitude, d.latitude])?.[1] || 0)
@@ -140,8 +140,8 @@ const Help: React.FC<HelpProps> = ({ isOpen, close }) => {
       //.attr("stroke-width", 0.05)
       .attr("fill", graphTheme.node.label.color)
       .text((d) => d.label);
-  
-    colourNodes(country.name.toLowerCase(), guesses, mapNodes, g);
+
+    adjustNodes(country.name.toLowerCase(), guesses, mapNodes, g, true);
   }, [isOpen, country, guesses, svgDimensions]);
 
   useEffect(() => {
@@ -276,9 +276,14 @@ const graphTheme = {
   },
 };
 
-function colourNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: d3.Selection<SVGGElement, unknown, null, undefined>) {
+function adjustNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg: d3.Selection<SVGGElement, unknown, null, undefined>, hideNotGuessed: boolean) {
   const todayGuesses = guesses.map((guess: Guess) => guess.name.toLowerCase());
   const nodeGroups = svg.selectAll(".node-group");
+
+  if (hideNotGuessed) {
+    nodeGroups.selectAll("text").style("display", "none");
+  }
+
   for (const guess of todayGuesses) {
     const findNode: MapNode | undefined = mapNodes.find((node: MapNode) => {
       if (node.label) {
@@ -290,11 +295,17 @@ function colourNodes(winner: string, guesses: Guess[], mapNodes: MapNode[], svg:
       if (findNode.label) {
         if (findNode.label.toLowerCase() === winner) {
           nodeGroups.select(`circle[id="${findNode.id}"]`).style("fill", "green");
+          nodeGroups.selectAll("text").style("display", "unset");
           continue;
         }
       }
       nodeGroups.select(`circle[id="${findNode.id}"]`).style("fill", "red");
+      nodeGroups.select(`circle[id="${findNode.id}"] + text`).style("display", "unset");
     }
+  }
+
+  if (guesses.length === 6 || guesses.filter(guess => guess.distance === 0).length === 1) {
+    nodeGroups.selectAll("text").style("display", "unset");
   }
 }
 
