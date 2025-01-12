@@ -58,13 +58,14 @@ export function Infos({ isOpen, close }: InfosProps) {
                 <div>
                   Etter hver gjetning får du vite kor langt unna du er og
                   hvilken retning det korrekte stedet ligger relativ til den du
-                  har gjettet. I tillegg får du en prosentandel som sier kor
-                  nærme du er relativ til størrelsen av Nordens viktigste
-                  metropol Bergen. Et lavt tall nær 0% tilsier at du er på feil
-                  side av Bergen. Et tall nær 100% betyr at det ikkje er langt
-                  igjen til riktig området. Områdets plassering er det beregnede
+                  har gjettet. Områdets plassering er det beregnede
                   midtpunktet for dette området. Områder som har en felles
-                  grense kan derfor muligens vise store avstand.
+                  grense kan derfor muligens vise stor avstand i km. 
+                  I tillegg får du et tall på kor mange bydeler din
+                  gjetning ligger fra det korrekte området. For eksempel vil tallet
+                  12 bety at du må reise gjennom 11 andre områder for å komme til 
+                  riktig sted og 1 vil si at du gjettet en av nabobydelene til det
+                  riktige svaret. 
                 </div>
               </div>
               <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
@@ -77,6 +78,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                       name: "Trengereid",
                       direction: "SW",
                       distance: 16800,
+                      nodeDistance: 12,
                     }} 
                     settingsData={settingsData}
                   />
@@ -98,6 +100,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                       name: "Fantoft",
                       direction: "N",
                       distance: 5960,
+                      nodeDistance: 6,
                     }}
                     settingsData={settingsData}
                   />
@@ -117,6 +120,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                       name: "Vågsbunnen",
                       direction: "NW",
                       distance: 430,
+                      nodeDistance: 1,
                     }}
                     settingsData={settingsData}
                   />
@@ -125,7 +129,10 @@ export function Infos({ isOpen, close }: InfosProps) {
                     Din tredje gjetning,{" "}
                     <span className="uppercase font-bold">Vågsbunnen</span> er
                     kun 0.43km fra det korrekte svaret. Kanskje er det et annet
-                    sted med fremtidig Bybane du leter etter.
+                    sted med fremtidig Bybane du leter etter. Vi får og en relativ
+                    avstand på 1 som vil at riktig gjett vil være en nabo av
+                    {" "}
+                    <span className="uppercase font-bold">Vågsbunnen</span>.
                   </div>
                 </div>
                 <div>
@@ -136,6 +143,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                       name: "Bryggen",
                       direction: "N",
                       distance: 0,
+                      nodeDistance: 0,
                     }}
                     settingsData={settingsData}
                   />

@@ -18,7 +18,7 @@ import {
 import i18n from "../i18n";
 import { getDistance } from "geolib";
 import { Guess } from "../domain/guess";
-import { getDirectionFromAToB } from "../domain/geography";
+import { getDirectionFromAToB, getNodeDistance } from "../domain/geography";
 
 type GuessSubmitResult = "CORRECT" | "INCORRECT" | "INVALID" | "DUPLICATE";
 type GameResult = "VICTORY" | "VICTORY_WITH_MAP" |"LOSS" | "ONGOING";
@@ -127,6 +127,7 @@ const _useGameState = (): Game => {
       name: currentGuess,
       distance: getDistance(guessedCountry, country),
       direction: getDirectionFromAToB(guessedCountry.longitude, guessedCountry.latitude, country.longitude, country.latitude),
+      nodeDistance: getNodeDistance(guessedCountry.code, country.code, countries),
     };
     addGuess(newGuess);
     setCurrentGuess("")
