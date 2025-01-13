@@ -16,6 +16,8 @@ export type SettingsData = {
   distanceUnit: DistanceUnits;
   /** The users desired application theme */
   theme: Themes;
+  /**no useless comment here */
+  hideNamesOnMap: boolean;
   /** If the game shows if the bydel is correct */
   bydelHelperMode: boolean;
 };
@@ -25,10 +27,11 @@ const defaultSettings: SettingsData = {
   rotationMode: false,
   distanceUnit: "km",
   theme: "dark",
-  bydelHelperMode: false,
+  hideNamesOnMap: false,
+  bydelHelperMode: false
 };
 
-function loadSettings(): SettingsData {
+export function loadSettings(): SettingsData {
   const localSettings = localStorage.getItem("settings");
   const localSettingsJson = localSettings ? JSON.parse(localSettings) : {};
   // TODO consider removing "theme" from defaultSettings, instead setting it from user settings

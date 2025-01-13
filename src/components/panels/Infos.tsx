@@ -382,7 +382,7 @@ export function Infos({ isOpen, close }: InfosProps) {
                     <CustomLink href="https://github.com/picosmos">
                       Tom (picosmos)
                     </CustomLink>
-                    , for å fikse noen logiske feil.
+                    , for å fikse noen logiske feil, for funksjonen som gjemmer navn på kartet.
                   </>
                 }
               />
