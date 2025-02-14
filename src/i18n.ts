@@ -25,7 +25,7 @@ const resources = {
         rotationMode: "Med et tilfeldig rotert kart",
         easyMode: "Enkel mode",
         easyModeDescription: "Hvis du ikke er bergenser, så finnes det noen forenklinger som kan hjelpe deg",
-        bydel: "Hvis om bydelen er korrekt"
+        bydel: "Vis om bydelen er korrekt"
       },
       contributeOnGitHub: "Bidra på GitHub!",
       mapTitle: "Kart over Norges viktigste by",
