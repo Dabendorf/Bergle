@@ -48,7 +48,7 @@ const ShareClipboard = () => {
       .join("\n");
 
     return [title, guessString, "https://www.bergle.no"].join("\n");
-  }, [dateString, guesses, noMapMode, rotationMode, theme, usedHint, bydelHelperMode]);
+  }, [dateString, guesses, noMapMode, rotationMode, theme, usedHint, bydelHelperMode, hideNamesOnMap]);
 
   return (
     <CopyToClipboard
