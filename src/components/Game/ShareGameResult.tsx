@@ -82,6 +82,13 @@ const ShareGameResult = () => {
       >
         {t("showOnOSM")}
       </a>
+      <a
+        className="underline w-full text-center block mt-4"
+        href={`https://commons.wikimedia.org/wiki/File:Boligomr%C3%A5der_Bergen.png`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >Byområder fra Wikipedia
+      </a>
     </>
   );
 };
