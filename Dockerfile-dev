@@ -5,5 +5,5 @@ WORKDIR /app
 run bun i 
 run bun run build
 
-FROM nginx:stable-alpine
-COPY --from=base /app/build /usr/share/nginx/html
+RUN bun install serve
+CMD [ "serve", "-s", "build", "-l", "3200"]
