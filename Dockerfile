@@ -6,7 +6,7 @@ run bun i
 run bun run build
 
 RUN bun install serve
-CMD [ "serve", "-s", "build", "-l", "3200"]
 
 
-
+FROM nginx:stable-alpine
+COPY --from=base /app/build /usr/share/nginx/html
