@@ -69,7 +69,7 @@ export const countries: Country[] = [
     latitude: 60.338651429742086,
     longitude: 5.217881977173262,
     name: "Mathopen",
-    district: "Ytrebygda",
+    district: "Laksevåg",
     neighbours: ["110", "111", "94"],
   },
   {
@@ -893,7 +893,7 @@ export const countries: Country[] = [
     latitude: 60.35971264660863,
     longitude: 5.195197641250439,
     name: "Alvøen",
-    district: "Ytrebygda",
+    district: "Laksevåg",
     neighbours: ["10", "7", "94"],
   },
   {
@@ -901,7 +901,7 @@ export const countries: Country[] = [
     latitude: 60.35424353096282,
     longitude: 5.223907726729444,
     name: "Hetlevik",
-    district: "Ytrebygda",
+    district: "Laksevåg",
     neighbours: ["11", "42", "7"],
   },
 ];
